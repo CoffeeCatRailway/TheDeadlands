@@ -1,9 +1,14 @@
-// Made with Blockbench 3.5.4
-// Exported for Minecraft version 1.15
-// Paste this class into your mod and generate all required imports
+package coffeecatrailway.tdeadlands.client.entity.model;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.vertex.IVertexBuilder;
+import net.minecraft.client.renderer.entity.model.EntityModel;
+import net.minecraft.client.renderer.model.ModelRenderer;
+import net.minecraft.entity.Entity;
 
-public class custom_model extends EntityModel<Entity> {
+// TODO: Biped
+public class CryptMummy extends EntityModel<Entity> {
+
 	private final ModelRenderer Body;
 	private final ModelRenderer Spine;
 	private final ModelRenderer SpineMid;
@@ -27,7 +32,7 @@ public class custom_model extends EntityModel<Entity> {
 	private final ModelRenderer rightlowerleg;
 	private final ModelRenderer rightfoot;
 
-	public custom_model() {
+	public CryptMummy() {
 		textureWidth = 85;
 		textureHeight = 40;
 
