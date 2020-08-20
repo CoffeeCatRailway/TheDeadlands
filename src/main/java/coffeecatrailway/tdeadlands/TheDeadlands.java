@@ -1,6 +1,8 @@
 package coffeecatrailway.tdeadlands;
 
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
+import coffeecatrailway.tdeadlands.registry.DeadBlocks;
+import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,7 +22,7 @@ import org.apache.logging.log4j.Logger;
 public class TheDeadlands {
 
     public static final String MOD_ID = "tdeadlands";
-    private static final Logger LOGGER = getLogger(MOD_ID);
+    private static final Logger LOGGER = getLogger("");
 
     public static final ItemGroup GROUP_ALL = new ItemGroup(MOD_ID) {
         @Override
@@ -48,8 +50,8 @@ public class TheDeadlands {
 
         MinecraftForge.EVENT_BUS.register(this);
 
-//        DeadBlocks.load();
-//        DeadItems.load();
+        DeadBlocks.load(modEventBus);
+        DeadItems.load(modEventBus);
 //        DeadFluids.load();
 //        DeadTileEntities.load();
 //        DeadEntities.load();
