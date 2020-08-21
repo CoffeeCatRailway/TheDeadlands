@@ -1,0 +1,6 @@
+{
+  "parent": "tdeadlands:block/warp_rune_bottom",
+  "textures": {
+    "runes": "tdeadlands:misc/active_runes"
+  }
+}

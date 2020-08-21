@@ -1,0 +1,6 @@
+{
+  "parent": "tdeadlands:block/rune_bottom",
+  "textures": {
+    "runes": "tdeadlands:misc/inactive_runes"
+  }
+}
