@@ -8,6 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
@@ -26,7 +27,20 @@ public class DeadBlocks {
     private static final Logger LOGGER = TheDeadlands.getLogger("Blocks");
     protected static final DeferredRegister<Block> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCKS, TheDeadlands.MOD_ID);
 
+    public static final RegistryObject<Block> COPPER_ORE = register("copper_ore", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(3f, 3f)));
+
+    public static final RegistryObject<Block> FROST_METAL_ORE = register("frost_metal_ore", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(3f, 3f)));
+
+    public static final RegistryObject<Block> HEATSTONE_ORE = register("heatstone_ore", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(3f, 3f)));
+    public static final RegistryObject<Block> HEATSTONE_BLOCK = register("heatstone_block", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.RED).setRequiresTool().hardnessAndResistance(1.5f, 6f).sound(SoundType.METAL)));
+
     public static final RegistryObject<Block> COLD_BRONZE_BLOCK = register("cold_bronze_block", () -> new Block(AbstractBlock.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).setRequiresTool().hardnessAndResistance(5f, 6f).sound(SoundType.METAL)));
+
+    public static final RegistryObject<Block> COLDSTONE = register("coldstone", () -> new Block(AbstractBlock.Properties.create(Material.ROCK, MaterialColor.BLACK).setRequiresTool().hardnessAndResistance(1.5f, 6f)));
+    public static final RegistryObject<Block> COLDSTONE_BRICKS = register("coldstone_bricks", () -> new Block(AbstractBlock.Properties.from(COLDSTONE.get()).setRequiresTool().hardnessAndResistance(1.5f, 6f)));
+    public static final RegistryObject<Block> CRACKED_COLDSTONE_BRICKS = register("cracked_coldstone_bricks", () -> new Block(AbstractBlock.Properties.from(COLDSTONE.get()).setRequiresTool().hardnessAndResistance(1.5f, 6f)));
+    public static final RegistryObject<Block> MOSSY_COLDSTONE_BRICKS = register("mossy_coldstone_bricks", () -> new Block(AbstractBlock.Properties.from(COLDSTONE.get()).setRequiresTool().hardnessAndResistance(1.5f, 6f)));
+    public static final RegistryObject<Block> CHISELED_COLDSTONE_BRICKS = register("chiseled_coldstone_bricks", () -> new Block(AbstractBlock.Properties.from(COLDSTONE.get()).setRequiresTool().hardnessAndResistance(1.5f, 6f)));
 
     public static final RegistryObject<DeadWoodCraftingTableBlock> DEAD_WOOD_CRAFTING_TABLE = register("dead_wood_crafting_table", () -> new DeadWoodCraftingTableBlock(AbstractBlock.Properties.create(Material.WOOD, DyeColor.GRAY).hardnessAndResistance(2.5F).sound(SoundType.WOOD)));
 

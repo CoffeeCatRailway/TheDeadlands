@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tdeadlands:block/heatstone_block"
+    "all": "tdeadlands:block/dead_dirt"
   }
 }

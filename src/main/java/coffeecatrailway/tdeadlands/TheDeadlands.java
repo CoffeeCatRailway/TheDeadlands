@@ -2,6 +2,7 @@ package coffeecatrailway.tdeadlands;
 
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
 import coffeecatrailway.tdeadlands.registry.DeadBlocks;
+import coffeecatrailway.tdeadlands.registry.DeadContainers;
 import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -27,7 +28,7 @@ public class TheDeadlands {
     public static final ItemGroup GROUP_ALL = new ItemGroup(MOD_ID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(Items.GRASS);
+            return new ItemStack(DeadBlocks.COLDSTONE.get());
         }
     };
 

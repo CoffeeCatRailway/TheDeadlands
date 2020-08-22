@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "side": "tdeadlands:block/dead_log_side",
+    "top": "tdeadlands:block/dead_log_top"
+  }
+}
