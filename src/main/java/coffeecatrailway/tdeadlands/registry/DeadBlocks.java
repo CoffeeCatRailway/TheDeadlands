@@ -1,6 +1,7 @@
 package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
+import coffeecatrailway.tdeadlands.common.block.DeadGrassBlock;
 import coffeecatrailway.tdeadlands.common.block.DeadWoodCraftingTableBlock;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -53,6 +54,9 @@ public class DeadBlocks {
     // dead_wood_button
     // dead_wood_pressure_plate
     public static final RegistryObject<DeadWoodCraftingTableBlock> DEAD_WOOD_CRAFTING_TABLE = register("dead_wood_crafting_table", () -> new DeadWoodCraftingTableBlock(AbstractBlock.Properties.create(Material.WOOD, DyeColor.GRAY).hardnessAndResistance(2.5F).sound(SoundType.WOOD)));
+
+    public static final RegistryObject<DeadGrassBlock> GRASS_BLOCK = register("grass_block", () -> new DeadGrassBlock(AbstractBlock.Properties.create(Material.ORGANIC, MaterialColor.LIGHT_BLUE).tickRandomly().hardnessAndResistance(.6f).sound(SoundType.PLANT)));
+    public static final RegistryObject<Block> DIRT = register("dirt", () -> new Block(AbstractBlock.Properties.create(Material.EARTH, MaterialColor.GRAY).hardnessAndResistance(.5f).sound(SoundType.GROUND)));
 
     private static <B extends Block> RegistryObject<B> register(String id, Supplier<B> block) {
         return register(id, block, null);

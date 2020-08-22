@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "tdeadlands:block/dirt"
+      },
+      {
+        "model": "tdeadlands:block/dirt",
+        "y": 90
+      },
+      {
+        "model": "tdeadlands:block/dirt",
+        "y": 180
+      },
+      {
+        "model": "tdeadlands:block/dirt",
+        "y": 270
+      }
+    ]
+  }
+}
