@@ -1,9 +1,9 @@
 {
-	"credit": "Made with Blockbench",
 	"textures": {
-		"coffin": "block/coffin",
-		"base": "block/coldstone",
-		"particle": "block/coldstone"
+		"2": "tdeadlands:misc/active_runes",
+		"coffin": "tdeadlands:block/coffin",
+		"particle": "tdeadlands:block/coldstone",
+		"base": "tdeadlands:block/coldstone"
 	},
 	"elements": [
 		{
@@ -113,6 +113,60 @@
 			"faces": {
 				"south": {"uv": [0, 6.5, 5, 11.5], "texture": "#coffin"}
 			}
+		},
+		{
+			"name": "form",
+			"from": [1.99, 5, 5],
+			"to": [1.99, 10, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"west": {"uv": [8.5, 0, 11, 2.5], "texture": "#2"},
+				"up": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "death",
+			"from": [14.01, 5, 5],
+			"to": [14.01, 10, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 7]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"east": {"uv": [2.5, 0, 5, 2.5], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#2"},
+				"up": {"uv": [0, 0, 0, 5], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 5], "rotation": 180, "texture": "#2"}
+			}
+		},
+		{
+			"name": "return",
+			"from": [1.99, 5, 0],
+			"to": [1.99, 10, 2],
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"east": {"uv": [0, 0, 0, 0], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"west": {"uv": [1, 0, 2, 2.5], "texture": "#2"},
+				"up": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 5], "texture": "#2"}
+			}
+		},
+		{
+			"name": "return",
+			"from": [14.01, 5, 0],
+			"to": [14.01, 10, 2],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, -6]},
+			"faces": {
+				"north": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"east": {"uv": [0, 0, 1, 2.5], "texture": "#2"},
+				"south": {"uv": [0, 0, 0, 5], "texture": "#2"},
+				"west": {"uv": [0, 0, 0, 0], "texture": "#2"},
+				"up": {"uv": [0, 0, 0, 5], "rotation": 180, "texture": "#2"},
+				"down": {"uv": [0, 0, 0, 5], "rotation": 180, "texture": "#2"}
+			}
 		}
 	],
 	"groups": [
@@ -132,14 +186,14 @@
 			"children": [4, 5]
 		},
 		{
-			"name": "front",
-			"origin": [8, 8, -8],
-			"children": []
-		},
-		{
 			"name": "back",
 			"origin": [8, 8, 19],
 			"children": [6, 7, 8, 9, 10]
+		},
+		{
+			"name": "runes",
+			"origin": [8, 8, 8],
+			"children": [11, 12, 13, 14]
 		}
 	]
 }
