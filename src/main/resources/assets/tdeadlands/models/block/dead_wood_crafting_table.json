@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/block",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"0": "tdeadlands:block/dead_wood_crafting_table_side",
 		"1": "tdeadlands:block/dead_wood_crafting_table_top",
@@ -48,8 +48,9 @@
 		},
 		{
 			"name": "return",
-			"from": [16.01, 6, 5.5],
-			"to": [16.01, 11, 10.5],
+			"from": [16.01, 6, 5],
+			"to": [16.01, 11, 10],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 7.5]},
 			"faces": {
 				"east": {"uv": [0, 0, 2.5, 2.5], "texture": "#3", "cullface": "east"}
 			}

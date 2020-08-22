@@ -60,9 +60,10 @@ public class TheDeadlands {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public void setupClient(FMLClientSetupEvent event) { // Commented if needed
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::itemColors);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
+    public void setupClient(FMLClientSetupEvent event) {
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::containerScreens);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::particleFactories);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::entityRenderers);
