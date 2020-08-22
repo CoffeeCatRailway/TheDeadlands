@@ -1,5 +1,6 @@
 package coffeecatrailway.tdeadlands.integration;
 
+import coffeecatrailway.tdeadlands.registry.DeadBlocks;
 import com.google.common.collect.Maps;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -16,7 +17,19 @@ import net.minecraft.util.IItemProvider;
 public class VanillaCompatability {
 
     public static void register() {
+        registerHoeable(DeadBlocks.GRASS_BLOCK.get());
 
+        registerStrippable(DeadBlocks.DEAD_LOG.get(), DeadBlocks.STRIPPED_DEAD_LOG.get());
+        registerStrippable(DeadBlocks.DEAD_WOOD.get(), DeadBlocks.STRIPPED_DEAD_WOOD.get());
+
+        registerFlammable(DeadBlocks.DEAD_LEAVES.get(), 30, 60);
+        registerFlammable(DeadBlocks.DEAD_LOG.get(), 5, 5);
+        registerFlammable(DeadBlocks.STRIPPED_DEAD_LOG.get(), 5, 5);
+        registerFlammable(DeadBlocks.DEAD_WOOD.get(), 5, 5);
+        registerFlammable(DeadBlocks.STRIPPED_DEAD_WOOD.get(), 5, 5);
+        registerFlammable(DeadBlocks.DEAD_PLANKS.get(), 5, 20);
+
+        registerCompostable(0.3F, DeadBlocks.DEAD_LEAVES.get());
     }
 
     private static void registerStrippable(Block log, Block strippedLog) {
@@ -25,8 +38,7 @@ public class VanillaCompatability {
     }
 
     private static void registerHoeable(Block block) {
-        HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
-        HoeItem.HOE_LOOKUP.put(block, Blocks.FARMLAND.getDefaultState());
+        registerHoeable(block, Blocks.FARMLAND);
     }
 
     private static void registerHoeable(Block hoeable, Block hoed) {
