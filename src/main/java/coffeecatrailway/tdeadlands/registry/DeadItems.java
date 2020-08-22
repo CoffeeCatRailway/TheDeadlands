@@ -35,6 +35,7 @@ public class DeadItems {
     public static final RegistryObject<Item> DEAD_WOOD_SHOVEL = REGISTER.register("dead_wood_shovel", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<Item> DEAD_WOOD_SWORD = REGISTER.register("dead_wood_sword", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<Item> DEAD_WOOD_BOW = REGISTER.register("dead_wood_bow", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
+    public static final RegistryObject<BowItem> DEAD_WOOD_BOW = REGISTER.register("dead_wood_bow", () -> new BowItem(new Item.Properties().maxDamage(384).group(TheDeadlands.GROUP_ALL)));
 
     public static final RegistryObject<Item> COLD_STONE_AXE = REGISTER.register("cold_stone_axe", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<Item> COLD_STONE_PICKAXE = REGISTER.register("cold_stone_pickaxe", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));

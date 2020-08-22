@@ -3,6 +3,7 @@ package coffeecatrailway.tdeadlands;
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
 import coffeecatrailway.tdeadlands.registry.DeadBlocks;
 import coffeecatrailway.tdeadlands.registry.DeadContainers;
+import coffeecatrailway.tdeadlands.registry.DeadItemModelProperties;
 import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -70,6 +71,8 @@ public class TheDeadlands {
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::entityRenderers);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::tileEntityRenderers);
         LOGGER.info("Client events");
+
+        DeadItemModelProperties.load();
     }
 
     public void setupCommon(FMLCommonSetupEvent event) {

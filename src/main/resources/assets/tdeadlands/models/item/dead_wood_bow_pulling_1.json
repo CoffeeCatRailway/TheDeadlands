@@ -1,0 +1,6 @@
+{
+  "parent": "tdeadlands:item/dead_wood_bow",
+  "textures": {
+    "layer0": "tdeadlands:item/dead_wood_bow_pulling_1"
+  }
+}
