@@ -1,50 +1,58 @@
 {
-	"credit": "Made with Blockbench",
+  "parent": "minecraft:block/block",
 	"textures": {
-		"1": "Textures/deadwoodcraftingtable",
-		"2": "Textures/deadwoodcraftingtableside",
-		"3": "Textures/deadwoodcraftingtabletop",
-		"4": "Textures/deadwoodplanks",
-		"particle": "Textures/deadwoodcraftingtableside"
+		"0": "tdeadlands:block/dead_wood_crafting_table_side",
+		"1": "tdeadlands:block/dead_wood_crafting_table_top",
+		"2": "tdeadlands:block/dead_wood_planks",
+		"3": "tdeadlands:misc/active_runes",
+		"particle": "tdeadlands:block/dead_wood_crafting_table_side"
 	},
 	"elements": [
 		{
+			"name": "block",
 			"from": [0, 0, 0],
 			"to": [16, 16, 16],
 			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#1"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#4"}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "east"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "south"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#0", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#1", "cullface": "up"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#2", "cullface": "down"}
+			}
+		},
+		{
+			"name": "form",
+			"from": [6, 6, -0.01],
+			"to": [11, 11, -0.01],
+			"faces": {
+				"north": {"uv": [13.5, 0, 16, 2.5], "texture": "#3", "cullface": "north"}
+			}
+		},
+		{
+			"name": "create",
+			"from": [-0.01, 6, 5],
+			"to": [-0.01, 11, 10],
+			"faces": {
+				"west": {"uv": [11, 0, 13.5, 2.5], "texture": "#3", "cullface": "west"}
+			}
+		},
+		{
+			"name": "life",
+			"from": [5.5, 6, 16.01],
+			"to": [10.5, 11, 16.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 8, 8]},
+			"faces": {
+				"south": {"uv": [8.5, 0, 11, 2.5], "texture": "#3", "cullface": "south"}
+			}
+		},
+		{
+			"name": "return",
+			"from": [16.01, 6, 5.5],
+			"to": [16.01, 11, 10.5],
+			"faces": {
+				"east": {"uv": [0, 0, 2.5, 2.5], "texture": "#3", "cullface": "east"}
 			}
 		}
-	],
-	"display": {
-		"thirdperson_righthand": {
-			"translation": [-2, 0, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"thirdperson_lefthand": {
-			"translation": [-2, 0, 0],
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"firstperson_righthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"firstperson_lefthand": {
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"ground": {
-			"scale": [0.25, 0.25, 0.25]
-		},
-		"gui": {
-			"rotation": [25, -50, 0],
-			"scale": [0.5, 0.5, 0.5]
-		},
-		"fixed": {
-			"scale": [0.5, 0.5, 0.5]
-		}
-	}
+	]
 }

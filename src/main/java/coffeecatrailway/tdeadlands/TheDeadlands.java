@@ -52,6 +52,7 @@ public class TheDeadlands {
 
         DeadBlocks.load(modEventBus);
         DeadItems.load(modEventBus);
+        DeadContainers.load(modEventBus);
 //        DeadFluids.load();
 //        DeadTileEntities.load();
 //        DeadEntities.load();
