@@ -1,8 +1,8 @@
 {
-  "textures": {
-    "stone": "tdeadlands:block/coldstone",
-    "particle": "tdeadlands:block/coldstone"
-  },
+	"textures": {
+		"particle": "tdeadlands:block/coldstone",
+		"stone": "tdeadlands:block/coldstone"
+	},
 	"elements": [
 		{
 			"from": [4, 0, 4],
@@ -14,59 +14,43 @@
 				"south": {"uv": [8, 5, 16, 13], "texture": "#stone"},
 				"west": {"uv": [0, 0, 8, 8], "texture": "#stone"},
 				"up": {"uv": [0, 0, 8, 8], "texture": "#stone"},
-				"down": {"uv": [0, 0, 8, 8], "texture": "#stone"}
+				"down": {"uv": [0, 0, 8, 8], "texture": "#stone", "cullface": "down"}
 			}
 		},
 		{
-			"from": [12, 0, 6],
-			"to": [12, 5, 10],
+			"from": [12.01, 0, 6],
+			"to": [12.01, 5, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -8, 8]},
 			"faces": {
-				"north": {"uv": [5, 0, 6, 5], "texture": "#missing"},
 				"east": {"uv": [14, 0, 16, 2.5], "texture": "#runes"},
-				"south": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"west": {"uv": [6, 0, 11, 5], "texture": "#runes"},
-				"up": {"uv": [5, 7, 10, 8], "rotation": 270, "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "rotation": 90, "texture": "#missing"}
+				"west": {"uv": [6, 0, 11, 5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [6, 0, 12],
-			"to": [10, 5, 12],
+			"from": [6, 0, 12.01],
+			"to": [10, 5, 12.01],
 			"rotation": {"angle": 0, "axis": "y", "origin": [9, -8, 8]},
 			"faces": {
 				"north": {"uv": [4, 0, 9, 5], "texture": "#runes"},
-				"east": {"uv": [5, 0, 6, 5], "texture": "#runes"},
-				"south": {"uv": [14, 0, 16, 2.5], "texture": "#runes"},
-				"west": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"up": {"uv": [5, 7, 10, 8], "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "texture": "#missing"}
+				"south": {"uv": [14, 0, 16, 2.5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [6, 0, 3.95],
-			"to": [10, 5, 3.95],
+			"from": [6, 0, 3.99],
+			"to": [10, 5, 3.99],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -8, 8]},
 			"faces": {
 				"north": {"uv": [14, 0, 16, 2.5], "texture": "#runes"},
-				"east": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"south": {"uv": [4, 0, 9, 5], "texture": "#runes"},
-				"west": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"up": {"uv": [5, 7, 10, 8], "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "texture": "#missing"}
+				"south": {"uv": [4, 0, 9, 5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [3.95, 0, 6],
-			"to": [3.95, 5, 10],
+			"from": [3.99, 0, 6],
+			"to": [3.99, 5, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -8, 8]},
 			"faces": {
-				"north": {"uv": [5, 0, 6, 5], "texture": "#missing"},
 				"east": {"uv": [5, 0, 10, 5], "texture": "#runes"},
-				"south": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"west": {"uv": [14, 0, 16, 2.5], "texture": "#runes"},
-				"up": {"uv": [5, 7, 10, 8], "rotation": 270, "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "rotation": 90, "texture": "#missing"}
+				"west": {"uv": [14, 0, 16, 2.5], "texture": "#runes"}
 			}
 		},
 		{
@@ -78,60 +62,42 @@
 				"east": {"uv": [0, 0, 4, 7], "texture": "#stone"},
 				"south": {"uv": [5, 0, 9, 8], "texture": "#stone"},
 				"west": {"uv": [3, 0, 7, 8], "texture": "#stone"},
-				"up": {"uv": [0, 0, 4, 4], "texture": "#stone"},
-				"down": {"uv": [0, 0, 4, 4], "texture": "#stone"}
+				"up": {"uv": [0, 0, 4, 4], "texture": "#stone", "cullface": "up"}
 			}
 		},
 		{
-			"from": [6, 9, 5.95],
-			"to": [10, 14, 5.95],
+			"from": [6, 9, 5.99],
+			"to": [10, 14, 5.99],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -7, 8]},
 			"faces": {
 				"north": {"uv": [0, 0, 2, 2.5], "texture": "#runes"},
-				"east": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"south": {"uv": [6, 0, 11, 5], "texture": "#runes"},
-				"west": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"up": {"uv": [5, 7, 10, 8], "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "texture": "#missing"}
+				"south": {"uv": [6, 0, 11, 5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [6, 9, 10],
-			"to": [10, 14, 10],
+			"from": [6, 9, 10.01],
+			"to": [10, 14, 10.01],
 			"rotation": {"angle": 0, "axis": "y", "origin": [9, -8, 8]},
 			"faces": {
 				"north": {"uv": [4, 0, 9, 5], "texture": "#runes"},
-				"east": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"south": {"uv": [0, 0, 2, 2.5], "texture": "#runes"},
-				"west": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"up": {"uv": [5, 7, 10, 8], "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "texture": "#missing"}
+				"south": {"uv": [0, 0, 2, 2.5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [10, 9, 6],
-			"to": [10, 14, 10],
+			"from": [10.01, 9, 6],
+			"to": [10.01, 14, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -8, 8]},
 			"faces": {
-				"north": {"uv": [5, 0, 6, 5], "texture": "#missing"},
 				"east": {"uv": [0, 0, 2, 2.5], "texture": "#runes"},
-				"south": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"west": {"uv": [6, 0, 11, 5], "texture": "#runes"},
-				"up": {"uv": [5, 7, 10, 8], "rotation": 270, "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "rotation": 90, "texture": "#missing"}
+				"west": {"uv": [6, 0, 11, 5], "texture": "#runes"}
 			}
 		},
 		{
-			"from": [5.95, 9, 6],
-			"to": [5.95, 14, 10],
+			"from": [5.99, 9, 6],
+			"to": [5.99, 14, 10],
 			"rotation": {"angle": 0, "axis": "y", "origin": [8, -8, 8]},
 			"faces": {
-				"north": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"east": {"uv": [5, 0, 10, 5], "texture": "#missing"},
-				"south": {"uv": [5, 0, 6, 5], "texture": "#missing"},
-				"west": {"uv": [0, 0, 2, 2.5], "texture": "#runes"},
-				"up": {"uv": [5, 7, 10, 8], "rotation": 270, "texture": "#missing"},
-				"down": {"uv": [0, 6, 5, 7], "rotation": 90, "texture": "#missing"}
+				"west": {"uv": [0, 0, 2, 2.5], "texture": "#runes"}
 			}
 		}
 	],

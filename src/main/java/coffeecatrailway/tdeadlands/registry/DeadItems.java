@@ -56,7 +56,6 @@ public class DeadItems {
     public static final RegistryObject<Item> DEAD_WOOD_TORCH = REGISTER.register("dead_wood_torch", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL)));
     public static final RegistryObject<Item> FIRE_STARTER = REGISTER.register("fire_starter", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
 
-    public static final RegistryObject<Item> WARP_RUNE = REGISTER.register("warp_rune", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<Item> UNDEAD_TALISMAN = REGISTER.register("undead_talisman", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
 
     public static void load(IEventBus bus) {
