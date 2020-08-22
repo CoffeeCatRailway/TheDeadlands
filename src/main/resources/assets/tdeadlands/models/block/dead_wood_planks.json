@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tdeadlands:block/dead_planks"
+    "all": "tdeadlands:block/dead_wood_planks"
   }
 }

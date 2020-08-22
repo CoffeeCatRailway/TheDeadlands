@@ -12,6 +12,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -60,9 +61,9 @@ public class TheDeadlands {
     }
 
     @OnlyIn(Dist.CLIENT)
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::itemColors);
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
     public void setupClient(FMLClientSetupEvent event) {
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::blockColors);
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::itemColors);
         DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::containerScreens);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::particleFactories);
