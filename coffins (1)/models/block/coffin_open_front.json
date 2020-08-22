@@ -1,0 +1,129 @@
+{
+	"credit": "Made with Blockbench",
+	"textures": {
+		"coffin": "block/coffin_open",
+		"base": "block/coldstone",
+		"particle": "block/coldstone"
+	},
+	"elements": [
+		{
+			"name": "bottom",
+			"from": [0, 0, 0],
+			"to": [16, 1, 16],
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#base", "cullface": "north"},
+				"east": {"uv": [0, 15, 16, 16], "texture": "#base", "cullface": "east"},
+				"west": {"uv": [0, 15, 16, 16], "texture": "#base", "cullface": "west"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#base"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#base", "cullface": "down"}
+			}
+		},
+		{
+			"name": "lip",
+			"from": [1, 1, 1],
+			"to": [15, 2, 16],
+			"faces": {
+				"north": {"uv": [1, 14, 15, 15], "texture": "#base"},
+				"east": {"uv": [1, 14, 16, 15], "texture": "#base"},
+				"west": {"uv": [0, 14, 15, 15], "texture": "#base"},
+				"up": {"uv": [1, 1, 15, 16], "texture": "#base"}
+			}
+		},
+		{
+			"name": "left",
+			"from": [2, 2, 2],
+			"to": [3, 14, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 0.5, 6], "texture": "#coffin"},
+				"east": {"uv": [0, 2, 14, 14], "texture": "#base"},
+				"west": {"uv": [0, 0, 7, 6], "texture": "#coffin"},
+				"up": {"uv": [2, 2, 3, 16], "texture": "#base"}
+			}
+		},
+		{
+			"name": "right",
+			"from": [13, 2, 2],
+			"to": [14, 14, 16],
+			"faces": {
+				"north": {"uv": [13.5, 0, 14, 6], "texture": "#coffin"},
+				"east": {"uv": [7, 0, 14, 6], "texture": "#coffin"},
+				"west": {"uv": [2, 2, 16, 14], "texture": "#base"},
+				"up": {"uv": [13, 2, 14, 16], "texture": "#base"}
+			}
+		},
+		{
+			"name": "top",
+			"from": [3, 13, 2],
+			"to": [13, 14, 4],
+			"faces": {
+				"north": {"uv": [0, 6, 5, 6.5], "texture": "#coffin"},
+				"south": {"uv": [3, 2, 13, 3], "texture": "#base"},
+				"up": {"uv": [3, 2, 13, 4], "texture": "#base"},
+				"down": {"uv": [1.334, 0, 13.334, 1], "texture": "#coffin"}
+			}
+		},
+		{
+			"name": "left",
+			"from": [12, 3, 2],
+			"to": [13, 13, 3],
+			"faces": {
+				"north": {"uv": [0, 6.5, 0.5, 11.5], "texture": "#coffin"},
+				"west": {"uv": [0, 6.5, 0.5, 11.5], "texture": "#coffin"}
+			}
+		},
+		{
+			"name": "bottom",
+			"from": [3, 2, 2],
+			"to": [13, 3, 3],
+			"faces": {
+				"north": {"uv": [0, 11.5, 5, 12], "texture": "#coffin"},
+				"up": {"uv": [0, 11.5, 5, 12], "texture": "#coffin"}
+			}
+		},
+		{
+			"name": "right",
+			"from": [3, 3, 2],
+			"to": [4, 13, 3],
+			"faces": {
+				"north": {"uv": [4.5, 6.5, 5, 11.5], "texture": "#coffin"},
+				"east": {"uv": [4.5, 6.5, 5, 11.5], "texture": "#coffin"}
+			}
+		},
+		{
+			"name": "center",
+			"from": [3, 3, 3],
+			"to": [13, 13, 4],
+			"faces": {
+				"north": {"uv": [0, 6.5, 5, 11.5], "texture": "#coffin"},
+				"south": {"uv": [3, 3, 13, 13], "texture": "#base"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "base",
+			"origin": [8, 8, 8],
+			"children": [0, 1]
+		},
+		{
+			"name": "top",
+			"origin": [8, 8, 8],
+			"children": []
+		},
+		{
+			"name": "walls",
+			"origin": [8, 8, -8],
+			"children": [2, 3]
+		},
+		{
+			"name": "front",
+			"origin": [8, 8, -8],
+			"children": [4, 5, 6, 7, 8]
+		},
+		{
+			"name": "back",
+			"origin": [8, 8, 19],
+			"children": []
+		}
+	]
+}
