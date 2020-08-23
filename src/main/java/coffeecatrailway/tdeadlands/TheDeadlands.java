@@ -1,13 +1,9 @@
 package coffeecatrailway.tdeadlands;
 
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
-import coffeecatrailway.tdeadlands.registry.DeadBlocks;
-import coffeecatrailway.tdeadlands.registry.DeadContainers;
-import coffeecatrailway.tdeadlands.registry.DeadItemModelProperties;
-import coffeecatrailway.tdeadlands.registry.DeadItems;
+import coffeecatrailway.tdeadlands.registry.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -30,7 +26,7 @@ public class TheDeadlands {
     public static final ItemGroup GROUP_ALL = new ItemGroup(MOD_ID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(DeadBlocks.COLDSTONE.get());
+            return new ItemStack(DeadBlocks.GRASS_BLOCK.get());
         }
     };
 
@@ -58,7 +54,7 @@ public class TheDeadlands {
         DeadContainers.load(modEventBus);
 //        DeadFluids.load();
 //        DeadTileEntities.load();
-//        DeadEntities.load();
+        DeadEntities.load(modEventBus);
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -69,6 +65,7 @@ public class TheDeadlands {
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::containerScreens);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::particleFactories);
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::entityRenderers);
+        ClientEvents.entityRenderers();
 //        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::tileEntityRenderers);
         LOGGER.info("Client events");
 
