@@ -54,10 +54,10 @@ public class DeadBlocks {
     public static final RegistryObject<LeavesBlock> DEAD_LEAVES = register("dead_leaves", () -> new LeavesBlock(AbstractBlock.Properties.create(Material.LEAVES).setRequiresTool().hardnessAndResistance(.2f).sound(SoundType.PLANT).notSolid().setAllowsSpawn(Blocks::allowsSpawnOnLeaves).setSuffocates((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false)));
     public static final RegistryObject<Block> DEAD_PLANKS = register("dead_wood_planks", () -> new Block(AbstractBlock.Properties.create(Material.WOOD, MaterialColor.LIGHT_GRAY).hardnessAndResistance(2f, 3f).sound(SoundType.WOOD)));
 
-    // dead_wood_button
-    // dead_wood_pressure_plate
     public static final RegistryObject<DoorBlock> DEAD_WOOD_DOOR = register("dead_wood_door", () -> new DoorBlock(AbstractBlock.Properties.create(Material.WOOD, DEAD_PLANKS.get().getMaterialColor()).hardnessAndResistance(3f).sound(SoundType.WOOD).notSolid()));
     // TODO dead_wood_trapdoor
+    public static final RegistryObject<WoodButtonBlock> DEAD_WOOD_BUTTON = register("dead_wood_button", () -> new WoodButtonBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().hardnessAndResistance(.5f).sound(SoundType.WOOD)));
+    public static final RegistryObject<PressurePlateBlock> DEAD_WOOD_PRESSURE_PLATE = register("dead_wood_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, AbstractBlock.Properties.create(Material.WOOD, DEAD_PLANKS.get().getMaterialColor()).doesNotBlockMovement().hardnessAndResistance(.5f).sound(SoundType.WOOD)));
     public static final RegistryObject<DeadWoodCraftingTableBlock> DEAD_WOOD_CRAFTING_TABLE = register("dead_wood_crafting_table", () -> new DeadWoodCraftingTableBlock(AbstractBlock.Properties.create(Material.WOOD, DyeColor.GRAY).hardnessAndResistance(2.5F).sound(SoundType.WOOD)));
     public static final RegistryObject<TorchBlock> DEAD_WOOD_TORCH = register("dead_wood_torch", () -> new TorchBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().zeroHardnessAndResistance().setLightLevel((state) -> 14).sound(SoundType.WOOD), ParticleTypes.FLAME), null);
     public static final RegistryObject<WallTorchBlock> WALL_DEAD_WOOD_TORCH = register("wall_dead_wood_torch", () -> new WallTorchBlock(AbstractBlock.Properties.create(Material.MISCELLANEOUS).doesNotBlockMovement().zeroHardnessAndResistance().setLightLevel((state) -> 14).sound(SoundType.WOOD).lootFrom(DEAD_WOOD_TORCH.get()), ParticleTypes.FLAME), null);
