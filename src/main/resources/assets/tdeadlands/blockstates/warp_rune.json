@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "powered=false,half=upper": {
+      "model": "tdeadlands:block/inactive_warp_rune_top"
+    },
+    "powered=false,half=lower": {
+      "model": "tdeadlands:block/inactive_warp_rune_bottom"
+    },
+    "powered=true,half=upper": {
+      "model": "tdeadlands:block/active_warp_rune_top"
+    },
+    "powered=true,half=lower": {
+      "model": "tdeadlands:block/active_warp_rune_bottom"
+    }
+  }
+}
