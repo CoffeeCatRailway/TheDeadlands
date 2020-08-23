@@ -46,12 +46,12 @@ public class ClientEvents {
     public static void renderLayers() {
         RenderType cutoutMipped = RenderType.getCutoutMipped();
 
+        RenderTypeLookup.setRenderLayer(DeadBlocks.DEAD_WOOD_DOOR.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(DeadBlocks.DEAD_WOOD_CRAFTING_TABLE.get(), cutoutMipped);
-
-        RenderTypeLookup.setRenderLayer(DeadBlocks.GRASS_BLOCK.get(), cutoutMipped);
-
         RenderTypeLookup.setRenderLayer(DeadBlocks.DEAD_WOOD_TORCH.get(), cutoutMipped);
         RenderTypeLookup.setRenderLayer(DeadBlocks.WALL_DEAD_WOOD_TORCH.get(), cutoutMipped);
+
+        RenderTypeLookup.setRenderLayer(DeadBlocks.GRASS_BLOCK.get(), cutoutMipped);
 
         RenderTypeLookup.setRenderLayer(DeadBlocks.WARP_RUNE.get(), cutoutMipped);
 
