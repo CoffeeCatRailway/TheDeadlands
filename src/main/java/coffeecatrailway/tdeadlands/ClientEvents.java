@@ -1,6 +1,8 @@
 package coffeecatrailway.tdeadlands;
 
+import coffeecatrailway.tdeadlands.client.entity.render.DeadWoodArrowRenderer;
 import coffeecatrailway.tdeadlands.registry.DeadBlocks;
+import coffeecatrailway.tdeadlands.registry.DeadEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -11,6 +13,7 @@ import net.minecraft.item.DyeColor;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import org.apache.logging.log4j.Logger;
 
 /**
@@ -47,5 +50,11 @@ public class ClientEvents {
         RenderTypeLookup.setRenderLayer(DeadBlocks.GRASS_BLOCK.get(), cutoutMipped);
 
         LOGGER.info("Block render layers");
+    }
+
+    public static void entityRenderers() {
+        RenderingRegistry.registerEntityRenderingHandler(DeadEntities.DEAD_WOOD_ARROW.get(), DeadWoodArrowRenderer::new);
+
+        LOGGER.info("Entity renderers");
     }
 }

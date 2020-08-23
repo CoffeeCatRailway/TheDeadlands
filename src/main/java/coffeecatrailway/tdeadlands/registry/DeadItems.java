@@ -45,6 +45,9 @@ public class DeadItems {
     public static final RegistryObject<SwordItem> COLDSTONE_SWORD = REGISTER.register("coldstone_sword", () -> new SwordItem(ItemTier.IRON, 3, -2.4f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<HoeItem> COLDSTONE_HOE = REGISTER.register("coldstone_hoe", () -> new HoeItem(ItemTier.IRON, -2, -1f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
 
+    public static final RegistryObject<DeadWoodBow> DEAD_WOOD_BOW = REGISTER.register("dead_wood_bow", () -> new DeadWoodBow(new Item.Properties().maxDamage(384).group(TheDeadlands.GROUP_ALL)));
+    public static final RegistryObject<ArrowItem> DEAD_WOOD_ARROW = REGISTER.register("dead_wood_arrow", () -> new ArrowItem((new Item.Properties()).group(TheDeadlands.GROUP_ALL)));
+
     public static final RegistryObject<AxeItem> COLD_BRONZE_AXE = REGISTER.register("cold_bronze_axe", () -> new AxeItem(ItemTier.IRON, 6f, -3.1f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<PickaxeItem> COLD_BRONZE_PICKAXE = REGISTER.register("cold_bronze_pickaxe", () -> new PickaxeItem(ItemTier.IRON, 1, -2.8f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
     public static final RegistryObject<ShovelItem> COLD_BRONZE_SHOVEL = REGISTER.register("cold_bronze_shovel", () -> new ShovelItem(ItemTier.IRON, 1.5f, -3f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
