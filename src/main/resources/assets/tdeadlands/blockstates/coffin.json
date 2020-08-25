@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "open=false,part=front,facing=north": {
+      "model": "tdeadlands:block/coffin_front"
+    },
+    "open=false,part=back,facing=north": {
+      "model": "tdeadlands:block/coffin_back"
+    },
+    "open=true,part=front,facing=north": {
+      "model": "tdeadlands:block/coffin_open_front"
+    },
+    "open=true,part=back,facing=north": {
+      "model": "tdeadlands:block/coffin_open_back"
+    },
+    "open=false,part=front,facing=south": {
+      "model": "tdeadlands:block/coffin_front",
+      "y": 180
+    },
+    "open=false,part=back,facing=south": {
+      "model": "tdeadlands:block/coffin_back",
+      "y": 180
+    },
+    "open=true,part=front,facing=south": {
+      "model": "tdeadlands:block/coffin_open_front",
+      "y": 180
+    },
+    "open=true,part=back,facing=south": {
+      "model": "tdeadlands:block/coffin_open_back",
+      "y": 180
+    },
+    "open=false,part=front,facing=east": {
+      "model": "tdeadlands:block/coffin_front",
+      "y": 90
+    },
+    "open=false,part=back,facing=east": {
+      "model": "tdeadlands:block/coffin_back",
+      "y": 90
+    },
+    "open=true,part=front,facing=east": {
+      "model": "tdeadlands:block/coffin_open_front",
+      "y": 90
+    },
+    "open=true,part=back,facing=east": {
+      "model": "tdeadlands:block/coffin_open_back",
+      "y": 90
+    },
+    "open=false,part=front,facing=west": {
+      "model": "tdeadlands:block/coffin_front",
+      "y": 270
+    },
+    "open=false,part=back,facing=west": {
+      "model": "tdeadlands:block/coffin_back",
+      "y": 270
+    },
+    "open=true,part=front,facing=west": {
+      "model": "tdeadlands:block/coffin_open_front",
+      "y": 270
+    },
+    "open=true,part=back,facing=west": {
+      "model": "tdeadlands:block/coffin_open_back",
+      "y": 270
+    }
+  }
+}

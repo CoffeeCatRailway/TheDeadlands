@@ -54,6 +54,7 @@ public class ClientEvents {
         RenderTypeLookup.setRenderLayer(DeadBlocks.GRASS_BLOCK.get(), cutoutMipped);
 
         RenderTypeLookup.setRenderLayer(DeadBlocks.WARP_RUNE.get(), cutoutMipped);
+        RenderTypeLookup.setRenderLayer(DeadBlocks.COFFIN.get(), cutoutMipped);
 
         LOGGER.info("Block render layers");
     }

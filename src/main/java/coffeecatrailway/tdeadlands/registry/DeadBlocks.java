@@ -1,6 +1,7 @@
 package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
+import coffeecatrailway.tdeadlands.common.block.CoffinBlock;
 import coffeecatrailway.tdeadlands.common.block.DeadGrassBlock;
 import coffeecatrailway.tdeadlands.common.block.DeadWoodCraftingTableBlock;
 import coffeecatrailway.tdeadlands.common.block.WarpRuneBlock;
@@ -68,6 +69,7 @@ public class DeadBlocks {
 
     // Misc
     public static final RegistryObject<WarpRuneBlock> WARP_RUNE = register("warp_rune", () -> new WarpRuneBlock(AbstractBlock.Properties.from(COLDSTONE.get()).notSolid()));
+    public static final RegistryObject<CoffinBlock> COFFIN = register("coffin", () -> new CoffinBlock(AbstractBlock.Properties.from(COLDSTONE.get()).notSolid()));
 
     private static <B extends Block> RegistryObject<B> register(String id, Supplier<B> block) {
         RegistryObject<B> blockObj = REGISTER.register(id, block);
