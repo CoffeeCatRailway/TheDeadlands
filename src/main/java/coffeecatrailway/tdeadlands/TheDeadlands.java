@@ -74,6 +74,7 @@ public class TheDeadlands {
 
     public void setupCommon(FMLCommonSetupEvent event) {
         VanillaCompatability.register();
+        DeadEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
     }
 
     public static ResourceLocation getLocation(String path) {

@@ -3,6 +3,8 @@ package coffeecatrailway.tdeadlands.registry;
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.item.DeadWoodBow;
 import net.minecraft.item.*;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -62,6 +64,8 @@ public class DeadItems {
     public static final RegistryObject<Item> FIRE_STARTER = REGISTER.register("fire_starter", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
 
     public static final RegistryObject<Item> UNDEAD_TALISMAN = REGISTER.register("undead_talisman", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
+
+    public static final RegistryObject<Item> RAT_DROPPINGS = REGISTER.register("rat_droppings", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).isBurnable().food(new Food.Builder().hunger(3).saturation(4f).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.8f).build())));
 
     public static void load(IEventBus bus) {
         LOGGER.info("Loaded");

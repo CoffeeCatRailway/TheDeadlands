@@ -1,4 +1,4 @@
-package coffeecatrailway.tdeadlands.client.entity.render;
+package coffeecatrailway.tdeadlands.client.entity.renderer;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.entity.DeadWoodArrowEntity;
