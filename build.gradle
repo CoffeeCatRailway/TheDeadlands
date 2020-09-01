@@ -85,10 +85,10 @@ repositories {
     maven { // JustEnoughItems
         url = "https://dvs1.progwml6.com/files/maven/"
     }
-//    maven { // TOP & Registrate
-//        name 'tterrag maven'
-//        url "https://maven.tterrag.com/"
-//    }
+    maven { // Registrate
+        name 'tterrag maven'
+        url "https://maven.tterrag.com/"
+    }
     maven { // FishLib
         name = "Jitpack"
         url = "https://jitpack.io"
@@ -101,9 +101,9 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${project.mcVersion}:${project.jeiVersion}")
     compileOnly fg.deobf("mezz.jei:jei-${project.mcVersion}:${project.jeiVersion}:api")
 
-//    def registrate = "com.tterrag.registrate:Registrate:MC${project.registrateVersion}" // ${project.mcVersion}-
-//    implementation fg.deobf(registrate)
-//    shade registrate
+    def registrate = "com.tterrag.registrate:Registrate:MC${project.registrateVersion}"
+    implementation fg.deobf(registrate)
+    shade registrate
 
     runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
     compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}"
@@ -112,7 +112,7 @@ dependencies {
 
 shadowJar {
     configurations = [project.configurations.shade]
-//    relocate 'com.tterrag.registrate', 'coffeecatrailway.repack.registrate'
+    relocate 'com.tterrag.registrate', 'coffeecatrailway.repack.registrate'
     relocate 'io.github.ocelot', 'io.github.ocelot.lib'
 }
 

@@ -2,6 +2,8 @@ package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.item.DeadWoodBow;
+import coffeecatrailway.tdeadlands.integration.DeadTags;
+import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.item.*;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -10,6 +12,8 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.logging.log4j.Logger;
+
+import static coffeecatrailway.tdeadlands.TheDeadlands.REGISTRATE;
 
 /**
  * @author CoffeeCatRailway
@@ -65,7 +69,9 @@ public class DeadItems {
 
     public static final RegistryObject<Item> UNDEAD_TALISMAN = REGISTER.register("undead_talisman", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
 
-    public static final RegistryObject<Item> RAT_DROPPINGS = REGISTER.register("rat_droppings", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).isBurnable().food(new Food.Builder().hunger(3).saturation(4f).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.8f).build())));
+    public static final Food RAT_DROPPINGS_FOOD = new Food.Builder().hunger(3).saturation(4f).effect(() -> new EffectInstance(Effects.HUNGER, 600, 0), 0.8f).build();
+    public static final RegistryEntry<Item> RAT_DROPPINGS = REGISTRATE.item("rat_droppings", Item::new).properties(prop -> prop.isBurnable().food(RAT_DROPPINGS_FOOD))
+            .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     public static void load(IEventBus bus) {
         LOGGER.info("Loaded");
