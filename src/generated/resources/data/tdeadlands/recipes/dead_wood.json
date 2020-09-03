@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ll",
+    "ll"
+  ],
+  "key": {
+    "l": {
+      "item": "tdeadlands:dead_wood_log"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood",
+    "count": 3
+  }
+}

@@ -52,31 +52,23 @@ public class TheDeadlands {
 //        SERVER_CONFIG = server.getLeft();
 //        LOGGER.info("Register configs");
 
-        REGISTRATE = Registrate.create(MOD_ID)
-                .itemGroup(() -> GROUP_ALL, "The Deadlands")
+        REGISTRATE = Registrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "The Deadlands")
                 .addDataGenerator(ProviderType.BLOCK_TAGS, new DeadTags.Blocks())
                 .addDataGenerator(ProviderType.ITEM_TAGS, new DeadTags.Items());
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        DeadBlocks.load(modEventBus);
-        DeadItems.load(modEventBus);
+        DeadBlocks.load();
+        DeadItems.load();
         DeadContainers.load(modEventBus);
 //        DeadFluids.load();
 //        DeadTileEntities.load();
-        DeadEntities.load(modEventBus);
+        DeadEntities.load();
     }
 
     @OnlyIn(Dist.CLIENT)
     public void setupClient(FMLClientSetupEvent event) {
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::blockColors);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::itemColors);
-        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::renderLayers);
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::containerScreens);
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::particleFactories);
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::entityRenderers);
         ClientEvents.entityRenderers();
-//        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> ClientEvents::tileEntityRenderers);
         LOGGER.info("Client events");
 
         DeadItemModelProperties.load();

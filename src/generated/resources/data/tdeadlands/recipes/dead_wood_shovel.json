@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "s",
+    "s"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:rods/wooden"
+    },
+    "i": {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_shovel"
+  }
+}

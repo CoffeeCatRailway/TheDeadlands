@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tdeadlands:copper_ore"
+  },
+  "result": "tdeadlands:copper_clump",
+  "experience": 0.7,
+  "cookingtime": 200
+}

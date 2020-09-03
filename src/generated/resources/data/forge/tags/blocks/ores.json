@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:ores/copper",
+    "tdeadlands:frost_metal_ore",
+    "tdeadlands:heatstone_ore",
+    "tdeadlands:cold_bronze_block"
+  ]
+}

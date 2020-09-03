@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:dead_wood_arrow"
+    ]
+  },
+  "criteria": {
+    "has_string": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:dead_wood_stick"
+          }
+        ]
+      }
+    },
+    "has_feather": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:owl_feather"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:dead_wood_arrow"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_string",
+      "has_feather",
+      "has_the_recipe"
+    ]
+  ]
+}

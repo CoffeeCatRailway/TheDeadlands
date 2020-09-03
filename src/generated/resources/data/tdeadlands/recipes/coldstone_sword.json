@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i",
+    "i",
+    "s"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:rods/wooden"
+    },
+    "i": {
+      "tag": "tdeadlands:coldstone"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:coldstone_sword"
+  }
+}

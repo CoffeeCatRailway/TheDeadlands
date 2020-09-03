@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "tdeadlands:frost_metal_ore"
+  },
+  "result": "tdeadlands:frost_metal_clump",
+  "experience": 0.85,
+  "cookingtime": 100
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "tdeadlands:block/wall_dead_wood_torch",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "tdeadlands:block/wall_dead_wood_torch",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "tdeadlands:block/wall_dead_wood_torch",
+      "y": 180
+    },
+    "facing=east": {
+      "model": "tdeadlands:block/wall_dead_wood_torch"
+    }
+  }
+}

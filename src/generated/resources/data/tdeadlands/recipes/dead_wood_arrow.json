@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "f",
+    "s",
+    "o"
+  ],
+  "key": {
+    "f": {
+      "item": "minecraft:flint"
+    },
+    "s": {
+      "item": "tdeadlands:dead_wood_stick"
+    },
+    "o": {
+      "item": "tdeadlands:owl_feather"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_arrow"
+  }
+}

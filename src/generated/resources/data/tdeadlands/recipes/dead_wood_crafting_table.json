@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XX",
+    "XX"
+  ],
+  "key": {
+    "X": {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_crafting_table"
+  }
+}

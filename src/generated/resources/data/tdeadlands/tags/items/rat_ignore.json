@@ -4,6 +4,10 @@
     "minecraft:rotten_flesh",
     "minecraft:spider_eye",
     "minecraft:pufferfish",
-    "tdeadlands:rat_droppings"
+    "tdeadlands:rat_droppings",
+    "tdeadlands:dead_rat",
+    "tdeadlands:cooked_rat",
+    "tdeadlands:rotton_skin",
+    "tdeadlands:cooked_skin"
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ts",
+    "t s",
+    " ts"
+  ],
+  "key": {
+    "t": {
+      "item": "tdeadlands:dead_wood_stick"
+    },
+    "s": {
+      "item": "tdeadlands:cloth_string"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_bow"
+  }
+}

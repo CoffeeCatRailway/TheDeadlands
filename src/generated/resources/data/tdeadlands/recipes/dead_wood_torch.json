@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "h",
+    "s"
+  ],
+  "key": {
+    "h": {
+      "item": "tdeadlands:heat_stone"
+    },
+    "s": {
+      "item": "tdeadlands:dead_wood_stick"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_torch",
+    "count": 4
+  }
+}

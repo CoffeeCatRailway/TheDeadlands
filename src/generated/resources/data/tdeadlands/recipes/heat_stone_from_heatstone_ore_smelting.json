@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tdeadlands:heatstone_ore"
+  },
+  "result": "tdeadlands:heat_stone",
+  "experience": 1.0,
+  "cookingtime": 200
+}

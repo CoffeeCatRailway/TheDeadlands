@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "p",
+    "p"
+  ],
+  "key": {
+    "p": {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_stick",
+    "count": 4
+  }
+}

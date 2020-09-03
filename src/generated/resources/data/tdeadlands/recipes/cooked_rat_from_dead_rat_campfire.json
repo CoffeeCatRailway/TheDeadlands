@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "tdeadlands:dead_rat"
+  },
+  "result": "tdeadlands:cooked_rat",
+  "experience": 0.35,
+  "cookingtime": 600
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tdeadlands:dead_wood_stick"
+    },
+    {
+      "item": "tdeadlands:dead_wood_stick"
+    }
+  ],
+  "result": {
+    "item": "tdeadlands:fire_starter"
+  }
+}

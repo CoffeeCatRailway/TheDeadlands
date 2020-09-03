@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tdeadlands:dead_wood_log",
+    "tdeadlands:stripped_dead_wood_log",
+    "tdeadlands:dead_wood",
+    "tdeadlands:stripped_dead_wood"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:frost_metal_clump_from_frost_metal_ore_smelting"
+    ]
+  },
+  "criteria": {
+    "has_frost_metal_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:frost_metal_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:frost_metal_clump_from_frost_metal_ore_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_frost_metal_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

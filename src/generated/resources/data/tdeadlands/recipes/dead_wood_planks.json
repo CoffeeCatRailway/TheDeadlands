@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    [
+      {
+        "item": "tdeadlands:dead_wood_log"
+      },
+      {
+        "item": "tdeadlands:stripped_dead_wood_log"
+      },
+      {
+        "item": "tdeadlands:dead_wood"
+      },
+      {
+        "item": "tdeadlands:stripped_dead_wood"
+      }
+    ]
+  ],
+  "result": {
+    "item": "tdeadlands:dead_wood_planks",
+    "count": 4
+  }
+}

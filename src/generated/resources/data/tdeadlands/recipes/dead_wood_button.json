@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  ],
+  "result": {
+    "item": "tdeadlands:dead_wood_button"
+  }
+}

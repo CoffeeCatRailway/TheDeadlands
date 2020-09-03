@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:cooked_rat_from_dead_rat_smelting"
+    ]
+  },
+  "criteria": {
+    "has_dead_rat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:dead_rat"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:cooked_rat_from_dead_rat_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_dead_rat",
+      "has_the_recipe"
+    ]
+  ]
+}

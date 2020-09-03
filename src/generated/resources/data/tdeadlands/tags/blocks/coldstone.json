@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "tdeadlands:coldstone",
+    "tdeadlands:coldstone_bricks",
+    "tdeadlands:cracked_coldstone_bricks",
+    "tdeadlands:mossy_coldstone_bricks",
+    "tdeadlands:chiseled_coldstone_bricks"
+  ]
+}

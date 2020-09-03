@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:heat_stone_from_heatstone_ore_smelting"
+    ]
+  },
+  "criteria": {
+    "has_heatstone_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:heatstone_ore"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:heat_stone_from_heatstone_ore_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heatstone_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

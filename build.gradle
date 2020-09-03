@@ -101,7 +101,7 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${project.mcVersion}:${project.jeiVersion}")
     compileOnly fg.deobf("mezz.jei:jei-${project.mcVersion}:${project.jeiVersion}:api")
 
-    def registrate = "com.tterrag.registrate:Registrate:MC${project.registrateVersion}"
+    def registrate = "com.tterrag.registrate:Registrate:MC${project.mcVersion}-${project.registrateVersion}"
     implementation fg.deobf(registrate)
     shade registrate
 
