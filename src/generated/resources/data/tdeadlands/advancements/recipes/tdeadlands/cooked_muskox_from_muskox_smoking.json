@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:cooked_muskox_from_muskox_smoking"
+    ]
+  },
+  "criteria": {
+    "has_muskox": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:muskox"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:cooked_muskox_from_muskox_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_muskox",
+      "has_the_recipe"
+    ]
+  ]
+}

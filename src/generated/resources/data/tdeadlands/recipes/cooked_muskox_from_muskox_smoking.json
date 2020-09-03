@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tdeadlands:muskox"
+  },
+  "result": "tdeadlands:cooked_muskox",
+  "experience": 0.35,
+  "cookingtime": 100
+}

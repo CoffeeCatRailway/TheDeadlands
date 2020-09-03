@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "tdeadlands:rotton_skin"
+  },
+  "result": "tdeadlands:cooked_skin",
+  "experience": 0.35,
+  "cookingtime": 100
+}

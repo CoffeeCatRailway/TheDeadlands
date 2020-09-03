@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "tdeadlands:muskox"
+  },
+  "result": "tdeadlands:cooked_muskox",
+  "experience": 0.35,
+  "cookingtime": 200
+}

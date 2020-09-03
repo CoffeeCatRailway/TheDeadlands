@@ -38,7 +38,9 @@
   "item.tdeadlands.coldstone_pickaxe": "Coldstone Pickaxe",
   "item.tdeadlands.coldstone_shovel": "Coldstone Shovel",
   "item.tdeadlands.coldstone_sword": "Coldstone Sword",
+  "item.tdeadlands.cooked_muskox": "Cooked Muskox",
   "item.tdeadlands.cooked_rat": "Cooked Rat",
+  "item.tdeadlands.cooked_skin": "Cooked Skin",
   "item.tdeadlands.copper_clump": "Copper Clump",
   "item.tdeadlands.dead_rat": "Dead Rat",
   "item.tdeadlands.dead_wood_arrow": "Dead Wood Arrow",
@@ -67,6 +69,8 @@
   "item.tdeadlands.severed_head": "Severed Head",
   "item.tdeadlands.spine": "Spine",
   "item.tdeadlands.tall_knight_blade": "Tall Knight Blade",
+  "item.tdeadlands.tall_knight_staff": "Tall Knight Staff",
   "item.tdeadlands.undead_talisman": "Undead Talisman",
+  "item.tdeadlands.worn_paper": "Worn Paper",
   "itemGroup.tdeadlands": "The Deadlands"
 }

@@ -42,9 +42,8 @@ public class DeadItems {
     public static final RegistryEntry<Item> CLOTH_STRING = REGISTRATE.item("cloth_string", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe(NonNullBiConsumer.noop()).tag(Tags.Items.STRING).register();
 
-    public static final RegistryObject<Item> FROST_BRONZE = REGISTER.register("frost_bronze_ingot", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL)));
-    public static final RegistryObject<Item> FROST_COPPER = REGISTER.register("frost_copper", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL)));
-    public static final RegistryObject<Item> FROST_METAL_CLUMP = REGISTER.register("frost_metal_clump", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL)));
+    public static final RegistryEntry<Item> MUSKOX_FUR = REGISTRATE.item("muskox_fur", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
+            .recipe(NonNullBiConsumer.noop()).tag(Tags.Items.LEATHER).register();
 
     public static final RegistryEntry<Item> COPPER_CLUMP = REGISTRATE.item("copper_clump", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe((ctx, provider) -> provider.smeltingAndBlasting(DataIngredient.items(DeadBlocks.COPPER_ORE), ctx::getEntry, .7f)).register();
@@ -112,6 +111,8 @@ public class DeadItems {
 
     public static final RegistryEntry<SwordItem> TALL_KNIGHT_BLADE = REGISTRATE.item("tall_knight_blade", prop -> new SwordItem(ItemTier.DIAMOND, 3, -2.5f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
+    public static final RegistryEntry<Item> TALL_KNIGHT_STAFF = REGISTRATE.item("tall_knight_staff", Item::new)
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
 
     public static final RegistryEntry<Item> FIRE_STARTER = REGISTRATE.item("fire_starter", Item::new).properties(prop -> prop.maxStackSize(1))
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry())
@@ -125,13 +126,17 @@ public class DeadItems {
     public static final RegistryEntry<Item> RAT_DROPPINGS = REGISTRATE.item("rat_droppings", Item::new).properties(prop -> prop.isBurnable().food(DeadFoods.RAT_DROPPINGS_FOOD))
             .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
-    public static final RegistryObject<SwordItem> TALL_KIGHT_BLADE = REGISTER.register("tall_knight_blade", () -> new SwordItem(ItemTier.DIAMOND, 3, -2.5f, new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
+    public static final RegistryEntry<Item> MUMMY_PALM = REGISTRATE.item("mummy_palm", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
-    //Misc
-    public static final RegistryObject<Item> DEAD_WOOD_TORCH = REGISTER.register("dead_wood_torch", () -> new WallOrFloorItem(DeadBlocks.DEAD_WOOD_TORCH.get(), DeadBlocks.WALL_DEAD_WOOD_TORCH.get(), new Item.Properties().group(TheDeadlands.GROUP_ALL)));
-    public static final RegistryObject<Item> FIRE_STARTER = REGISTER.register("fire_starter", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
+    public static final RegistryEntry<Item> SEVERED_HEAD = REGISTRATE.item("severed_head", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
-    public static final RegistryObject<Item> UNDEAD_TALISMAN = REGISTER.register("undead_talisman", () -> new Item(new Item.Properties().group(TheDeadlands.GROUP_ALL).maxStackSize(1)));
+    public static final RegistryEntry<Item> SPINE = REGISTRATE.item("spine", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> WORN_PAPER = REGISTRATE.item("worn_paper", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     //Food
     public static final RegistryEntry<Item> DEAD_RAT = REGISTRATE.item("dead_rat", Item::new).properties(prop -> prop.food(DeadFoods.DEAD_RAT))
@@ -141,6 +146,24 @@ public class DeadItems {
                 provider.smelting(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 200);
                 provider.smoking(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 100);
                 provider.campfire(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 600);
+            }).tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> MUSKOX = REGISTRATE.item("muskox", Item::new).properties(prop -> prop.food(DeadFoods.MUSKOX))
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+    public static final RegistryEntry<Item> COOKED_MUSKOX = REGISTRATE.item("cooked_muskox", Item::new).properties(prop -> prop.food(DeadFoods.COOKED_MUSKOX))
+            .recipe((ctx, provider) -> {
+                provider.smelting(DataIngredient.items(MUSKOX), ctx::getEntry, .35f, 200);
+                provider.smoking(DataIngredient.items(MUSKOX), ctx::getEntry, .35f, 100);
+                provider.campfire(DataIngredient.items(MUSKOX), ctx::getEntry, .35f, 600);
+            }).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> ROTTON_SKIN = REGISTRATE.item("rotton_skin", Item::new).properties(prop -> prop.food(DeadFoods.ROTTON_SKIN))
+            .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+    public static final RegistryEntry<Item> COOKED_SKIN = REGISTRATE.item("cooked_skin", Item::new).properties(prop -> prop.food(DeadFoods.COOKED_SKIN))
+            .recipe((ctx, provider) -> {
+                provider.smelting(DataIngredient.items(ROTTON_SKIN), ctx::getEntry, .35f, 200);
+                provider.smoking(DataIngredient.items(ROTTON_SKIN), ctx::getEntry, .35f, 100);
+                provider.campfire(DataIngredient.items(ROTTON_SKIN), ctx::getEntry, .35f, 600);
             }).tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     private static NonNullBiConsumer<DataGenContext<Item, PickaxeItem>, RegistrateRecipeProvider> pickaxeRecipe(ITag<Item> ingot) {

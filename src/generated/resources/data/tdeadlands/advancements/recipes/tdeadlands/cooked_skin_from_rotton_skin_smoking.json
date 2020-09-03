@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:cooked_skin_from_rotton_skin_smoking"
+    ]
+  },
+  "criteria": {
+    "has_rotton_skin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:rotton_skin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:cooked_skin_from_rotton_skin_smoking"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_rotton_skin",
+      "has_the_recipe"
+    ]
+  ]
+}
