@@ -215,6 +215,8 @@ public class DeadBlocks {
     private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks) {
         return REGISTRATE.object(id).block(prop -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, prop)).initialProperties(planks)
                 .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(5f).notSolid()).tag(BlockTags.PRESSURE_PLATES, BlockTags.WOODEN_PRESSURE_PLATES)
+                .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', planks.get()).patternLine("pp")
+                .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(planks.get())).build(provider))
                 .blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry()).partialState()
                         .with(PressurePlateBlock.POWERED, false).modelForState().modelFile(provider.models().withExistingParent(ctx.getName(), "block/pressure_plate_up").texture("texture", provider.blockTexture(planks.get()))).addModel()
                         .partialState()

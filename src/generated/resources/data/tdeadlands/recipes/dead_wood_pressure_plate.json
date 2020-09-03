@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "pp"
+  ],
+  "key": {
+    "p": {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_pressure_plate"
+  }
+}
