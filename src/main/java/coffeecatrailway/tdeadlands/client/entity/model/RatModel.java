@@ -14,8 +14,8 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Made with Blockbench 3.5.4
  */
 @OnlyIn(Dist.CLIENT)
-public class RatModel extends EntityModel<RatEntity> {
-
+public class RatModel extends EntityModel<RatEntity>
+{
     private final ModelRenderer body;
     private final ModelRenderer frontLeftLeg;
     private final ModelRenderer frontRightLeg;
@@ -25,7 +25,8 @@ public class RatModel extends EntityModel<RatEntity> {
     private final ModelRenderer tailEnd;
     private final ModelRenderer head;
 
-    public RatModel() {
+    public RatModel()
+    {
         textureWidth = 40;
         textureHeight = 16;
 
@@ -86,7 +87,8 @@ public class RatModel extends EntityModel<RatEntity> {
     }
 
     @Override
-    public void setRotationAngles(RatEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setRotationAngles(RatEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch)
+    {
         float aggressiveAngle = entity.isAggressive() ? -((float) Math.PI / 5f) : 0f;
         body.rotateAngleX = aggressiveAngle;
 
@@ -105,7 +107,8 @@ public class RatModel extends EntityModel<RatEntity> {
     }
 
     @Override
-    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+    public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha)
+    {
 //        frontLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
 //        frontRightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
         backLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);

@@ -14,9 +14,10 @@ import net.minecraft.util.IItemProvider;
  * @author CoffeeCatRailway
  * Created: 20/08/2020
  */
-public class VanillaCompatability {
-
-    public static void register() {
+public class VanillaCompatability
+{
+    public static void register()
+    {
         registerHoeable(DeadBlocks.GRASS_BLOCK.get());
 
         registerStrippable(DeadBlocks.DEAD_LOG.get(), DeadBlocks.STRIPPED_DEAD_LOG.get());
@@ -32,25 +33,30 @@ public class VanillaCompatability {
         registerCompostable(0.3F, DeadBlocks.DEAD_LEAVES.get());
     }
 
-    private static void registerStrippable(Block log, Block strippedLog) {
+    private static void registerStrippable(Block log, Block strippedLog)
+    {
         AxeItem.BLOCK_STRIPPING_MAP = Maps.newHashMap(AxeItem.BLOCK_STRIPPING_MAP);
         AxeItem.BLOCK_STRIPPING_MAP.put(log, strippedLog);
     }
 
-    private static void registerHoeable(Block block) {
+    private static void registerHoeable(Block block)
+    {
         registerHoeable(block, Blocks.FARMLAND);
     }
 
-    private static void registerHoeable(Block hoeable, Block hoed) {
+    private static void registerHoeable(Block hoeable, Block hoed)
+    {
         HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
         HoeItem.HOE_LOOKUP.put(hoeable, hoed.getDefaultState());
     }
 
-    private static void registerCompostable(float chance, IItemProvider itemProvider) {
+    private static void registerCompostable(float chance, IItemProvider itemProvider)
+    {
         ComposterBlock.CHANCES.put(itemProvider.asItem(), chance);
     }
 
-    private static void registerFlammable(Block block, int encouragement, int flammability) {
+    private static void registerFlammable(Block block, int encouragement, int flammability)
+    {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFireInfo(block, encouragement, flammability);
     }

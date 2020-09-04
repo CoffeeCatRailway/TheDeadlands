@@ -24,19 +24,22 @@ import java.util.function.Predicate;
  * @author CoffeeCatRailway
  * Created: 23/08/2020
  */
-public class DeadWoodBow extends ShootableItem {
-
+public class DeadWoodBow extends ShootableItem
+{
     public static final Predicate<ItemStack> DEAD_ARROWS = (stack) -> {
         return stack.getItem() == DeadItems.DEAD_WOOD_ARROW.get(); // TODO: MAKE TAG
     };
 
-    public DeadWoodBow(Properties properties) {
+    public DeadWoodBow(Properties properties)
+    {
         super(properties);
     }
 
     @Override
-    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity entity, int timeLeft) {
-        if (entity instanceof PlayerEntity) {
+    public void onPlayerStoppedUsing(ItemStack stack, World world, LivingEntity entity, int timeLeft)
+    {
+        if (entity instanceof PlayerEntity)
+        {
             PlayerEntity player = (PlayerEntity) entity;
             boolean flag = player.abilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
             ItemStack itemstack = player.findAmmo(stack);
@@ -45,15 +48,19 @@ public class DeadWoodBow extends ShootableItem {
             i = net.minecraftforge.event.ForgeEventFactory.onArrowLoose(stack, world, player, i, !itemstack.isEmpty() || flag);
             if (i < 0) return;
 
-            if (!itemstack.isEmpty() || flag) {
-                if (itemstack.isEmpty()) {
+            if (!itemstack.isEmpty() || flag)
+            {
+                if (itemstack.isEmpty())
+                {
                     itemstack = new ItemStack(DeadItems.DEAD_WOOD_ARROW.get());
                 }
 
                 float f = getArrowVelocity(i);
-                if (!((double) f < .1d)) {
+                if (!((double) f < .1d))
+                {
                     boolean flag1 = player.abilities.isCreativeMode || (itemstack.getItem() instanceof ArrowItem && ((ArrowItem) itemstack.getItem()).isInfinite(itemstack, stack, player));
-                    if (!world.isRemote) {
+                    if (!world.isRemote)
+                    {
                         DeadWoodArrowEntity arrowEntity = new DeadWoodArrowEntity(world, player);
                         arrowEntity.func_234612_a_(player, player.rotationPitch, player.rotationYaw, 0f, f * 3f, 1f);
                         if (f == 1f)
@@ -78,7 +85,8 @@ public class DeadWoodBow extends ShootableItem {
                     }
 
                     world.playSound((PlayerEntity) null, player.getPosX(), player.getPosY(), player.getPosZ(), SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1f, 1f / (random.nextFloat() * .4f + 1.2f) + f * .5f);
-                    if (!flag1 && !player.abilities.isCreativeMode) {
+                    if (!flag1 && !player.abilities.isCreativeMode)
+                    {
                         itemstack.shrink(1);
                         if (itemstack.isEmpty())
                             player.inventory.deleteStack(itemstack);
@@ -90,10 +98,12 @@ public class DeadWoodBow extends ShootableItem {
         }
     }
 
-    public static float getArrowVelocity(int charge) {
+    public static float getArrowVelocity(int charge)
+    {
         float f = (float) charge / 20.0F;
         f = (f * f + f * 2.0F) / 3.0F;
-        if (f > 1.0F) {
+        if (f > 1.0F)
+        {
             f = 1.0F;
         }
 
@@ -101,38 +111,45 @@ public class DeadWoodBow extends ShootableItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack stack) {
+    public int getUseDuration(ItemStack stack)
+    {
         return 64800;
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
+    public UseAction getUseAction(ItemStack stack)
+    {
         return UseAction.BOW;
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
+    {
         ItemStack itemstack = player.getHeldItem(hand);
         boolean flag = !player.findAmmo(itemstack).isEmpty();
 
         ActionResult<ItemStack> ret = net.minecraftforge.event.ForgeEventFactory.onArrowNock(itemstack, world, player, hand, flag);
         if (ret != null) return ret;
 
-        if (!player.abilities.isCreativeMode && !flag) {
+        if (!player.abilities.isCreativeMode && !flag)
+        {
             return ActionResult.resultFail(itemstack);
-        } else {
+        } else
+        {
             player.setActiveHand(hand);
             return ActionResult.resultConsume(itemstack);
         }
     }
 
     @Override
-    public Predicate<ItemStack> getInventoryAmmoPredicate() {
+    public Predicate<ItemStack> getInventoryAmmoPredicate()
+    {
         return DEAD_ARROWS;
     }
 
     @Override
-    public int func_230305_d_() {
+    public int func_230305_d_()
+    {
         return 15;
     }
 }

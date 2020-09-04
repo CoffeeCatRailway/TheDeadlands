@@ -16,15 +16,17 @@ import net.minecraft.world.World;
  * @author CoffeeCatRailway
  * Created: 21/08/2020
  */
-public class DeadWoodCraftingTableBlock extends CraftingTableBlock {
-
+public class DeadWoodCraftingTableBlock extends CraftingTableBlock
+{
     private static final ITextComponent CONTAINER_NAME = new TranslationTextComponent("container.crafting");
 
-    public DeadWoodCraftingTableBlock(AbstractBlock.Properties properties) {
+    public DeadWoodCraftingTableBlock(AbstractBlock.Properties properties)
+    {
         super(properties);
     }
 
-    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos) {
+    public INamedContainerProvider getContainer(BlockState state, World worldIn, BlockPos pos)
+    {
         return new SimpleNamedContainerProvider((id, inventory, player) -> new DeadWoodWorkbenchContainer(id, inventory, IWorldPosCallable.of(worldIn, pos)), CONTAINER_NAME);
     }
 }

@@ -33,30 +33,35 @@ import java.util.function.Supplier;
  * @author CoffeeCatRailway
  * Created: 24/08/2020
  */
-public class CoffinBlock extends BaseBlock implements IWaterLoggable {
-
+public class CoffinBlock extends BaseBlock implements IWaterLoggable
+{
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final EnumProperty<CoffinPart> PART = EnumProperty.create("part", CoffinPart.class);
 
     private static final VoxelShape[] SHAPES = generateShapes();
 
-    public CoffinBlock(Properties properties) {
+    public CoffinBlock(Properties properties)
+    {
         super(properties);
         this.setDefaultState(this.stateContainer.getBaseState().with(OPEN, false).with(PART, CoffinPart.BACK).with(WATERLOGGED, false).with(HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader world, BlockPos pos, ISelectionContext context)
+    {
         return SHAPES[state.get(HORIZONTAL_FACING).getHorizontalIndex() + (state.get(PART) == CoffinPart.FRONT ? 4 : 0) + (state.get(OPEN) ? 8 : 0)];
     }
 
-    private Direction getDirectionToOther(CoffinPart part, Direction direction) {
+    private Direction getDirectionToOther(CoffinPart part, Direction direction)
+    {
         return part == CoffinPart.BACK ? direction : direction.getOpposite();
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos) {
-        if (facing == getDirectionToOther(state.get(PART), state.get(HORIZONTAL_FACING))) {
+    public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos pos, BlockPos facingPos)
+    {
+        if (facing == getDirectionToOther(state.get(PART), state.get(HORIZONTAL_FACING)))
+        {
             if (facingState.isIn(this) && facingState.get(PART) != state.get(PART))
                 return state.with(OPEN, facingState.get(OPEN));
             else
@@ -66,11 +71,13 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
     }
 
     @Override
-    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player) {
+    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player)
+    {
         CoffinPart part = state.get(PART);
         BlockPos offset = pos.offset(getDirectionToOther(part, state.get(HORIZONTAL_FACING)));
         BlockState other = world.getBlockState(offset);
-        if (other.getBlock() == this && part != CoffinPart.BACK) {
+        if (other.getBlock() == this && part != CoffinPart.BACK)
+        {
             world.setBlockState(offset, Blocks.AIR.getDefaultState(), 35);
             world.playEvent(player, 2001, offset, Block.getStateId(other));
             if (!world.isRemote && !player.isCreative())
@@ -80,12 +87,14 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    {
         builder.add(OPEN, PART, WATERLOGGED, HORIZONTAL_FACING);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
+    public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos)
+    {
         CoffinPart part = state.get(PART);
         if (part == CoffinPart.BACK)
             return true;
@@ -95,7 +104,8 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
 
     @Nullable
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context) {
+    public BlockState getStateForPlacement(BlockItemUseContext context)
+    {
         Direction dir = context.getPlacementHorizontalFacing();
         BlockPos pos = context.getPos();
         BlockPos offset = pos.offset(dir);
@@ -103,9 +113,11 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
+    {
         super.onBlockPlacedBy(world, pos, state, placer, stack);
-        if (!world.isRemote) {
+        if (!world.isRemote)
+        {
             BlockPos offset = pos.offset(state.get(HORIZONTAL_FACING));
             world.setBlockState(offset, state.with(PART, CoffinPart.FRONT).with(WATERLOGGED, world.getFluidState(offset).getFluid() == Fluids.WATER), 3);
             world.func_230547_a_(pos, Blocks.AIR);
@@ -113,7 +125,8 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
         }
     }
 
-    private static VoxelShape[] generateShapes() {
+    private static VoxelShape[] generateShapes()
+    {
         VoxelShape base = new VoxelShapeHelper.Builder().append(
                 Block.makeCuboidShape(0d, 0d, 0d, 16d, 1d, 16d),
                 Block.makeCuboidShape(1d, 1d, 0d, 15d, 2d, 15d),
@@ -128,7 +141,8 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable {
 
         VoxelShape[] shapes = new VoxelShape[4 * 2 * 2];
         Direction[] horizontal = {Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
-        for (Direction dir : horizontal) {
+        for (Direction dir : horizontal)
+        {
             shapes[dir.getHorizontalIndex()] = closed.get().rotate(dir.getOpposite()).build();
             shapes[dir.getHorizontalIndex() + 4] = closed.get().rotate(dir).build();
 

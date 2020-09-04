@@ -12,11 +12,12 @@ import org.apache.logging.log4j.Logger;
  * Created: 23/08/2020
  */
 @OnlyIn(Dist.CLIENT)
-public class DeadItemModelProperties {
-
+public class DeadItemModelProperties
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Item Model Properties");
 
-    static {
+    static
+    {
         ItemModelsProperties.func_239418_a_(DeadItems.DEAD_WOOD_BOW.get(), new ResourceLocation("pull"), (stack, world, entity) -> {
             if (entity == null)
                 return 0f;
@@ -26,7 +27,8 @@ public class DeadItemModelProperties {
         ItemModelsProperties.func_239418_a_(DeadItems.DEAD_WOOD_BOW.get(), new ResourceLocation("pulling"), (stack, world, entity) -> entity != null && entity.isHandActive() && entity.getActiveItemStack() == stack ? 1f : 0f);
     }
 
-    public static void load() {
+    public static void load()
+    {
         LOGGER.info("Loaded");
     }
 }

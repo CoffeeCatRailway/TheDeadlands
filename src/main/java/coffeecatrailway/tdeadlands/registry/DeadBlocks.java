@@ -52,8 +52,8 @@ import static coffeecatrailway.tdeadlands.TheDeadlands.REGISTRATE;
  * @author CoffeeCatRailway
  * Created: 21/08/2020
  */
-public class DeadBlocks {
-
+public class DeadBlocks
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Blocks");
 
     // Ores
@@ -143,11 +143,13 @@ public class DeadBlocks {
     public static final RegistryEntry<CoffinBlock> COFFIN = REGISTRATE.object("coffin").block(CoffinBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
 
-    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color) {
+    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color)
+    {
         return registerLog(id, color, id, null);
     }
 
-    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color, String texture, Supplier<RotatedPillarBlock> log) {
+    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color, String texture, Supplier<RotatedPillarBlock> log)
+    {
         boolean onlySideTexture = !id.equals(texture);
         return REGISTRATE.object(id).block(RotatedPillarBlock::new)
                 .initialProperties(Material.WOOD, color).properties(prop -> prop.hardnessAndResistance(2.0f).sound(SoundType.WOOD)).defaultLoot()
@@ -161,7 +163,8 @@ public class DeadBlocks {
                 .item().tag(ItemTags.LOGS).build().register();
     }
 
-    private static RegistryEntry<LeavesBlock> registerLeaves(String id, MaterialColor color, Supplier<? extends IItemProvider> sapling) {
+    private static RegistryEntry<LeavesBlock> registerLeaves(String id, MaterialColor color, Supplier<? extends IItemProvider> sapling)
+    {
         return REGISTRATE.object(id).block(LeavesBlock::new).initialProperties(Material.LEAVES, color)
                 .properties(prop -> prop.setRequiresTool().hardnessAndResistance(.2f).sound(SoundType.PLANT).notSolid().setAllowsSpawn(Blocks::allowsSpawnOnLeaves).setSuffocates((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false))
                 .addLayer(() -> RenderType::getCutoutMipped).defaultBlockstate().tag(BlockTags.LEAVES)
@@ -186,13 +189,15 @@ public class DeadBlocks {
     }
 
     @SafeVarargs
-    private static RegistryEntry<Block> registerPlanks(String id, MaterialColor color, NonNullSupplier<RotatedPillarBlock> log, NonNullSupplier<RotatedPillarBlock>... others) {
+    private static RegistryEntry<Block> registerPlanks(String id, MaterialColor color, NonNullSupplier<RotatedPillarBlock> log, NonNullSupplier<RotatedPillarBlock>... others)
+    {
         return REGISTRATE.object(id).block(Block::new).initialProperties(Material.WOOD, color).tag(BlockTags.PLANKS)
                 .properties(prop -> prop.hardnessAndResistance(2.0f, 3.0f).sound(SoundType.WOOD)).defaultBlockstate().defaultLoot()
                 .recipe((ctx, provider) -> provider.planks(DataIngredient.items(log, others), ctx::getEntry)).item().tag(ItemTags.PLANKS).build().register();
     }
 
-    private static RegistryEntry<DoorBlock> registerDoor(String id, NonNullSupplier<Block> planks) {
+    private static RegistryEntry<DoorBlock> registerDoor(String id, NonNullSupplier<Block> planks)
+    {
         return REGISTRATE.object(id).block(DoorBlock::new).initialProperties(planks).properties(prop -> prop.hardnessAndResistance(3f).notSolid())
                 .addLayer(() -> RenderType::getCutoutMipped).tag(BlockTags.WOODEN_DOORS, BlockTags.DOORS)
                 .recipe((ctx, provider) -> provider.door(DataIngredient.items(planks), ctx::getEntry, "wooden_door"))
@@ -212,11 +217,12 @@ public class DeadBlocks {
 //                .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), TheDeadlands.getLocation("block/" + id + "_bottom"))).build().register();
 //    }
 
-    private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks) {
+    private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks)
+    {
         return REGISTRATE.object(id).block(prop -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, prop)).initialProperties(planks)
                 .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(5f).notSolid()).tag(BlockTags.PRESSURE_PLATES, BlockTags.WOODEN_PRESSURE_PLATES)
                 .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', planks.get()).patternLine("pp")
-                .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(planks.get())).build(provider))
+                        .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(planks.get())).build(provider))
                 .blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry()).partialState()
                         .with(PressurePlateBlock.POWERED, false).modelForState().modelFile(provider.models().withExistingParent(ctx.getName(), "block/pressure_plate_up").texture("texture", provider.blockTexture(planks.get()))).addModel()
                         .partialState()
@@ -225,7 +231,8 @@ public class DeadBlocks {
                 .tag(ItemTags.WOODEN_PRESSURE_PLATES).build().register();
     }
 
-    private static RegistryEntry<DeadGrassBlock> registerGrassBlock(String id, MaterialColor color) {
+    private static RegistryEntry<DeadGrassBlock> registerGrassBlock(String id, MaterialColor color)
+    {
         return REGISTRATE.object(id).block(prop -> new DeadGrassBlock(prop)).initialProperties(Material.ORGANIC, color)
                 .properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
                 .loot((tables, block) -> tables.registerLootTable(block, RegistrateBlockLootTables.droppingWithSilkTouch(block, DIRT.get())))
@@ -234,7 +241,8 @@ public class DeadBlocks {
                 .item().color(() -> () -> (stack, tintindex) -> Minecraft.getInstance().getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().getDefaultState(), null, null, tintindex)).build().register();
     }
 
-    public static void load() {
+    public static void load()
+    {
         LOGGER.info("Loaded");
     }
 }

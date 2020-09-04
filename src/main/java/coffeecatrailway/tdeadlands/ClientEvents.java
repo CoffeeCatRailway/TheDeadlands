@@ -13,11 +13,12 @@ import org.apache.logging.log4j.Logger;
  * Created: 22/08/2020
  */
 @OnlyIn(Dist.CLIENT)
-public class ClientEvents {
-
+public class ClientEvents
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Client Events");
 
-    public static void entityRenderers() {
+    public static void entityRenderers()
+    {
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.DEAD_WOOD_ARROW.get(), DeadWoodArrowRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.RAT.get(), RatRenderer::new);

@@ -14,17 +14,19 @@ import net.minecraft.util.ResourceLocation;
  * Created: 21/08/2020
  */
 @JeiPlugin
-public class DeadJEIPlugin implements IModPlugin {
-
+public class DeadJEIPlugin implements IModPlugin
+{
     private static final ResourceLocation UID = TheDeadlands.getLocation("plugin/main");
 
     @Override
-    public ResourceLocation getPluginUid() {
+    public ResourceLocation getPluginUid()
+    {
         return UID;
     }
 
     @Override
-    public void registerRecipeCatalysts(IRecipeCatalystRegistration reg) {
+    public void registerRecipeCatalysts(IRecipeCatalystRegistration reg)
+    {
         reg.addRecipeCatalyst(new ItemStack(DeadBlocks.DEAD_WOOD_CRAFTING_TABLE.get()), VanillaRecipeCategoryUid.CRAFTING);
     }
 }

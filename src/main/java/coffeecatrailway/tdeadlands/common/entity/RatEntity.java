@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
 import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -37,14 +38,16 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author CoffeeCatRailway
  * Created: 27/08/2020
  */
-public class RatEntity extends AnimalEntity {
-
-    public RatEntity(EntityType<? extends RatEntity> type, World world) {
+public class RatEntity extends AnimalEntity
+{
+    public RatEntity(EntityType<? extends RatEntity> type, World world)
+    {
         super(type, world);
     }
 
     @Override
-    protected void registerGoals() {
+    protected void registerGoals()
+    {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1d, true));
         this.goalSelector.addGoal(2, new RatEntity.FindChestWithFoodGoal());
@@ -56,67 +59,81 @@ public class RatEntity extends AnimalEntity {
 
     @Nullable
     @Override
-    public LivingEntity getAttackTarget() {
+    public LivingEntity getAttackTarget()
+    {
         return super.getAttackTarget();
     }
 
-    public static AttributeModifierMap.MutableAttribute registerAttributeMap() {
+    public static AttributeModifierMap.MutableAttribute registerAttributeMap()
+    {
         return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10f).createMutableAttribute(Attributes.MOVEMENT_SPEED, .3f).createMutableAttribute(Attributes.ATTACK_DAMAGE, 1f);
     }
 
     @Override
-    protected void playStepSound(BlockPos pos, BlockState block) {
+    protected void playStepSound(BlockPos pos, BlockState block)
+    {
         this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, .15f, 1f);
     }
 
     @Nullable
     @Override
-    public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity entity) {
+    public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity entity)
+    {
         return DeadEntities.RAT.get().create(world);
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> createSpawnPacket()
+    {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public class FindChestWithFoodGoal extends MoveToBlockGoal {
+    public class FindChestWithFoodGoal extends MoveToBlockGoal
+    {
 
         private int ticker;
 
-        public FindChestWithFoodGoal() {
+        public FindChestWithFoodGoal()
+        {
             super(RatEntity.this, 1.2f, 12);
         }
 
         @Override
-        public boolean shouldContinueExecuting() {
+        public boolean shouldContinueExecuting()
+        {
             return super.shouldContinueExecuting();
         }
 
         @Override
-        public double getTargetDistanceSq() {
+        public double getTargetDistanceSq()
+        {
             return 2d;
         }
 
         @Override
-        public boolean shouldMove() {
+        public boolean shouldMove()
+        {
             return this.timeoutCounter % 100 == 0;
         }
 
         @Override
-        public boolean shouldExecute() {
+        public boolean shouldExecute()
+        {
             return !RatEntity.this.isAggressive() && super.shouldExecute();
         }
 
         @Override
-        public void startExecuting() {
+        public void startExecuting()
+        {
             this.ticker = 0;
             super.startExecuting();
         }
 
         @Override
-        public void tick() {
-            if (this.getIsAboveDestination()) {
+        public void tick()
+        {
+            if (this.getIsAboveDestination())
+            {
                 if (this.ticker >= 40)
                     this.eatFoodInChest(RatEntity.this.world, RatEntity.this);
                 else
@@ -127,16 +144,22 @@ public class RatEntity extends AnimalEntity {
             super.tick();
         }
 
-        private void eatFoodInChest(World world, RatEntity rat) {
-            if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(world, rat)) {
+        private void eatFoodInChest(World world, RatEntity rat)
+        {
+            if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(world, rat))
+            {
                 LazyOptional<IItemHandler> chestCap = this.getChest(world, this.destinationBlock);
                 chestCap.ifPresent(handler -> {
-                    for (int i = 0; i < handler.getSlots(); i++) {
-                        if (rat.rand.nextFloat() < .05f) {
+                    for (int i = 0; i < handler.getSlots(); i++)
+                    {
+                        if (rat.rand.nextFloat() < .05f)
+                        {
                             ItemStack stack = handler.getStackInSlot(i);
                             Item item = stack.getItem();
-                            if (!DeadTags.Items.RAT_IGNORE.contains(item)) {
-                                if (!stack.isEmpty() && item.isFood()) {
+                            if (!DeadTags.Items.RAT_IGNORE.contains(item))
+                            {
+                                if (!stack.isEmpty() && item.isFood())
+                                {
                                     int count = stack.getCount();
                                     handler.extractItem(i, count, false);
                                     handler.insertItem(i, new ItemStack(DeadItems.RAT_DROPPINGS.get(), count), false);
@@ -152,10 +175,13 @@ public class RatEntity extends AnimalEntity {
             }
         }
 
-        private LazyOptional<IItemHandler> getChest(IWorldReader world, BlockPos pos) {
+        private LazyOptional<IItemHandler> getChest(IWorldReader world, BlockPos pos)
+        {
             BlockState state = world.getBlockState(pos);
-            if (state.isIn(DeadTags.Blocks.RAT_SEARCH) && !state.isIn(Tags.Blocks.CHESTS_ENDER)) {
-                if (state.hasTileEntity()) {
+            if (state.isIn(DeadTags.Blocks.RAT_SEARCH) && !state.isIn(Tags.Blocks.CHESTS_ENDER))
+            {
+                if (state.hasTileEntity())
+                {
                     TileEntity tile = world.getTileEntity(pos);
                     if (tile instanceof ChestTileEntity) {
                         return tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
@@ -166,16 +192,20 @@ public class RatEntity extends AnimalEntity {
         }
 
         @Override
-        protected boolean shouldMoveTo(IWorldReader world, BlockPos pos) {
+        protected boolean shouldMoveTo(IWorldReader world, BlockPos pos)
+        {
             LazyOptional<IItemHandler> chestCap = this.getChest(world, pos);
             AtomicBoolean foodFlag = new AtomicBoolean(false);
 
             chestCap.ifPresent(handler -> {
-                for (int i = 0; i < handler.getSlots(); i++) {
+                for (int i = 0; i < handler.getSlots(); i++)
+                {
                     ItemStack stack = handler.getStackInSlot(i);
                     Item item = stack.getItem();
-                    if (!DeadTags.Items.RAT_IGNORE.contains(item)) {
-                        if (!stack.isEmpty() && item.isFood()) {
+                    if (!DeadTags.Items.RAT_IGNORE.contains(item))
+                    {
+                        if (!stack.isEmpty() && item.isFood())
+                        {
                             foodFlag.set(true);
                             break;
                         }

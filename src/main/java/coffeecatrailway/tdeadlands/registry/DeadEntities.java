@@ -31,8 +31,8 @@ import static coffeecatrailway.tdeadlands.TheDeadlands.REGISTRATE;
  * @author CoffeeCatRailway
  * Created: 23/08/2020
  */
-public class DeadEntities {
-
+public class DeadEntities
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Entities");
     private static final EntityPredicate.Builder ON_FIRE = EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build());
 
@@ -51,21 +51,25 @@ public class DeadEntities {
                                     .acceptFunction(SetCount.builder(new RandomValueRange(1)))
                                     .acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))))))).register();
 
-    static {
+    static
+    {
         registerAttributeMap(RAT, RatEntity::registerAttributeMap);
         registerSpawnEgg("rat", RAT, 0xe1e1e1, 0xc29ba7);
     }
 
-    private static <T extends LivingEntity> void registerAttributeMap(Supplier<EntityType<T>> entity, Supplier<AttributeModifierMap.MutableAttribute> attributeMap) {
+    private static <T extends LivingEntity> void registerAttributeMap(Supplier<EntityType<T>> entity, Supplier<AttributeModifierMap.MutableAttribute> attributeMap)
+    {
         ATTRIBUTE_MAPS.add(() -> GlobalEntityTypeAttributes.put(entity.get(), attributeMap.get().create()));
     }
 
-    private static <T extends LivingEntity> RegistryEntry<LazySpawnEggItem<T>> registerSpawnEgg(String id, RegistryEntry<EntityType<T>> entity, int primaryColor, int secondaryColor) {
+    private static <T extends LivingEntity> RegistryEntry<LazySpawnEggItem<T>> registerSpawnEgg(String id, RegistryEntry<EntityType<T>> entity, int primaryColor, int secondaryColor)
+    {
         return REGISTRATE.item(id + "_spawn_egg", prop -> new LazySpawnEggItem<>(entity, primaryColor, secondaryColor, prop)).group(() -> ItemGroup.MISC)
                 .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register();
     }
 
-    public static void load() {
+    public static void load()
+    {
         LOGGER.info("Loaded");
     }
 }

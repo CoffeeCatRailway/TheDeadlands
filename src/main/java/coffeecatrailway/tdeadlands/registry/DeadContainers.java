@@ -14,18 +14,20 @@ import org.apache.logging.log4j.Logger;
  * @author CoffeeCatRailway
  * Created: 21/08/2020
  */
-public class DeadContainers {
-
+public class DeadContainers
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Containers");
     protected static final DeferredRegister<ContainerType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.CONTAINERS, TheDeadlands.MOD_ID);
 
     public static final RegistryObject<ContainerType<DeadWoodWorkbenchContainer>> DEAD_WOOD_WORKBENCH = register("dead_wood_workbench", DeadWoodWorkbenchContainer::new);
 
-    private static <T extends Container> RegistryObject<ContainerType<T>> register(String id, ContainerType.IFactory<T> factory) {
+    private static <T extends Container> RegistryObject<ContainerType<T>> register(String id, ContainerType.IFactory<T> factory)
+    {
         return REGISTER.register(id, () -> new ContainerType<>(factory));
     }
 
-    public static void load(IEventBus bus) {
+    public static void load(IEventBus bus)
+    {
         LOGGER.info("Containers loaded");
         REGISTER.register(bus);
     }

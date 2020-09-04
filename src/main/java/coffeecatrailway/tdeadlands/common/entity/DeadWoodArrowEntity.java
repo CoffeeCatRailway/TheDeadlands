@@ -16,18 +16,21 @@ import net.minecraftforge.fml.network.NetworkHooks;
  * @author CoffeeCatRailway
  * Created: 23/08/2020
  */
-public class DeadWoodArrowEntity extends ArrowEntity {
-
-    public DeadWoodArrowEntity(EntityType<? extends ArrowEntity> type, World world) {
+public class DeadWoodArrowEntity extends ArrowEntity
+{
+    public DeadWoodArrowEntity(EntityType<? extends ArrowEntity> type, World world)
+    {
         super(type, world);
     }
 
-    public DeadWoodArrowEntity(World world, double x, double y, double z) {
+    public DeadWoodArrowEntity(World world, double x, double y, double z)
+    {
         super(DeadEntities.DEAD_WOOD_ARROW.get(), world);
         this.setPosition(x, y, z);
     }
 
-    public DeadWoodArrowEntity(World world, LivingEntity shooter) {
+    public DeadWoodArrowEntity(World world, LivingEntity shooter)
+    {
         this(world, shooter.getPosX(), shooter.getPosYEye() - .1d, shooter.getPosZ());
         this.setShooter(shooter);
         if (shooter instanceof PlayerEntity)
@@ -35,12 +38,14 @@ public class DeadWoodArrowEntity extends ArrowEntity {
     }
 
     @Override
-    protected ItemStack getArrowStack() {
+    protected ItemStack getArrowStack()
+    {
         return new ItemStack(DeadItems.DEAD_WOOD_ARROW.get());
     }
 
     @Override
-    public IPacket<?> createSpawnPacket() {
+    public IPacket<?> createSpawnPacket()
+    {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

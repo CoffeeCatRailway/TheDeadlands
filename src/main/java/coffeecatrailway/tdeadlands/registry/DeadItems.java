@@ -11,8 +11,6 @@ import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.item.*;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
@@ -27,8 +25,8 @@ import static coffeecatrailway.tdeadlands.TheDeadlands.REGISTRATE;
  * @author CoffeeCatRailway
  * Created: 21/08/2020
  */
-public class DeadItems {
-
+public class DeadItems
+{
     private static final Logger LOGGER = TheDeadlands.getLogger("Items");
 
     //Materials
@@ -166,7 +164,8 @@ public class DeadItems {
                 provider.campfire(DataIngredient.items(ROTTON_SKIN), ctx::getEntry, .35f, 600);
             }).tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
-    private static NonNullBiConsumer<DataGenContext<Item, PickaxeItem>, RegistrateRecipeProvider> pickaxeRecipe(ITag<Item> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, PickaxeItem>, RegistrateRecipeProvider> pickaxeRecipe(ITag<Item> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot)
                 .patternLine("iii")
@@ -174,7 +173,8 @@ public class DeadItems {
                 .patternLine(" s ").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, PickaxeItem>, RegistrateRecipeProvider> pickaxeRecipe(Supplier<? extends IItemProvider> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, PickaxeItem>, RegistrateRecipeProvider> pickaxeRecipe(Supplier<? extends IItemProvider> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot.get()))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot.get())
                 .patternLine("iii")
@@ -182,7 +182,8 @@ public class DeadItems {
                 .patternLine(" s ").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, AxeItem>, RegistrateRecipeProvider> axeRecipe(ITag<Item> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, AxeItem>, RegistrateRecipeProvider> axeRecipe(ITag<Item> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot)
                 .patternLine("ii")
@@ -190,7 +191,8 @@ public class DeadItems {
                 .patternLine(" s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, AxeItem>, RegistrateRecipeProvider> axeRecipe(Supplier<? extends IItemProvider> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, AxeItem>, RegistrateRecipeProvider> axeRecipe(Supplier<? extends IItemProvider> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot.get()))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot.get())
                 .patternLine("ii")
@@ -198,7 +200,8 @@ public class DeadItems {
                 .patternLine(" s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, HoeItem>, RegistrateRecipeProvider> hoeRecipe(ITag<Item> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, HoeItem>, RegistrateRecipeProvider> hoeRecipe(ITag<Item> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot)
                 .patternLine("ii")
@@ -206,7 +209,8 @@ public class DeadItems {
                 .patternLine(" s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, HoeItem>, RegistrateRecipeProvider> hoeRecipe(Supplier<? extends IItemProvider> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, HoeItem>, RegistrateRecipeProvider> hoeRecipe(Supplier<? extends IItemProvider> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot.get()))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot.get())
                 .patternLine("ii")
@@ -214,7 +218,8 @@ public class DeadItems {
                 .patternLine(" s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, ShovelItem>, RegistrateRecipeProvider> shovelRecipe(ITag<Item> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, ShovelItem>, RegistrateRecipeProvider> shovelRecipe(ITag<Item> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot)
                 .patternLine("i")
@@ -222,7 +227,8 @@ public class DeadItems {
                 .patternLine("s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, ShovelItem>, RegistrateRecipeProvider> shovelRecipe(Supplier<? extends IItemProvider> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, ShovelItem>, RegistrateRecipeProvider> shovelRecipe(Supplier<? extends IItemProvider> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot.get()))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot.get())
                 .patternLine("i")
@@ -230,7 +236,8 @@ public class DeadItems {
                 .patternLine("s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, SwordItem>, RegistrateRecipeProvider> swordRecipe(ITag<Item> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, SwordItem>, RegistrateRecipeProvider> swordRecipe(ITag<Item> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot)
                 .patternLine("i")
@@ -238,7 +245,8 @@ public class DeadItems {
                 .patternLine("s").build(provider);
     }
 
-    private static NonNullBiConsumer<DataGenContext<Item, SwordItem>, RegistrateRecipeProvider> swordRecipe(Supplier<? extends IItemProvider> ingot) {
+    private static NonNullBiConsumer<DataGenContext<Item, SwordItem>, RegistrateRecipeProvider> swordRecipe(Supplier<? extends IItemProvider> ingot)
+    {
         return (ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx::getEntry).addCriterion("has_ingot", RegistrateRecipeProvider.hasItem(ingot.get()))
                 .key('s', Tags.Items.RODS_WOODEN).key('i', ingot.get())
                 .patternLine("i")
@@ -246,7 +254,8 @@ public class DeadItems {
                 .patternLine("s").build(provider);
     }
 
-    public static void load() {
+    public static void load()
+    {
         LOGGER.info("Loaded");
     }
 }

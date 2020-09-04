@@ -13,16 +13,18 @@ import net.minecraftforge.api.distmarker.OnlyIn;
  * Created: 23/08/2020
  */
 @OnlyIn(Dist.CLIENT)
-public class DeadWoodArrowRenderer extends ArrowRenderer<DeadWoodArrowEntity> {
-
+public class DeadWoodArrowRenderer extends ArrowRenderer<DeadWoodArrowEntity>
+{
     public static final ResourceLocation ARROW = TheDeadlands.getLocation("textures/entity/dead_wood_arrow.png");
 
-    public DeadWoodArrowRenderer(EntityRendererManager manager) {
+    public DeadWoodArrowRenderer(EntityRendererManager manager)
+    {
         super(manager);
     }
 
     @Override
-    public ResourceLocation getEntityTexture(DeadWoodArrowEntity entity) {
+    public ResourceLocation getEntityTexture(DeadWoodArrowEntity entity)
+    {
         return ARROW;
     }
 }
