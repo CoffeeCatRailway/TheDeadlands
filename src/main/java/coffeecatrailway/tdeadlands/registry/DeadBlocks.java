@@ -58,23 +58,23 @@ public class DeadBlocks
 
     // Ores
     public static final RegistryEntry<Block> COPPER_ORE = REGISTRATE.object("copper_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
-            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.ORES_COPPER)
-            .item().tag(DeadTags.Items.ORES_COPPER).build().register();
+            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(DeadTags.Blocks.ORES_COPPER)
+            .loot((tables, block) -> tables.registerDropping(block, DeadItems.COPPER_CLUMP.get())).item().tag(DeadTags.Items.ORES_COPPER).build().register();
 
     public static final RegistryEntry<Block> FROST_METAL_ORE = REGISTRATE.object("frost_metal_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
-            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
-            .item().tag(Tags.Items.ORES).build().register();
+            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(Tags.Blocks.ORES)
+            .loot((tables, block) -> tables.registerDropping(block, DeadItems.FROST_METAL_CLUMP.get())).item().tag(Tags.Items.ORES).build().register();
 
     public static final RegistryEntry<Block> HEATSTONE_ORE = REGISTRATE.object("heatstone_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
-            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
-            .item().tag(Tags.Items.ORES).build().register();
+            .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(Tags.Blocks.ORES)
+            .loot((tables, block) -> tables.registerDropping(block, DeadItems.HEAT_STONE.get())).item().tag(Tags.Items.ORES).build().register();
     public static final RegistryEntry<Block> HEATSTONE_BLOCK = REGISTRATE.object("heatstone_block").block(Block::new).initialProperties(Material.ROCK, MaterialColor.RED)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(1.5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate()
-            .simpleItem().register();
+            .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.HEAT_STONE), ctx::getEntry, false)).simpleItem().register();
 
     public static final RegistryEntry<Block> FROST_BRONZE_BLOCK = REGISTRATE.object("frost_bronze_block").block(Block::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
-            .item().tag(Tags.Items.ORES).build().register();
+            .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.FROST_BRONZE), ctx::getEntry, false)).item().tag(Tags.Items.ORES).build().register();
 
     // Coldstone
     public static final RegistryEntry<Block> COLDSTONE = REGISTRATE.object("coldstone").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
