@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "#forge:chests"
+    "#forge:chests",
+    "minecraft:barrel"
   ]
 }
