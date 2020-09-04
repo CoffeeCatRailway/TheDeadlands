@@ -183,7 +183,8 @@ public class RatEntity extends AnimalEntity
                 if (state.hasTileEntity())
                 {
                     TileEntity tile = world.getTileEntity(pos);
-                    if (tile instanceof ChestTileEntity) {
+                    if (tile instanceof LockableLootTileEntity && tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).isPresent())
+                    {
                         return tile.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY);
                     }
                 }
