@@ -2,11 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tdeadlands:cold_bronze_hoe"
+      "tdeadlands:frost_bronze_block"
     ]
   },
   "criteria": {
-    "has_ingot": {
+    "has_frost_bronze_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tdeadlands:cold_bronze_hoe"
+        "recipe": "tdeadlands:frost_bronze_block"
       }
     }
   },
   "requirements": [
     [
-      "has_ingot",
+      "has_frost_bronze_ingot",
       "has_the_recipe"
     ]
   ]

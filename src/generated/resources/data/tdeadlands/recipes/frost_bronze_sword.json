@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     "i",
-    "s",
+    "i",
     "s"
   ],
   "key": {
@@ -14,6 +14,6 @@
     }
   },
   "result": {
-    "item": "tdeadlands:cold_bronze_shovel"
+    "item": "tdeadlands:frost_bronze_sword"
   }
 }

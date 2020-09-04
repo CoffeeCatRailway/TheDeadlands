@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tdeadlands:heatstone_ore"
+          "name": "tdeadlands:heat_stone"
         }
       ],
       "conditions": [

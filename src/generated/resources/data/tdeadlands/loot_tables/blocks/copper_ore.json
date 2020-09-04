@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tdeadlands:copper_ore"
+          "name": "tdeadlands:copper_clump"
         }
       ],
       "conditions": [

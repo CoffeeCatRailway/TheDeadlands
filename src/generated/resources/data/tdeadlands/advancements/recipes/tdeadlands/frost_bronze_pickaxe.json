@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "tdeadlands:cold_bronze_sword"
+      "tdeadlands:frost_bronze_pickaxe"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "tdeadlands:cold_bronze_sword"
+        "recipe": "tdeadlands:frost_bronze_pickaxe"
       }
     }
   },

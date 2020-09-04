@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ii",
-    "is",
-    " s"
+    "iii",
+    " s ",
+    " s "
   ],
   "key": {
     "s": {
@@ -14,6 +14,6 @@
     }
   },
   "result": {
-    "item": "tdeadlands:cold_bronze_axe"
+    "item": "tdeadlands:frost_bronze_pickaxe"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "tdeadlands:item/frost_copper"
+    "layer0": "tdeadlands:item/frost_copper_clump"
   }
 }

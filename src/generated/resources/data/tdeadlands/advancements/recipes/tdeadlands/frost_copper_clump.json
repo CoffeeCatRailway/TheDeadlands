@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:frost_copper_clump"
+    ]
+  },
+  "criteria": {
+    "has_copper": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:copper_clump"
+          }
+        ]
+      }
+    },
+    "has_frost_metal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:frost_metal_clump"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:frost_copper_clump"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper",
+      "has_frost_metal",
+      "has_the_recipe"
+    ]
+  ]
+}

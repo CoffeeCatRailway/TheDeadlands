@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "tdeadlands:copper_clump"
+    },
+    {
+      "item": "tdeadlands:frost_metal_clump"
+    }
+  ],
+  "result": {
+    "item": "tdeadlands:frost_copper_clump"
+  }
+}

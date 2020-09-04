@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "tdeadlands:block/cold_bronze_block"
+    "all": "tdeadlands:block/frost_bronze_block"
   }
 }

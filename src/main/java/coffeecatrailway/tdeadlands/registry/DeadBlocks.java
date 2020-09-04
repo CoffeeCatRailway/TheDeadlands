@@ -72,7 +72,7 @@ public class DeadBlocks
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(1.5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate()
             .simpleItem().register();
 
-    public static final RegistryEntry<Block> COLD_BRONZE_BLOCK = REGISTRATE.object("cold_bronze_block").block(Block::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
+    public static final RegistryEntry<Block> FROST_BRONZE_BLOCK = REGISTRATE.object("frost_bronze_block").block(Block::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
             .item().tag(Tags.Items.ORES).build().register();
 

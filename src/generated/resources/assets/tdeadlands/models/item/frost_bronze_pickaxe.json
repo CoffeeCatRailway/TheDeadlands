@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "tdeadlands:item/cold_bronze_axe"
+    "layer0": "tdeadlands:item/frost_bronze_pickaxe"
   }
 }

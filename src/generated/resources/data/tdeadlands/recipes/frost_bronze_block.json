@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "iii",
-    " s ",
-    " s "
+    "XXX",
+    "XXX",
+    "XXX"
   ],
   "key": {
-    "s": {
-      "tag": "forge:rods/wooden"
-    },
-    "i": {
+    "X": {
       "item": "tdeadlands:frost_bronze_ingot"
     }
   },
   "result": {
-    "item": "tdeadlands:cold_bronze_pickaxe"
+    "item": "tdeadlands:frost_bronze_block"
   }
 }

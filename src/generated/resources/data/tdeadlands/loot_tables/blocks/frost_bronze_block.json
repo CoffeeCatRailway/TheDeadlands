@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tdeadlands:cold_bronze_block"
+          "name": "tdeadlands:frost_bronze_block"
         }
       ],
       "conditions": [

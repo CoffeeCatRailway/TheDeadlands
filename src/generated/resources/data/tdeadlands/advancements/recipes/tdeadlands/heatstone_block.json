@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:heatstone_block"
+    ]
+  },
+  "criteria": {
+    "has_heat_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:heat_stone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:heatstone_block"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_heat_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

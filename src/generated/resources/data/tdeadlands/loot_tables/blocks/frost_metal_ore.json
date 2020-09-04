@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "tdeadlands:frost_metal_ore"
+          "name": "tdeadlands:frost_metal_clump"
         }
       ],
       "conditions": [
