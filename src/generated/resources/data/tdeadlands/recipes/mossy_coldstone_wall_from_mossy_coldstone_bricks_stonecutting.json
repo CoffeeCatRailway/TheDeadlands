@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "tdeadlands:mossy_coldstone_bricks"
+  },
+  "result": "tdeadlands:mossy_coldstone_wall",
+  "count": 1
+}

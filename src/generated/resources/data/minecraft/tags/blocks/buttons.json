@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
+    "tdeadlands:coldstone_button",
+    "tdeadlands:coldstone_bricks_button",
+    "tdeadlands:cracked_coldstone_button",
+    "tdeadlands:mossy_coldstone_button",
     "tdeadlands:dead_wood_button"
   ]
 }

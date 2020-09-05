@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tdeadlands:coldstone_wall",
+    "tdeadlands:coldstone_bricks_wall",
+    "tdeadlands:cracked_coldstone_wall",
+    "tdeadlands:mossy_coldstone_wall"
+  ]
+}

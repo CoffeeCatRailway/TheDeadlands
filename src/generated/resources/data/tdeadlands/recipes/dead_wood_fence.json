@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence_gate",
+  "pattern": [
+    "sws",
+    "sws"
+  ],
+  "key": {
+    "w": {
+      "item": "tdeadlands:dead_wood_planks"
+    },
+    "s": {
+      "item": "tdeadlands:dead_wood_stick"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_fence"
+  }
+}

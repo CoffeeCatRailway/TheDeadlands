@@ -58,6 +58,18 @@ public class DeadItems
     public static final RegistryEntry<Item> HEAT_STONE = REGISTRATE.item("heat_stone", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe((ctx, provider) -> provider.smeltingAndBlasting(DataIngredient.items(DeadBlocks.HEATSTONE_ORE), ctx::getEntry, 1f)).register();
 
+    public static final RegistryEntry<Item> MUMMY_PALM = REGISTRATE.item("mummy_palm", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> SEVERED_HEAD = REGISTRATE.item("severed_head", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> SPINE = REGISTRATE.item("spine", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
+    public static final RegistryEntry<Item> WORN_PAPER = REGISTRATE.item("worn_paper", Item::new)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
     //Tools
     public static final RegistryEntry<AxeItem> DEAD_WOOD_AXE = REGISTRATE.item("dead_wood_axe", prop -> new AxeItem(ItemTier.WOOD, 6f, -2.88f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(DeadBlocks.DEAD_PLANKS)).register();
@@ -76,7 +88,7 @@ public class DeadItems
                     .addCriterion("has_string", RegistrateRecipeProvider.hasItem(DEAD_WOOD_STICK.get())).build(provider)).register();
     public static final RegistryEntry<ArrowItem> DEAD_WOOD_ARROW = REGISTRATE.item("dead_wood_arrow", ArrowItem::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .tag(ItemTags.ARROWS).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry())
-                    .key('f', Items.FLINT).key('s', DEAD_WOOD_STICK.get()).key('o', OWL_FEATHER.get())
+                    .key('f', SPINE.get()).key('s', DEAD_WOOD_STICK.get()).key('o', OWL_FEATHER.get())
                     .patternLine("f").patternLine("s").patternLine("o")
                     .addCriterion("has_string", RegistrateRecipeProvider.hasItem(DEAD_WOOD_STICK.get()))
                     .addCriterion("has_feather", RegistrateRecipeProvider.hasItem(OWL_FEATHER.get())).build(provider)).register();
@@ -125,22 +137,10 @@ public class DeadItems
     public static final RegistryEntry<Item> UNDEAD_TALISMAN = REGISTRATE.item("undead_talisman", Item::new).properties(prop -> prop.maxStackSize(1))
             .model(NonNullBiConsumer.noop()).recipe(NonNullBiConsumer.noop()).register();
 
+    //Food
     public static final RegistryEntry<Item> RAT_DROPPINGS = REGISTRATE.item("rat_droppings", Item::new).properties(prop -> prop.isBurnable().food(DeadFoods.RAT_DROPPINGS_FOOD))
             .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
-    public static final RegistryEntry<Item> MUMMY_PALM = REGISTRATE.item("mummy_palm", Item::new)
-            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
-
-    public static final RegistryEntry<Item> SEVERED_HEAD = REGISTRATE.item("severed_head", Item::new)
-            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
-
-    public static final RegistryEntry<Item> SPINE = REGISTRATE.item("spine", Item::new)
-            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
-
-    public static final RegistryEntry<Item> WORN_PAPER = REGISTRATE.item("worn_paper", Item::new)
-            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
-
-    //Food
     public static final RegistryEntry<Item> DEAD_RAT = REGISTRATE.item("dead_rat", Item::new).properties(prop -> prop.food(DeadFoods.DEAD_RAT))
             .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
     public static final RegistryEntry<Item> COOKED_RAT = REGISTRATE.item("cooked_rat", Item::new).properties(prop -> prop.food(DeadFoods.COOKED_RAT))

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "tdeadlands:coldstone_pressure_plate",
+    "tdeadlands:coldstone_bricks_pressure_plate",
+    "tdeadlands:cracked_coldstone_pressure_plate",
+    "tdeadlands:mossy_coldstone_pressure_plate"
+  ]
+}

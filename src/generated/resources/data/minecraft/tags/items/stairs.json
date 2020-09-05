@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "tdeadlands:coldstone_stairs",
+    "tdeadlands:coldstone_slab",
+    "tdeadlands:coldstone_bricks_stairs",
+    "tdeadlands:coldstone_bricks_slab",
+    "tdeadlands:cracked_coldstone_stairs",
+    "tdeadlands:cracked_coldstone_slab",
+    "tdeadlands:mossy_coldstone_stairs",
+    "tdeadlands:mossy_coldstone_slab",
+    "tdeadlands:dead_wood_stairs",
+    "tdeadlands:dead_wood_slab"
+  ]
+}

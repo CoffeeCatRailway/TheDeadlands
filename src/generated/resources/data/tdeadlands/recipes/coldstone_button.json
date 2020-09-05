@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "coldstone_button",
+  "ingredients": [
+    {
+      "item": "tdeadlands:coldstone"
+    }
+  ],
+  "result": {
+    "item": "tdeadlands:coldstone_button"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button_inventory",
+  "textures": {
+    "texture": "tdeadlands:block/cracked_coldstone_bricks"
+  }
+}

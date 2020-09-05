@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coldstone_stairs",
+  "pattern": [
+    "X  ",
+    "XX ",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "tdeadlands:coldstone"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:coldstone_stairs",
+    "count": 4
+  }
+}

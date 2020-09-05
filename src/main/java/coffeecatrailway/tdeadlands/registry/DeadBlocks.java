@@ -11,6 +11,7 @@ import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
 import com.tterrag.registrate.util.DataIngredient;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
 import net.minecraft.advancements.criterion.EnchantmentPredicate;
 import net.minecraft.advancements.criterion.ItemPredicate;
@@ -24,23 +25,24 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Items;
-import net.minecraft.item.WallOrFloorItem;
+import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.*;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.state.properties.AttachFace;
 import net.minecraft.state.properties.DoubleBlockHalf;
+import net.minecraft.state.properties.SlabType;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.Tags;
 import org.apache.logging.log4j.Logger;
 
@@ -80,13 +82,45 @@ public class DeadBlocks
     public static final RegistryEntry<Block> COLDSTONE = REGISTRATE.object("coldstone").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(1.5f, 6f)).defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE)
             .item().tag(DeadTags.Items.COLDSTONE).build().register();
+    public static final RegistryEntry<StairsBlock> COLDSTONE_STARIS = registerStairs("coldstone_stairs", COLDSTONE, "coldstone_stairs");
+    public static final RegistryEntry<SlabBlock> COLDSTONE_SLAB = registerSlab("coldstone_slab", COLDSTONE, "coldstone_slab");
+    public static final RegistryEntry<WallBlock> COLDSTONE_WALL = registerWall("coldstone_wall", COLDSTONE, "coldstone_wall");
+    public static final RegistryEntry<PressurePlateBlock> COLDSTONE_PRESSURE_PLATE = registerPressurePlate("coldstone_pressure_plate", COLDSTONE, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<StoneButtonBlock> COLDSTONE_BUTTON = registerButton("coldstone_button", COLDSTONE, StoneButtonBlock::new, "coldstone_button");
+
     public static final RegistryEntry<Block> COLDSTONE_BRICKS = REGISTRATE.object("coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+            .recipe((ctx, provider) -> {
+                provider.square(DataIngredient.items(COLDSTONE), ctx::getEntry, true);
+                provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry);
+            })
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
+    public static final RegistryEntry<StairsBlock> COLDSTONE_BRICKS_STARIS = registerStairs("coldstone_bricks_stairs", COLDSTONE_BRICKS, "coldstone_stairs");
+    public static final RegistryEntry<SlabBlock> COLDSTONE_BRICKS_SLAB = registerSlab("coldstone_bricks_slab", COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<WallBlock> COLDSTONE_BRICKS_WALL = registerWall("coldstone_bricks_wall", COLDSTONE_BRICKS, "coldstone_wall");
+    public static final RegistryEntry<PressurePlateBlock> COLDSTONE_BRICKS_PRESSURE_PLATE = registerPressurePlate("coldstone_bricks_pressure_plate", COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<StoneButtonBlock> COLDSTONE_BRICKS_BUTTON = registerButton("coldstone_bricks_button", COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+
     public static final RegistryEntry<Block> CRACKED_COLDSTONE_BRICKS = REGISTRATE.object("cracked_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+            .recipe((ctx, provider) -> provider.smelting(DataIngredient.items(COLDSTONE), ctx::getEntry, .1f))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
+    public static final RegistryEntry<StairsBlock> CRACKED_COLDSTONE_STARIS = registerStairs("cracked_coldstone_stairs", CRACKED_COLDSTONE_BRICKS, "coldstone_stairs");
+    public static final RegistryEntry<SlabBlock> CRACKED_COLDSTONE_SLAB = registerSlab("cracked_coldstone_slab", CRACKED_COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<WallBlock> CRACKED_COLDSTONE_WALL = registerWall("cracked_coldstone_wall", CRACKED_COLDSTONE_BRICKS, "coldstone_wall");
+    public static final RegistryEntry<PressurePlateBlock> CRACKED_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("cracked_coldstone_pressure_plate", CRACKED_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<StoneButtonBlock> CRACKED_COLDSTONE_BUTTON = registerButton("cracked_coldstone_button", CRACKED_COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+
     public static final RegistryEntry<Block> MOSSY_COLDSTONE_BRICKS = REGISTRATE.object("mossy_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+            .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(COLDSTONE_BRICKS.get()).addIngredient(Blocks.VINE)
+                    .addCriterion("has_coldstone", RegistrateRecipeProvider.hasItem(COLDSTONE_BRICKS.get())).build(provider))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
+    public static final RegistryEntry<StairsBlock> MOSSY_COLDSTONE_STARIS = registerStairs("mossy_coldstone_stairs", MOSSY_COLDSTONE_BRICKS, "coldstone_stairs");
+    public static final RegistryEntry<SlabBlock> MOSSY_COLDSTONE_SLAB = registerSlab("mossy_coldstone_slab", MOSSY_COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<WallBlock> MOSSY_COLDSTONE_WALL = registerWall("mossy_coldstone_wall", MOSSY_COLDSTONE_BRICKS, "coldstone_wall");
+    public static final RegistryEntry<PressurePlateBlock> MOSSY_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("mossy_coldstone_pressure_plate", MOSSY_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<StoneButtonBlock> MOSSY_COLDSTONE_BUTTON = registerButton("mossy_coldstone_button", MOSSY_COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+
     public static final RegistryEntry<Block> CHISELED_COLDSTONE_BRICKS = REGISTRATE.object("chiseled_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+            .recipe((ctx, provider) -> provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
 
     // Dead Wood
@@ -99,12 +133,23 @@ public class DeadBlocks
 
     public static final RegistryEntry<DoorBlock> DEAD_WOOD_DOOR = registerDoor("dead_wood_door", DEAD_PLANKS);
     // TODO dead_wood_trapdoor
-    public static final RegistryEntry<WoodButtonBlock> DEAD_WOOD_BUTTON = REGISTRATE.object("dead_wood_button").block(WoodButtonBlock::new).initialProperties(Material.MISCELLANEOUS, MaterialColor.AIR)
-            .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(.5f).sound(SoundType.WOOD)).blockstate(NonNullBiConsumer.noop()).tag(BlockTags.BUTTONS, BlockTags.WOODEN_BUTTONS)
-            .addLayer(() -> RenderType::getCutoutMipped).recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(DEAD_PLANKS.get())
-                    .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
-            .item().model(NonNullBiConsumer.noop()).tag(ItemTags.BUTTONS, ItemTags.WOODEN_BUTTONS).build().register();
-    public static final RegistryEntry<PressurePlateBlock> DEAD_WOOD_PRESSURE_PLATE = registerPressurePlate("dead_wood_pressure_plate", DEAD_PLANKS);
+    public static final RegistryEntry<StairsBlock> DEAD_WOOD_STARIS = registerStairs("dead_wood_stairs", DEAD_PLANKS, "wooden_stairs");
+    public static final RegistryEntry<SlabBlock> DEAD_WOOD_SLAB = registerSlab("dead_wood_slab", DEAD_PLANKS, "wooden_slab");
+    public static final RegistryEntry<WoodButtonBlock> DEAD_WOOD_BUTTON = registerButton("dead_wood_button", DEAD_PLANKS, WoodButtonBlock::new, "wooden_button");
+    public static final RegistryEntry<PressurePlateBlock> DEAD_WOOD_PRESSURE_PLATE = registerPressurePlate("dead_wood_pressure_plate", DEAD_PLANKS, false, "wooden_pressure_plate");
+    public static final RegistryEntry<FenceBlock> DEAD_WOOD_FENCE = REGISTRATE.object("dead_wood_fence").block(FenceBlock::new).initialProperties(DEAD_PLANKS)
+            .defaultLoot().blockstate((ctx, provider) -> provider.fenceBlock(ctx.getEntry(), provider.blockTexture(DEAD_PLANKS.get())))
+            .tag(BlockTags.FENCES, BlockTags.WOODEN_FENCES).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 3).patternLine("wsw").patternLine("wsw")
+                    .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence")
+                    .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
+            .item().tag(ItemTags.FENCES, ItemTags.WOODEN_FENCES).build().register();
+    public static final RegistryEntry<FenceGateBlock> DEAD_WOOD_FENCE_GATE = REGISTRATE.object("dead_wood_fence_gate").block(FenceGateBlock::new).initialProperties(DEAD_PLANKS)
+            .defaultLoot().blockstate((ctx, provider) -> provider.fenceGateBlock(ctx.getEntry(), provider.blockTexture(DEAD_PLANKS.get())))
+            .tag(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).patternLine("sws").patternLine("sws")
+                    .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence_gate")
+                    .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
+            .item().tag(Tags.Items.FENCE_GATES, Tags.Items.FENCE_GATES_WOODEN).build().register();
+
     public static final RegistryEntry<DeadWoodCraftingTableBlock> DEAD_WOOD_CRAFTING_TABLE = REGISTRATE.object("dead_wood_crafting_table").block(DeadWoodCraftingTableBlock::new)
             .initialProperties(Material.WOOD, DyeColor.GRAY).properties(prop -> prop.hardnessAndResistance(2.5F).sound(SoundType.WOOD))
             .blockstate(NonNullBiConsumer.noop()).recipe((ctx, provider) -> provider.square(DataIngredient.items(DEAD_PLANKS), ctx::getEntry, true))
@@ -217,18 +262,130 @@ public class DeadBlocks
 //                .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), TheDeadlands.getLocation("block/" + id + "_bottom"))).build().register();
 //    }
 
-    private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks)
+    public static RegistryEntry<StairsBlock> registerStairs(String id, RegistryEntry<Block> parent, String group)
     {
+        return REGISTRATE.object(id).block(prop -> new StairsBlock(() -> parent.get().getDefaultState(), prop))
+                .initialProperties(parent).defaultLoot().blockstate((ctx, provider) -> provider.stairsBlock(ctx.getEntry(), provider.blockTexture(parent.get()))).tag(BlockTags.STAIRS)
+                .recipe((ctx, provider) -> provider.stairs(DataIngredient.items(parent), ctx::getEntry, group, true)).item().tag(ItemTags.STAIRS).build().register();
+    }
+
+    public static RegistryEntry<SlabBlock> registerSlab(String id, RegistryEntry<Block> parent, String group)
+    {
+        return REGISTRATE.object(id).block(SlabBlock::new).initialProperties(parent)
+                .loot((tables, block) -> tables.registerLootTable(block, LootTable.builder().addLootPool(LootPool.builder().addEntry(ItemLootEntry.builder(block)
+                        .acceptFunction(SetCount.builder(new RandomValueRange(2))
+                                .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(SlabBlock.TYPE, SlabType.DOUBLE))))
+                        .acceptCondition(SurvivesExplosion.builder())))))
+                .blockstate((ctx, provider) -> provider.slabBlock(ctx.getEntry(), TheDeadlands.getLocation("block/" + parent.get().getRegistryName().getPath()), provider.blockTexture(parent.get())))
+                .tag(BlockTags.STAIRS).recipe((ctx, provider) -> provider.slab(DataIngredient.items(parent), ctx::getEntry, group, true))
+                .item().tag(ItemTags.STAIRS).build().register();
+    }
+
+    private static final RegistryEntry<WallBlock> registerWall(String id, RegistryEntry<Block> parent, String group)
+    {
+        Supplier<ResourceLocation> texture = () -> {
+            ResourceLocation name = parent.get().getRegistryName();
+            return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath());
+        };
+        return REGISTRATE.object(id).block(WallBlock::new).initialProperties(parent).defaultLoot()
+                .blockstate((ctx, provider) -> provider.wallBlock(ctx.getEntry(), texture.get())).tag(BlockTags.WALLS)
+                .recipe((ctx, provider) -> {
+                    ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 6).patternLine("XXX").patternLine("XXX").key('X', parent.get()).setGroup(group)
+                            .addCriterion("has_" + provider.safeName(parent.get()), RegistrateRecipeProvider.hasItem(parent.get())).build(provider);
+                    provider.stonecutting(DataIngredient.items(parent), ctx::getEntry);
+                })
+                .item().model((ctx, provider) -> provider.wallInventory(ctx.getName(), texture.get())).tag(ItemTags.WALLS).build().register();
+    }
+
+    private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks, boolean stone, String group)
+    {
+        ITag.INamedTag<Item>[] itemTag = stone ? new ITag.INamedTag[]{} : new ITag.INamedTag[]{ItemTags.WOODEN_PRESSURE_PLATES};
         return REGISTRATE.object(id).block(prop -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, prop)).initialProperties(planks)
-                .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(5f).notSolid()).tag(BlockTags.PRESSURE_PLATES, BlockTags.WOODEN_PRESSURE_PLATES)
-                .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', planks.get()).patternLine("pp")
+                .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(5f).notSolid()).tag(BlockTags.PRESSURE_PLATES, stone ? BlockTags.STONE_PRESSURE_PLATES : BlockTags.WOODEN_PRESSURE_PLATES)
+                .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', planks.get()).patternLine("pp").setGroup(group)
                         .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(planks.get())).build(provider))
                 .blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry()).partialState()
                         .with(PressurePlateBlock.POWERED, false).modelForState().modelFile(provider.models().withExistingParent(ctx.getName(), "block/pressure_plate_up").texture("texture", provider.blockTexture(planks.get()))).addModel()
                         .partialState()
                         .with(PressurePlateBlock.POWERED, true).modelForState().modelFile(provider.models().withExistingParent(ctx.getName() + "_down", "block/pressure_plate_down").texture("texture", provider.blockTexture(planks.get()))).addModel())
                 .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), TheDeadlands.getLocation("block/" + id)))
-                .tag(ItemTags.WOODEN_PRESSURE_PLATES).build().register();
+                .tag(itemTag).build().register();
+    }
+
+    private static <T extends AbstractButtonBlock> RegistryEntry<T> registerButton(String id, RegistryEntry<Block> parent, NonNullFunction<AbstractBlock.Properties, T> factory, String group)
+    {
+        Supplier<ResourceLocation> texture = () -> {
+            ResourceLocation name = parent.get().getRegistryName();
+            return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath());
+        };
+        return REGISTRATE.object(id).block(factory).initialProperties(parent).defaultLoot().properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(.5f))
+                .blockstate((ctx, provider) -> {
+                    ModelFile button = provider.models().withExistingParent(ctx.getName(), new ResourceLocation("block/button")).texture("texture", texture.get());
+                    ModelFile buttonPressed = provider.models().withExistingParent(ctx.getName() + "_pressed", new ResourceLocation("block/button_pressed")).texture("texture", texture.get());
+
+                    provider.getVariantBuilder(ctx.getEntry())
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(270).rotationX(180).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(270).rotationX(180).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(180).rotationX(180).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(180).rotationX(180).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationX(180).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationX(180).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(90).rotationX(180).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.CEILING).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(90).rotationX(180).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(90).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(90).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(180).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(180).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(270).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.FLOOR).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(270).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(90).rotationX(90).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.EAST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(90).rotationX(90).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationX(90).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.NORTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationX(90).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(180).rotationX(90).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.SOUTH)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(180).rotationX(90).addModel()
+
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, false).modelForState().modelFile(button).rotationY(270).rotationX(90).addModel()
+                            .partialState().with(AbstractButtonBlock.FACE, AttachFace.WALL).with(AbstractButtonBlock.HORIZONTAL_FACING, Direction.WEST)
+                            .with(AbstractButtonBlock.POWERED, true).modelForState().modelFile(buttonPressed).rotationY(270).rotationX(90).addModel();
+                }).tag(BlockTags.BUTTONS).recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(parent.get()).setGroup(group)
+                        .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(parent.get())).build(provider))
+                .item().tag(ItemTags.BUTTONS).model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("block/button_inventory")).texture("texture", texture.get())).build().register();
     }
 
     private static RegistryEntry<DeadGrassBlock> registerGrassBlock(String id, MaterialColor color)

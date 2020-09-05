@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "tdeadlands:block/coldstone_bricks"
+  }
+}

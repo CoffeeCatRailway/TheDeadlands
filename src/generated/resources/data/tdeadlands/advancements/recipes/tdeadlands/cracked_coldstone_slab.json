@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:cracked_coldstone_slab"
+    ]
+  },
+  "criteria": {
+    "has_cracked_coldstone_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:cracked_coldstone_bricks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:cracked_coldstone_slab"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cracked_coldstone_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

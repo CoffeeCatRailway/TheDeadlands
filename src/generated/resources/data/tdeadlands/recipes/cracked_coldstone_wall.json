@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coldstone_wall",
+  "pattern": [
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "tdeadlands:cracked_coldstone_bricks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:cracked_coldstone_wall",
+    "count": 6
+  }
+}

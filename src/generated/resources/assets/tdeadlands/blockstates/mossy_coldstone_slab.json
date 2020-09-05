@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "tdeadlands:block/mossy_coldstone_slab_top"
+    },
+    "type=bottom": {
+      "model": "tdeadlands:block/mossy_coldstone_slab"
+    },
+    "type=double": {
+      "model": "tdeadlands:block/mossy_coldstone_bricks"
+    }
+  }
+}

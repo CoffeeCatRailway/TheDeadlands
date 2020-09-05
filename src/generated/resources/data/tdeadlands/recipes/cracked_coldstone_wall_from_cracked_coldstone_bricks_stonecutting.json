@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "tdeadlands:cracked_coldstone_bricks"
+  },
+  "result": "tdeadlands:cracked_coldstone_wall",
+  "count": 1
+}

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "tdeadlands:block/mossy_coldstone_pressure_plate"
+    },
+    "powered=true": {
+      "model": "tdeadlands:block/mossy_coldstone_pressure_plate_down"
+    }
+  }
+}

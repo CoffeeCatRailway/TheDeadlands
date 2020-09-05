@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "tdeadlands:coldstone_bricks"
+    ]
+  },
+  "criteria": {
+    "has_coldstone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "tdeadlands:coldstone"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "tdeadlands:coldstone_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_coldstone",
+      "has_the_recipe"
+    ]
+  ]
+}
