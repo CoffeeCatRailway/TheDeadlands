@@ -1,10 +1,8 @@
 package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
-import coffeecatrailway.tdeadlands.common.block.CoffinBlock;
-import coffeecatrailway.tdeadlands.common.block.DeadGrassBlock;
-import coffeecatrailway.tdeadlands.common.block.DeadWoodCraftingTableBlock;
-import coffeecatrailway.tdeadlands.common.block.WarpRuneBlock;
+import coffeecatrailway.tdeadlands.client.item.renderer.DeadWoodChestItemRenderer;
+import coffeecatrailway.tdeadlands.common.block.*;
 import coffeecatrailway.tdeadlands.integration.DeadTags;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
@@ -28,6 +26,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.*;
+import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.particles.ParticleTypes;
@@ -149,6 +148,16 @@ public class DeadBlocks
                     .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence_gate")
                     .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
             .item().tag(Tags.Items.FENCE_GATES, Tags.Items.FENCE_GATES_WOODEN).build().register();
+    public static final RegistryEntry<DeadWoodChestBlock> DEAD_WOOD_CHEST = REGISTRATE.object("dead_wood_chest").block(DeadWoodChestBlock::new).initialProperties(Material.WOOD, MaterialColor.WOOD)
+            .properties(prop -> prop.hardnessAndResistance(2.5f).sound(SoundType.WOOD)).addLayer(() -> RenderType::getCutoutMipped)
+            .blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry()).partialState().modelForState().modelFile(provider.models().getBuilder(ctx.getName()).texture("particle", provider.blockTexture(DEAD_PLANKS.get()))).addModel())
+            .loot((tables, block) -> tables.registerLootTable(block, LootTable.builder().addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+            .addEntry(ItemLootEntry.builder(block).acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))).acceptCondition(SurvivesExplosion.builder()))))
+            .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', DEAD_PLANKS.get()).patternLine("ppp").patternLine("p p").patternLine("ppp")
+            .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
+            .tag(Tags.Blocks.CHESTS, Tags.Blocks.CHESTS_WOODEN)
+            .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("item/chest")).texture("particle", "block/" + provider.name(DEAD_PLANKS)))
+            .tag(Tags.Items.CHESTS, Tags.Items.CHESTS_WOODEN).properties(prop -> prop.setISTER(() -> DeadWoodChestItemRenderer::new)).build().register();
 
     public static final RegistryEntry<DeadWoodCraftingTableBlock> DEAD_WOOD_CRAFTING_TABLE = REGISTRATE.object("dead_wood_crafting_table").block(DeadWoodCraftingTableBlock::new)
             .initialProperties(Material.WOOD, DyeColor.GRAY).properties(prop -> prop.hardnessAndResistance(2.5F).sound(SoundType.WOOD))

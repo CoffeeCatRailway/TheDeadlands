@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/chest",
+  "textures": {
+    "particle": "tdeadlands:block/dead_wood_planks"
+  }
+}

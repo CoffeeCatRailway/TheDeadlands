@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "ppp",
+    "p p",
+    "ppp"
+  ],
+  "key": {
+    "p": {
+      "item": "tdeadlands:dead_wood_planks"
+    }
+  },
+  "result": {
+    "item": "tdeadlands:dead_wood_chest"
+  }
+}
