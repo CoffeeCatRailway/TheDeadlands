@@ -2,6 +2,7 @@ package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.item.DeadWoodBow;
+import coffeecatrailway.tdeadlands.common.item.FrostCopperClumpItem;
 import coffeecatrailway.tdeadlands.integration.DeadTags;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -49,11 +50,13 @@ public class DeadItems
     public static final RegistryEntry<Item> FROST_METAL_CLUMP = REGISTRATE.item("frost_metal_clump", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe((ctx, provider) -> provider.smeltingAndBlasting(DataIngredient.items(DeadBlocks.FROST_METAL_ORE), ctx::getEntry, .85f)).register();
 
-    public static final RegistryEntry<Item> FROST_COPPER_CLUMP = REGISTRATE.item("frost_copper_clump", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
+    public static final RegistryEntry<FrostCopperClumpItem> FROST_COPPER_CLUMP = REGISTRATE.item("frost_copper_clump", FrostCopperClumpItem::new).properties(Item.Properties::isBurnable)
             .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(COPPER_CLUMP.get()).addIngredient(FROST_METAL_CLUMP.get())
                     .addCriterion("has_copper", RegistrateRecipeProvider.hasItem(COPPER_CLUMP.get()))
-                    .addCriterion("has_frost_metal", RegistrateRecipeProvider.hasItem(FROST_METAL_CLUMP.get())).build(provider)).register();
-    public static final RegistryEntry<Item> FROST_BRONZE = REGISTRATE.item("frost_bronze_ingot", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+                    .addCriterion("has_frost_metal", RegistrateRecipeProvider.hasItem(FROST_METAL_CLUMP.get())).build(provider))
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+    public static final RegistryEntry<Item> FROST_BRONZE_INGOT = REGISTRATE.item("frost_bronze_ingot", Item::new).properties(Item.Properties::isBurnable)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     public static final RegistryEntry<Item> HEAT_STONE = REGISTRATE.item("heat_stone", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe((ctx, provider) -> provider.smeltingAndBlasting(DataIngredient.items(DeadBlocks.HEATSTONE_ORE), ctx::getEntry, 1f)).register();
@@ -105,15 +108,15 @@ public class DeadItems
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(DeadTags.Items.COLDSTONE)).register();
 
     public static final RegistryEntry<AxeItem> FROST_BRONZE_AXE = REGISTRATE.item("frost_bronze_axe", prop -> new AxeItem(ItemTier.IRON, 6f, -3.1f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(FROST_BRONZE)).register();
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<PickaxeItem> FROST_BRONZE_PICKAXE = REGISTRATE.item("frost_bronze_pickaxe", prop -> new PickaxeItem(ItemTier.IRON, 1, -2.8f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(pickaxeRecipe(FROST_BRONZE)).register();
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(pickaxeRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<ShovelItem> FROST_BRONZE_SHOVEL = REGISTRATE.item("frost_bronze_shovel", prop -> new ShovelItem(ItemTier.IRON, 1.5f, -3f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(shovelRecipe(FROST_BRONZE)).register();
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(shovelRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<SwordItem> FROST_BRONZE_SWORD = REGISTRATE.item("frost_bronze_sword", prop -> new SwordItem(ItemTier.IRON, 3, -2.4f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(FROST_BRONZE)).register();
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<HoeItem> FROST_BRONZE_HOE = REGISTRATE.item("frost_bronze_hoe", prop -> new HoeItem(ItemTier.IRON, -2, -1f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(FROST_BRONZE)).register();
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(FROST_BRONZE_INGOT)).register();
 
     public static final RegistryEntry<SwordItem> HEAT_HAMMER = REGISTRATE.item("heat_hammer", prop -> new SwordItem(ItemTier.DIAMOND, 3, -2.4f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
