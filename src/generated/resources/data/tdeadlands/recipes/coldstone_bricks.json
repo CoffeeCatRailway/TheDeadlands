@@ -1,15 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "XX",
-    "XX"
+    "cc",
+    "cc"
   ],
   "key": {
-    "X": {
+    "c": {
       "item": "tdeadlands:coldstone"
     }
   },
   "result": {
-    "item": "tdeadlands:coldstone_bricks"
+    "item": "tdeadlands:coldstone_bricks",
+    "count": 4
   }
 }

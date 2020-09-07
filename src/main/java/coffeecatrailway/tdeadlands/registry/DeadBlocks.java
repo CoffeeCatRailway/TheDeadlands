@@ -40,6 +40,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.BiomeColors;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.Tags;
@@ -75,7 +76,7 @@ public class DeadBlocks
 
     public static final RegistryEntry<Block> FROST_BRONZE_BLOCK = REGISTRATE.object("frost_bronze_block").block(Block::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
-            .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.FROST_BRONZE), ctx::getEntry, false)).item().tag(Tags.Items.ORES).build().register();
+            .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.FROST_BRONZE_INGOT), ctx::getEntry, false)).item().tag(Tags.Items.ORES).build().register();
 
     // Coldstone
     public static final RegistryEntry<Block> COLDSTONE = REGISTRATE.object("coldstone").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
@@ -89,7 +90,8 @@ public class DeadBlocks
 
     public static final RegistryEntry<Block> COLDSTONE_BRICKS = REGISTRATE.object("coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
             .recipe((ctx, provider) -> {
-                provider.square(DataIngredient.items(COLDSTONE), ctx::getEntry, true);
+                ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4).key('c', COLDSTONE.get()).patternLine("cc").patternLine("cc")
+                        .addCriterion("has_coldstone", RegistrateRecipeProvider.hasItem(COLDSTONE.get())).build(provider);
                 provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry);
             })
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
@@ -100,7 +102,7 @@ public class DeadBlocks
     public static final RegistryEntry<StoneButtonBlock> COLDSTONE_BRICKS_BUTTON = registerButton("coldstone_bricks_button", COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
 
     public static final RegistryEntry<Block> CRACKED_COLDSTONE_BRICKS = REGISTRATE.object("cracked_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
-            .recipe((ctx, provider) -> provider.smelting(DataIngredient.items(COLDSTONE), ctx::getEntry, .1f))
+            .recipe((ctx, provider) -> provider.smelting(DataIngredient.items(COLDSTONE_BRICKS), ctx::getEntry, .1f))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
     public static final RegistryEntry<StairsBlock> CRACKED_COLDSTONE_STARIS = registerStairs("cracked_coldstone_stairs", CRACKED_COLDSTONE_BRICKS, "coldstone_stairs");
     public static final RegistryEntry<SlabBlock> CRACKED_COLDSTONE_SLAB = registerSlab("cracked_coldstone_slab", CRACKED_COLDSTONE_BRICKS, "coldstone_slab");

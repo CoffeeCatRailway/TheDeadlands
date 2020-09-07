@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "ingredient": {
-    "item": "tdeadlands:coldstone"
+    "item": "tdeadlands:coldstone_bricks"
   },
   "result": "tdeadlands:cracked_coldstone_bricks",
   "experience": 0.1,
