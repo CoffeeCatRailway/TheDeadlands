@@ -129,8 +129,8 @@ public class DeadBlocks
     public static final RegistryEntry<RotatedPillarBlock> DEAD_WOOD = registerLog("dead_wood", MaterialColor.GRAY, "dead_wood_log", DEAD_LOG);
     public static final RegistryEntry<RotatedPillarBlock> STRIPPED_DEAD_WOOD = registerLog("stripped_dead_wood", MaterialColor.LIGHT_GRAY, "dead_wood_log", STRIPPED_DEAD_LOG);
     public static final RegistryEntry<LeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, () -> Blocks.ACACIA_SAPLING);
-    public static final RegistryEntry<Block> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
 
+    public static final RegistryEntry<Block> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
     public static final RegistryEntry<DoorBlock> DEAD_WOOD_DOOR = registerDoor("dead_wood_door", DEAD_PLANKS);
     // TODO dead_wood_trapdoor
     public static final RegistryEntry<StairsBlock> DEAD_WOOD_STARIS = registerStairs("dead_wood_stairs", DEAD_PLANKS, "wooden_stairs");
@@ -142,7 +142,7 @@ public class DeadBlocks
             .tag(BlockTags.FENCES, BlockTags.WOODEN_FENCES).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 3).patternLine("wsw").patternLine("wsw")
                     .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence")
                     .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
-            .item().tag(ItemTags.FENCES, ItemTags.WOODEN_FENCES).build().register();
+            .item().tag(ItemTags.FENCES, ItemTags.WOODEN_FENCES).model((ctx, provider) -> provider.fenceInventory(ctx.getName(), provider.modLoc("block/" + provider.name(DEAD_PLANKS)))).build().register();
     public static final RegistryEntry<FenceGateBlock> DEAD_WOOD_FENCE_GATE = REGISTRATE.object("dead_wood_fence_gate").block(FenceGateBlock::new).initialProperties(DEAD_PLANKS)
             .defaultLoot().blockstate((ctx, provider) -> provider.fenceGateBlock(ctx.getEntry(), provider.blockTexture(DEAD_PLANKS.get())))
             .tag(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).patternLine("sws").patternLine("sws")

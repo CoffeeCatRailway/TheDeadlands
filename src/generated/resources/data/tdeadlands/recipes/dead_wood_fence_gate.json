@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "wooden_fence",
+  "group": "wooden_fence_gate",
   "pattern": [
-    "wsw",
-    "wsw"
+    "sws",
+    "sws"
   ],
   "key": {
     "w": {
@@ -14,7 +14,6 @@
     }
   },
   "result": {
-    "item": "tdeadlands:dead_wood_fence",
-    "count": 3
+    "item": "tdeadlands:dead_wood_fence_gate"
   }
 }
