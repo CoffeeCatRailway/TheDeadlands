@@ -35,13 +35,6 @@ public class RatModel extends EntityModel<RatEntity>
         body.setTextureOffset(18, 0).addBox(-3f, -4f, -2f, 6f, 4f, 5f, 0f, false);
         body.setTextureOffset(19, 0).addBox(-2.5f, -3f, -7f, 5f, 3f, 5f, 0f, false);
 
-//        frontLeftLeg = new ModelRenderer(this);
-//        frontLeftLeg.setRotationPoint(1.5f, 23f, -1.5f);
-//        frontLeftLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
-//
-//        frontRightLeg = new ModelRenderer(this);
-//        frontRightLeg.setRotationPoint(-1.5f, 23f, -1.5f);
-//        frontRightLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
         frontLeftLeg = new ModelRenderer(this);
         frontLeftLeg.setRotationPoint(1.5F, 0.0F, -4.5F);
         frontLeftLeg.setTextureOffset(11, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 1.0F, 2.0F, 0.0F, false);
@@ -73,11 +66,6 @@ public class RatModel extends EntityModel<RatEntity>
         tailEnd.setTextureOffset(16, 1).addBox(-0.5f, -1.0758f, 3.0463f, 1f, 1f, 2f, 0f, false);
         tail.addChild(tailEnd);
 
-//        head = new ModelRenderer(this);
-//        head.setRotationPoint(0f, 22f, -4f);
-//        head.setTextureOffset(0, 0).addBox(-2f, -2f, -3f, 4f, 3f, 3f, 0f, false);
-//        head.setTextureOffset(5, 6).addBox(1f, -3f, -1f, 2f, 2f, 1f, 0f, false);
-//        head.setTextureOffset(0, 6).addBox(-3f, -3f, -1f, 2f, 2f, 1f, 0f, false);
         head = new ModelRenderer(this);
         head.setRotationPoint(0.0F, -1.0F, -7.0F);
         head.setTextureOffset(0, 0).addBox(-2.0F, -2.0F, -3.0F, 4.0F, 3.0F, 3.0F, 0.0F, false);
@@ -109,11 +97,8 @@ public class RatModel extends EntityModel<RatEntity>
     @Override
     public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha)
     {
-//        frontLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
-//        frontRightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
         backLeftLeg.render(matrixStack, buffer, packedLight, packedOverlay);
         backRightLeg.render(matrixStack, buffer, packedLight, packedOverlay);
         body.render(matrixStack, buffer, packedLight, packedOverlay);
-//        head.render(matrixStack, buffer, packedLight, packedOverlay);
     }
 }

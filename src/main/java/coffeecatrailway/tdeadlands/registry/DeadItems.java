@@ -3,7 +3,7 @@ package coffeecatrailway.tdeadlands.registry;
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.item.DeadWoodBow;
 import coffeecatrailway.tdeadlands.common.item.FrostCopperClumpItem;
-import coffeecatrailway.tdeadlands.integration.DeadTags;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import com.tterrag.registrate.providers.DataGenContext;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.util.DataIngredient;

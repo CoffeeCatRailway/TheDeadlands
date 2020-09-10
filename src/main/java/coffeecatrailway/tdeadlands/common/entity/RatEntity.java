@@ -1,6 +1,6 @@
 package coffeecatrailway.tdeadlands.common.entity;
 
-import coffeecatrailway.tdeadlands.integration.DeadTags;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.DeadEntities;
 import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.block.BlockState;
@@ -146,7 +146,7 @@ public class RatEntity extends AnimalEntity
 
         private void eatFoodInChest(World world, RatEntity rat)
         {
-            if (net.minecraftforge.event.ForgeEventFactory.getMobGriefingEvent(world, rat))
+            if (ForgeEventFactory.getMobGriefingEvent(world, rat))
             {
                 LazyOptional<IItemHandler> chestCap = this.getChest(world, this.destinationBlock);
                 chestCap.ifPresent(handler -> {

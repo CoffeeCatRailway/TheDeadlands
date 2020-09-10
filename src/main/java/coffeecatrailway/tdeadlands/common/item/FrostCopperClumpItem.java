@@ -1,6 +1,6 @@
 package coffeecatrailway.tdeadlands.common.item;
 
-import coffeecatrailway.tdeadlands.integration.DeadTags;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.item.Item;

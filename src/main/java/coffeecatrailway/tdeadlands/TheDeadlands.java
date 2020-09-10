@@ -1,9 +1,10 @@
 package coffeecatrailway.tdeadlands;
 
-import coffeecatrailway.tdeadlands.integration.DeadTags;
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadLangs;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadRegistrate;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.*;
-import com.tterrag.registrate.Registrate;
 import com.tterrag.registrate.providers.ProviderType;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -37,7 +38,7 @@ public class TheDeadlands
     //    public static DeadConfig.Client CLIENT_CONFIG;
     //    public static DeadConfig.Server SERVER_CONFIG;
 
-    public static Registrate REGISTRATE;
+    public static DeadRegistrate REGISTRATE;
 
     public TheDeadlands()
     {
@@ -54,9 +55,10 @@ public class TheDeadlands
 //        SERVER_CONFIG = server.getLeft();
 //        LOGGER.info("Register configs");
 
-        REGISTRATE = Registrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "The Deadlands")
+        REGISTRATE = DeadRegistrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "The Deadlands")
                 .addDataGenerator(ProviderType.BLOCK_TAGS, new DeadTags.Blocks())
-                .addDataGenerator(ProviderType.ITEM_TAGS, new DeadTags.Items());
+                .addDataGenerator(ProviderType.ITEM_TAGS, new DeadTags.Items())
+                .addDataGenerator(ProviderType.LANG, new DeadLangs());
 
         MinecraftForge.EVENT_BUS.register(this);
 
