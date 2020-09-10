@@ -16,7 +16,7 @@ import net.minecraftforge.fml.network.NetworkHooks;
  * @author CoffeeCatRailway
  * Created: 23/08/2020
  */
-public class DeadWoodArrowEntity extends ArrowEntity
+public class DeadWoodArrowEntity extends ArrowEntity implements ICreateSpawnPacket<DeadWoodArrowEntity>
 {
     public DeadWoodArrowEntity(EntityType<? extends ArrowEntity> type, World world)
     {
@@ -41,11 +41,5 @@ public class DeadWoodArrowEntity extends ArrowEntity
     protected ItemStack getArrowStack()
     {
         return new ItemStack(DeadItems.DEAD_WOOD_ARROW.get());
-    }
-
-    @Override
-    public IPacket<?> createSpawnPacket()
-    {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 }

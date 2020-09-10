@@ -6,7 +6,6 @@ import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
@@ -15,7 +14,8 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.IPacket;
+import net.minecraft.pathfinding.GroundPathNavigator;
+import net.minecraft.pathfinding.PathNavigator;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
@@ -37,7 +37,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * @author CoffeeCatRailway
  * Created: 27/08/2020
  */
-public class RatEntity extends AnimalEntity
+public class RatEntity extends AnimalEntity implements ICreateSpawnPacket<RatEntity>
 {
     public RatEntity(EntityType<? extends RatEntity> type, World world)
     {
@@ -57,16 +57,19 @@ public class RatEntity extends AnimalEntity
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setCallsForHelp());
     }
 
-    @Nullable
-    @Override
-    public LivingEntity getAttackTarget()
-    {
-        return super.getAttackTarget();
-    }
-
     public static AttributeModifierMap.MutableAttribute registerAttributeMap()
     {
-        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10f).createMutableAttribute(Attributes.MOVEMENT_SPEED, .3f).createMutableAttribute(Attributes.ATTACK_DAMAGE, 1f);
+        return MobEntity.func_233666_p_().createMutableAttribute(Attributes.MAX_HEALTH, 10f)
+                .createMutableAttribute(Attributes.MOVEMENT_SPEED, .3f)
+                .createMutableAttribute(Attributes.ATTACK_DAMAGE, 1f);
+    }
+
+    @Override
+    protected PathNavigator createNavigator(World world)
+    {
+        GroundPathNavigator navigator = new GroundPathNavigator(this, world);
+        navigator.getNodeProcessor().setCanEnterDoors(true);
+        return navigator;
     }
 
     @Override
@@ -80,12 +83,6 @@ public class RatEntity extends AnimalEntity
     public AgeableEntity func_241840_a(ServerWorld world, AgeableEntity entity)
     {
         return DeadEntities.RAT.get().create(world);
-    }
-
-    @Override
-    public IPacket<?> createSpawnPacket()
-    {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     public class FindChestWithFoodGoal extends MoveToBlockGoal
