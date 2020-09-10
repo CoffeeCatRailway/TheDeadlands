@@ -49,6 +49,7 @@ public class RatEntity extends AnimalEntity
     {
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new MeleeAttackGoal(this, 1d, true));
+        this.goalSelector.addGoal(1, new AvoidEntityGoal<OwlEntity>(this, OwlEntity.class, 12f, .5d, .5d));
         this.goalSelector.addGoal(2, new RatEntity.FindChestWithFoodGoal());
         this.goalSelector.addGoal(2, new WaterAvoidingRandomWalkingGoal(this, .6d));
         this.goalSelector.addGoal(3, new LookAtGoal(this, PlayerEntity.class, 2f));

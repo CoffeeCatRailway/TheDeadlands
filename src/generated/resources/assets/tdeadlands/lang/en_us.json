@@ -51,6 +51,7 @@
   "block.tdeadlands.wall_dead_wood_torch": "Dead Wood Torch",
   "block.tdeadlands.warp_rune": "Warp Rune",
   "entity.tdeadlands.dead_wood_arrow": "Dead Wood Arrow",
+  "entity.tdeadlands.owl": "Owl",
   "entity.tdeadlands.rat": "Rat",
   "item.tdeadlands.cloth_string": "Cloth String",
   "item.tdeadlands.coldstone_axe": "Coldstone Axe",
@@ -88,6 +89,7 @@
   "item.tdeadlands.muskox": "Muskox",
   "item.tdeadlands.muskox_fur": "Muskox Fur",
   "item.tdeadlands.owl_feather": "Owl Feather",
+  "item.tdeadlands.owl_spawn_egg": "Owl Spawn Egg",
   "item.tdeadlands.rat_droppings": "Rat Droppings",
   "item.tdeadlands.rat_spawn_egg": "Rat Spawn Egg",
   "item.tdeadlands.rotton_skin": "Rotton Skin",
@@ -97,5 +99,7 @@
   "item.tdeadlands.tall_knight_staff": "Tall Knight Staff",
   "item.tdeadlands.undead_talisman": "Undead Talisman",
   "item.tdeadlands.worn_paper": "Worn Paper",
-  "itemGroup.tdeadlands": "The Deadlands"
+  "itemGroup.tdeadlands": "The Deadlands",
+  "sound.tdeadlands.owl": "Owl Hoots",
+  "sound.tdeadlands.owl.hurt": "Owl Hurts"
 }

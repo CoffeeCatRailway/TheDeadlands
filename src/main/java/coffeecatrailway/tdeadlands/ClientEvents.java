@@ -1,6 +1,7 @@
 package coffeecatrailway.tdeadlands;
 
 import coffeecatrailway.tdeadlands.client.entity.renderer.DeadWoodArrowRenderer;
+import coffeecatrailway.tdeadlands.client.entity.renderer.OwlRenderer;
 import coffeecatrailway.tdeadlands.client.entity.renderer.RatRenderer;
 import coffeecatrailway.tdeadlands.registry.DeadEntities;
 import net.minecraftforge.api.distmarker.Dist;
@@ -22,6 +23,7 @@ public class ClientEvents
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.DEAD_WOOD_ARROW.get(), DeadWoodArrowRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.RAT.get(), RatRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DeadEntities.OWL.get(), OwlRenderer::new);
 
         LOGGER.info("Entity renderers");
     }

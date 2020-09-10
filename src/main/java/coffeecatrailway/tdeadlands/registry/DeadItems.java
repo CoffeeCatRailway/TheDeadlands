@@ -145,13 +145,13 @@ public class DeadItems
             .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     public static final RegistryEntry<Item> DEAD_RAT = REGISTRATE.item("dead_rat", Item::new).properties(prop -> prop.food(DeadFoods.DEAD_RAT))
-            .tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+            .tag(DeadTags.Items.RAT_IGNORE, DeadTags.Items.OWL_TAME).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
     public static final RegistryEntry<Item> COOKED_RAT = REGISTRATE.item("cooked_rat", Item::new).properties(prop -> prop.food(DeadFoods.COOKED_RAT))
             .recipe((ctx, provider) -> {
                 provider.smelting(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 200);
                 provider.smoking(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 100);
                 provider.campfire(DataIngredient.items(DEAD_RAT), ctx::getEntry, .35f, 600);
-            }).tag(DeadTags.Items.RAT_IGNORE).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+            }).tag(DeadTags.Items.RAT_IGNORE, DeadTags.Items.OWL_TAME).model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     public static final RegistryEntry<Item> MUSKOX = REGISTRATE.item("muskox", Item::new).properties(prop -> prop.food(DeadFoods.MUSKOX))
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();

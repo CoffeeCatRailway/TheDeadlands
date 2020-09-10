@@ -66,6 +66,7 @@ public class TheDeadlands
 //        DeadFluids.load();
         DeadTileEntities.load();
         DeadEntities.load();
+        DeadSounds.load();
     }
 
     @OnlyIn(Dist.CLIENT)

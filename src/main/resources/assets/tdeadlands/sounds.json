@@ -1,0 +1,34 @@
+{
+  "owl": {
+    "category": "neutral",
+    "subtitle": "sound.tdeadlands.owl",
+    "sounds": [
+      {
+        "name": "tdeadlands:owl/owl_hoot_1",
+        "stream": false
+      },
+      {
+        "name": "tdeadlands:owl/owl_hoot_2",
+        "stream": false
+      },
+      {
+        "name": "tdeadlands:owl/owl_hoot_3",
+        "stream": false
+      }
+    ]
+  },
+  "owl_hurt": {
+    "category": "neutral",
+    "subtitle": "sound.tdeadlands.owl.hurt",
+    "sounds": [
+      {
+        "name": "tdeadlands:owl/owl_hurt_1",
+        "stream": false
+      },
+      {
+        "name": "tdeadlands:owl/owl_hurt_2",
+        "stream": false
+      }
+    ]
+  }
+}
