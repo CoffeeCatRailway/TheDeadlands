@@ -24,6 +24,7 @@ public class ClientEvents
 
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.RAT.get(), RatRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DeadEntities.OWL.get(), OwlRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DeadEntities.MUSK_OX.get(), MuskOxRenderer::new);
 
         LOGGER.info("Entity renderers");
     }

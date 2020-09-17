@@ -59,6 +59,17 @@ public class DeadEntities
                             .addEntry(ItemLootEntry.builder(DeadItems.OWL_FEATHER.get())
                                     .acceptFunction(SetCount.builder(new RandomValueRange(1, 3))))))).register();
 
+    public static final RegistryEntry<EntityType<MuskOxEntity>> MUSK_OX = REGISTRATE.<MuskOxEntity>entity("musk_ox", MuskOxEntity::new, EntityClassification.CREATURE)
+            .properties(builder -> builder.size(1f, 1.5f).setTrackingRange(8))
+            .loot((tables, rat) -> tables.registerLootTable(rat, LootTable.builder()
+                    .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+                            .addEntry(ItemLootEntry.builder(DeadItems.MUSKOX_FUR.get())
+                                    .acceptFunction(SetCount.builder(new RandomValueRange(1, 3)))))
+            .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+                    .addEntry(ItemLootEntry.builder(DeadItems.MUSKOX.get())
+                            .acceptFunction(SetCount.builder(new RandomValueRange(1)))
+                            .acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))))))).register();
+
     static
     {
         registerAttributeMap(RAT, RatEntity::registerAttributeMap);
@@ -66,6 +77,9 @@ public class DeadEntities
 
         registerAttributeMap(OWL, OwlEntity::registerAttributeMap);
         registerSpawnEgg("owl", OWL, 0xdbdbdb, 0x2d2f39);
+
+        registerAttributeMap(MUSK_OX, MuskOxEntity::registerAttributeMap);
+        registerSpawnEgg("musk_ox", MUSK_OX, 0x2e2724, 0xe4e1d9);
     }
 
     private static <T extends LivingEntity> void registerAttributeMap(Supplier<EntityType<T>> entity, Supplier<AttributeModifierMap.MutableAttribute> attributeMap)
@@ -75,8 +89,10 @@ public class DeadEntities
 
     private static <T extends LivingEntity> RegistryEntry<LazySpawnEggItem<T>> registerSpawnEgg(String id, RegistryEntry<EntityType<T>> entity, int primaryColor, int secondaryColor)
     {
-        return REGISTRATE.item(id + "_spawn_egg", prop -> new LazySpawnEggItem<>(entity, primaryColor, secondaryColor, prop)).group(() -> ItemGroup.MISC)
+        RegistryEntry<LazySpawnEggItem<T>> egg = REGISTRATE.item(id + "_spawn_egg", prop -> new LazySpawnEggItem<>(entity, primaryColor, secondaryColor, prop)).group(() -> ItemGroup.MISC)
                 .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register();
+        SPAWN_EGGS.add(egg);
+        return egg;
     }
 
     public static void load()
