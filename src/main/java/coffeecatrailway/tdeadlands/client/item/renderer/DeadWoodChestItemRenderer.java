@@ -1,6 +1,5 @@
 package coffeecatrailway.tdeadlands.client.item.renderer;
 
-import coffeecatrailway.tdeadlands.client.tileentity.renderer.DeadWoodChestTileEntityRenderer;
 import coffeecatrailway.tdeadlands.common.tileentity.DeadWoodChestTileEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.renderer.IRenderTypeBuffer;

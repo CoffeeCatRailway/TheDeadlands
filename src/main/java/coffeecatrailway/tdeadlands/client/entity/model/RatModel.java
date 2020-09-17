@@ -27,51 +27,51 @@ public class RatModel extends EntityModel<RatEntity>
 
     public RatModel()
     {
-        textureWidth = 40;
-        textureHeight = 16;
+        this.textureWidth = 40;
+        this.textureHeight = 16;
 
-        body = new ModelRenderer(this);
-        body.setRotationPoint(0f, 23f, 3f);
-        body.setTextureOffset(18, 0).addBox(-3f, -4f, -2f, 6f, 4f, 5f, 0f, false);
-        body.setTextureOffset(19, 0).addBox(-2.5f, -3f, -7f, 5f, 3f, 5f, 0f, false);
+        this.body = new ModelRenderer(this);
+        this.body.setRotationPoint(0f, 23f, 3f);
+        this.body.setTextureOffset(18, 0).addBox(-3f, -4f, -2f, 6f, 4f, 5f, 0f, false);
+        this.body.setTextureOffset(19, 0).addBox(-2.5f, -3f, -7f, 5f, 3f, 5f, 0f, false);
 
-        frontLeftLeg = new ModelRenderer(this);
-        frontLeftLeg.setRotationPoint(1.5F, 0.0F, -4.5F);
-        frontLeftLeg.setTextureOffset(11, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 1.0F, 2.0F, 0.0F, false);
-        body.addChild(frontLeftLeg);
+        this.frontLeftLeg = new ModelRenderer(this);
+        this.frontLeftLeg.setRotationPoint(1.5F, 0.0F, -4.5F);
+        this.frontLeftLeg.setTextureOffset(11, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+        this.body.addChild(this.frontLeftLeg);
 
-        frontRightLeg = new ModelRenderer(this);
-        frontRightLeg.setRotationPoint(-1.5F, 0.0F, -4.5F);
-        frontRightLeg.setTextureOffset(11, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 1.0F, 2.0F, 0.0F, false);
-        body.addChild(frontRightLeg);
+        this.frontRightLeg = new ModelRenderer(this);
+        this.frontRightLeg.setRotationPoint(-1.5F, 0.0F, -4.5F);
+        this.frontRightLeg.setTextureOffset(11, 0).addBox(-0.5F, 0.0F, -1.5F, 1.0F, 1.0F, 2.0F, 0.0F, false);
+        this.body.addChild(this.frontRightLeg);
 
-        backLeftLeg = new ModelRenderer(this);
-        backLeftLeg.setRotationPoint(2f, 23f, 3.5f);
-        backLeftLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
+        this.backLeftLeg = new ModelRenderer(this);
+        this.backLeftLeg.setRotationPoint(2f, 23f, 3.5f);
+        this.backLeftLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
 
-        backRightLeg = new ModelRenderer(this);
-        backRightLeg.setRotationPoint(-2f, 23f, 3.5f);
-        backRightLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
+        this.backRightLeg = new ModelRenderer(this);
+        this.backRightLeg.setRotationPoint(-2f, 23f, 3.5f);
+        this.backRightLeg.setTextureOffset(11, 0).addBox(-.5f, 0f, -1.5f, 1f, 1f, 2f, 0f, false);
 
-        tail = new ModelRenderer(this);
-        tail.setRotationPoint(0f, -1f, 3f);
-        tail.rotateAngleX = -0.4363f;
-        tail.setTextureOffset(14, 0).addBox(-0.5f, 0f, 0f, 1f, 1f, 3f, 0f, false);
-        body.addChild(tail);
+        this.tail = new ModelRenderer(this);
+        this.tail.setRotationPoint(0f, -1f, 3f);
+        this.tail.rotateAngleX = -0.4363f;
+        this.tail.setTextureOffset(14, 0).addBox(-0.5f, 0f, 0f, 1f, 1f, 3f, 0f, false);
+        this.body.addChild(this.tail);
 
-        tailEnd = new ModelRenderer(this);
-        tailEnd.setRotationPoint(0f, 1.0883f, 2.9901f);
-        tailEnd.rotateAngleX = 0.4363f;
-        tailEnd.setTextureOffset(14, 0).addBox(-0.5f, -1.0758f, 0.0463f, 1f, 1f, 3f, 0f, false);
-        tailEnd.setTextureOffset(16, 1).addBox(-0.5f, -1.0758f, 3.0463f, 1f, 1f, 2f, 0f, false);
-        tail.addChild(tailEnd);
+        this.tailEnd = new ModelRenderer(this);
+        this.tailEnd.setRotationPoint(0f, 1.0883f, 2.9901f);
+        this.tailEnd.rotateAngleX = 0.4363f;
+        this.tailEnd.setTextureOffset(14, 0).addBox(-0.5f, -1.0758f, 0.0463f, 1f, 1f, 3f, 0f, false);
+        this.tailEnd.setTextureOffset(16, 1).addBox(-0.5f, -1.0758f, 3.0463f, 1f, 1f, 2f, 0f, false);
+        this.tail.addChild(this.tailEnd);
 
-        head = new ModelRenderer(this);
-        head.setRotationPoint(0.0F, -1.0F, -7.0F);
-        head.setTextureOffset(0, 0).addBox(-2.0F, -2.0F, -3.0F, 4.0F, 3.0F, 3.0F, 0.0F, false);
-        head.setTextureOffset(5, 6).addBox(1.0F, -3.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, false);
-        head.setTextureOffset(0, 6).addBox(-3.0F, -3.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, false);
-        body.addChild(head);
+        this.head = new ModelRenderer(this);
+        this.head.setRotationPoint(0.0F, -1.0F, -7.0F);
+        this.head.setTextureOffset(0, 0).addBox(-2.0F, -2.0F, -3.0F, 4.0F, 3.0F, 3.0F, 0.0F, false);
+        this.head.setTextureOffset(5, 6).addBox(1.0F, -3.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+        this.head.setTextureOffset(0, 6).addBox(-3.0F, -3.0F, -1.0F, 2.0F, 2.0F, 1.0F, 0.0F, false);
+        this.body.addChild(this.head);
     }
 
     @Override

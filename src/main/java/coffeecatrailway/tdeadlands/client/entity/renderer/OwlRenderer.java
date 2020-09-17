@@ -2,9 +2,7 @@ package coffeecatrailway.tdeadlands.client.entity.renderer;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.client.entity.model.OwlModel;
-import coffeecatrailway.tdeadlands.client.entity.model.RatModel;
 import coffeecatrailway.tdeadlands.common.entity.OwlEntity;
-import coffeecatrailway.tdeadlands.common.entity.RatEntity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;

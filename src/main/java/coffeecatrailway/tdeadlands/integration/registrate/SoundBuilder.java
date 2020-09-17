@@ -3,7 +3,6 @@ package coffeecatrailway.tdeadlands.integration.registrate;
 import com.tterrag.registrate.AbstractRegistrate;
 import com.tterrag.registrate.builders.AbstractBuilder;
 import com.tterrag.registrate.builders.BuilderCallback;
-import com.tterrag.registrate.util.entry.RegistryEntry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 

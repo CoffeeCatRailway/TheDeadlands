@@ -74,8 +74,8 @@ public class TheDeadlands
     @OnlyIn(Dist.CLIENT)
     public void setupClient(FMLClientSetupEvent event)
     {
+        ClientEvents.itemColors();
         ClientEvents.entityRenderers();
-        LOGGER.info("Client events");
 
         DeadItemModelProperties.load();
     }

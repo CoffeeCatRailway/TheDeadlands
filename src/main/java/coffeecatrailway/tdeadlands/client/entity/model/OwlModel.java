@@ -24,74 +24,74 @@ public class OwlModel extends EntityModel<OwlEntity>
 
     public OwlModel()
     {
-        textureWidth = 44;
-        textureHeight = 24;
+        this.textureWidth = 44;
+        this.textureHeight = 24;
 
-        lowerBody = new ModelRenderer(this);
-        lowerBody.setRotationPoint(0f, 19f, 0f);
-        lowerBody.setTextureOffset(24, 0).addBox(-3f, 0f, -2f, 6f, 4f, 4f, 0f, false);
+        this.lowerBody = new ModelRenderer(this);
+        this.lowerBody.setRotationPoint(0f, 19f, 0f);
+        this.lowerBody.setTextureOffset(24, 0).addBox(-3f, 0f, -2f, 6f, 4f, 4f, 0f, false);
 
-        leftLeg = new ModelRenderer(this);
-        leftLeg.setRotationPoint(0f, 5f, 0f);
-        leftLeg.setTextureOffset(24, 8).addBox(-2f, -1f, -1f, 2f, 1f, 2f, 0f, false);
-        leftLeg.setTextureOffset(32, 8).addBox(-1f, -1f, -2f, 1f, 1f, 1f, 0f, false);
-        leftLeg.setTextureOffset(32, 8).addBox(-3f, -1f, -2f, 1f, 1f, 1f, 0f, false);
-        leftLeg.setTextureOffset(32, 8).addBox(-1f, -1f, 1f, 1f, 1f, 1f, 0f, false);
-        leftLeg.setTextureOffset(36, 8).addBox(-1f, -4f, 0f, 1f, 3f, 1f, 0f, false);
-        lowerBody.addChild(leftLeg);
+        this.leftLeg = new ModelRenderer(this);
+        this.leftLeg.setRotationPoint(0f, 5f, 0f);
+        this.leftLeg.setTextureOffset(24, 8).addBox(-2f, -1f, -1f, 2f, 1f, 2f, 0f, false);
+        this.leftLeg.setTextureOffset(32, 8).addBox(-1f, -1f, -2f, 1f, 1f, 1f, 0f, false);
+        this.leftLeg.setTextureOffset(32, 8).addBox(-3f, -1f, -2f, 1f, 1f, 1f, 0f, false);
+        this.leftLeg.setTextureOffset(32, 8).addBox(-1f, -1f, 1f, 1f, 1f, 1f, 0f, false);
+        this.leftLeg.setTextureOffset(36, 8).addBox(-1f, -4f, 0f, 1f, 3f, 1f, 0f, false);
+        this.lowerBody.addChild(this.leftLeg);
 
-        rightLeg = new ModelRenderer(this);
-        rightLeg.setRotationPoint(0f, 5f, 0f);
-        rightLeg.setTextureOffset(24, 8).addBox(0f, -1f, -1f, 2f, 1f, 2f, 0f, false);
-        rightLeg.setTextureOffset(32, 8).addBox(2f, -1f, -2f, 1f, 1f, 1f, 0f, false);
-        rightLeg.setTextureOffset(32, 8).addBox(0f, -1f, -2f, 1f, 1f, 1f, 0f, false);
-        rightLeg.setTextureOffset(32, 8).addBox(0f, -1f, 1f, 1f, 1f, 1f, 0f, false);
-        rightLeg.setTextureOffset(36, 8).addBox(0f, -4f, 0f, 1f, 3f, 1f, 0f, false);
-        lowerBody.addChild(rightLeg);
+        this.rightLeg = new ModelRenderer(this);
+        this.rightLeg.setRotationPoint(0f, 5f, 0f);
+        this.rightLeg.setTextureOffset(24, 8).addBox(0f, -1f, -1f, 2f, 1f, 2f, 0f, false);
+        this.rightLeg.setTextureOffset(32, 8).addBox(2f, -1f, -2f, 1f, 1f, 1f, 0f, false);
+        this.rightLeg.setTextureOffset(32, 8).addBox(0f, -1f, -2f, 1f, 1f, 1f, 0f, false);
+        this.rightLeg.setTextureOffset(32, 8).addBox(0f, -1f, 1f, 1f, 1f, 1f, 0f, false);
+        this.rightLeg.setTextureOffset(36, 8).addBox(0f, -4f, 0f, 1f, 3f, 1f, 0f, false);
+        this.lowerBody.addChild(this.rightLeg);
 
-        body = new ModelRenderer(this);
-        body.setRotationPoint(0f, 0f, 0f);
-        body.rotateAngleX = .8727f;
-        body.setTextureOffset(0, 11).addBox(-3f, -5f, -2.5f, 6f, 8f, 5f, 0f, false);
-        lowerBody.addChild(body);
+        this.body = new ModelRenderer(this);
+        this.body.setRotationPoint(0f, 0f, 0f);
+        this.body.rotateAngleX = .8727f;
+        this.body.setTextureOffset(0, 11).addBox(-3f, -5f, -2.5f, 6f, 8f, 5f, 0f, false);
+        this.lowerBody.addChild(this.body);
 
-        leftWing = new ModelRenderer(this);
-        leftWing.setRotationPoint(-3f, -4f, 0f);
-        leftWing.setTextureOffset(22, 13).addBox(-1f, -1f, -2f, 1f, 10f, 1f, 0f, false);
-        leftWing.setTextureOffset(22, 14).addBox(-1f, -1f, -1f, 1f, 9f, 1f, 0f, false);
-        leftWing.setTextureOffset(22, 15).addBox(-1f, 0f, -3f, 1f, 8f, 1f, 0f, false);
-        leftWing.setTextureOffset(22, 15).addBox(-1f, -1f, 0f, 1f, 8f, 1f, 0f, false);
-        leftWing.setTextureOffset(22, 17).addBox(-1f, 0f, 1f, 1f, 6f, 1f, 0f, false);
-        leftWing.setTextureOffset(22, 19).addBox(-1f, 1f, 2f, 1f, 4f, 1f, 0f, false);
-        body.addChild(leftWing);
+        this.leftWing = new ModelRenderer(this);
+        this.leftWing.setRotationPoint(-3f, -4f, 0f);
+        this.leftWing.setTextureOffset(22, 13).addBox(-1f, -1f, -2f, 1f, 10f, 1f, 0f, false);
+        this.leftWing.setTextureOffset(22, 14).addBox(-1f, -1f, -1f, 1f, 9f, 1f, 0f, false);
+        this.leftWing.setTextureOffset(22, 15).addBox(-1f, 0f, -3f, 1f, 8f, 1f, 0f, false);
+        this.leftWing.setTextureOffset(22, 15).addBox(-1f, -1f, 0f, 1f, 8f, 1f, 0f, false);
+        this.leftWing.setTextureOffset(22, 17).addBox(-1f, 0f, 1f, 1f, 6f, 1f, 0f, false);
+        this.leftWing.setTextureOffset(22, 19).addBox(-1f, 1f, 2f, 1f, 4f, 1f, 0f, false);
+        this.body.addChild(this.leftWing);
 
-        rightWing = new ModelRenderer(this);
-        rightWing.setRotationPoint(3f, -4f, 0f);
-        rightWing.setTextureOffset(26, 13).addBox(0f, -1f, -2f, 1f, 10f, 1f, 0f, false);
-        rightWing.setTextureOffset(26, 14).addBox(0f, -1f, -1f, 1f, 9f, 1f, 0f, false);
-        rightWing.setTextureOffset(26, 15).addBox(0f, 0f, -3f, 1f, 8f, 1f, 0f, false);
-        rightWing.setTextureOffset(26, 15).addBox(0f, -1f, 0f, 1f, 8f, 1f, 0f, false);
-        rightWing.setTextureOffset(26, 17).addBox(0f, 0f, 1f, 1f, 6f, 1f, 0f, false);
-        rightWing.setTextureOffset(26, 19).addBox(0f, 1f, 2f, 1f, 4f, 1f, 0f, false);
-        body.addChild(rightWing);
+        this.rightWing = new ModelRenderer(this);
+        this.rightWing.setRotationPoint(3f, -4f, 0f);
+        this.rightWing.setTextureOffset(26, 13).addBox(0f, -1f, -2f, 1f, 10f, 1f, 0f, false);
+        this.rightWing.setTextureOffset(26, 14).addBox(0f, -1f, -1f, 1f, 9f, 1f, 0f, false);
+        this.rightWing.setTextureOffset(26, 15).addBox(0f, 0f, -3f, 1f, 8f, 1f, 0f, false);
+        this.rightWing.setTextureOffset(26, 15).addBox(0f, -1f, 0f, 1f, 8f, 1f, 0f, false);
+        this.rightWing.setTextureOffset(26, 17).addBox(0f, 0f, 1f, 1f, 6f, 1f, 0f, false);
+        this.rightWing.setTextureOffset(26, 19).addBox(0f, 1f, 2f, 1f, 4f, 1f, 0f, false);
+        this.body.addChild(this.rightWing);
 
-        tail = new ModelRenderer(this);
-        tail.setRotationPoint(0f, 3f, 2.5f);
-        tail.setTextureOffset(18, 0).addBox(-2f, 0f, 0f, 4f, 3f, 0f, 0f, false);
-        tail.setTextureOffset(18, 3).addBox(-1f, 3f, 0f, 2f, 2f, 0f, 0f, false);
-        body.addChild(tail);
+        this.tail = new ModelRenderer(this);
+        this.tail.setRotationPoint(0f, 3f, 2.5f);
+        this.tail.setTextureOffset(18, 0).addBox(-2f, 0f, 0f, 4f, 3f, 0f, 0f, false);
+        this.tail.setTextureOffset(18, 3).addBox(-1f, 3f, 0f, 2f, 2f, 0f, 0f, false);
+        this.body.addChild(this.tail);
 
-        head = new ModelRenderer(this);
-        head.setRotationPoint(0f, -5f, -.5f);
-        head.rotateAngleX = -.8727f;
-        head.setTextureOffset(0, 0).addBox(-3f, -5f, -3f, 6f, 5f, 6f, 0f, false);
-        body.addChild(head);
+        this.head = new ModelRenderer(this);
+        this.head.setRotationPoint(0f, -5f, -.5f);
+        this.head.rotateAngleX = -.8727f;
+        this.head.setTextureOffset(0, 0).addBox(-3f, -5f, -3f, 6f, 5f, 6f, 0f, false);
+        this.body.addChild(this.head);
 
-        beak = new ModelRenderer(this);
-        beak.setRotationPoint(0f, -2f, -2.5f);
-        beak.rotateAngleX = -.6981f;
-        beak.setTextureOffset(0, 0).addBox(-.5f, .5f, -.5f, 1f, 1f, 1f, 0f, false);
-        head.addChild(beak);
+        this.beak = new ModelRenderer(this);
+        this.beak.setRotationPoint(0f, -2f, -2.5f);
+        this.beak.rotateAngleX = -.6981f;
+        this.beak.setTextureOffset(0, 0).addBox(-.5f, .5f, -.5f, 1f, 1f, 1f, 0f, false);
+        this.head.addChild(this.beak);
     }
 
     @Override
@@ -181,7 +181,7 @@ public class OwlModel extends EntityModel<OwlEntity>
 
                 this.head.rotationPointX += f;
                 this.head.rotationPointY += f1;
-                this.head.rotateAngleY = 0.0F;
+                this.head.rotateAngleY = 0f;
                 this.head.rotateAngleZ = MathHelper.sin(ticksExisted) * 0.4F;
                 break;
             case STANDING:
