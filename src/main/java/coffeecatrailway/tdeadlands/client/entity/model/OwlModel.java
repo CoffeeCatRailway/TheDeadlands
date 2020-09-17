@@ -201,7 +201,7 @@ public class OwlModel extends EntityModel<OwlEntity>
     {
         if (owl.isPartying())
             return State.PARTYING;
-        else if (owl.func_233684_eK_())
+        else if (owl.isSitting())
             return State.SITTING;
         else
             return owl.isFlying() ? State.FLYING : State.STANDING;

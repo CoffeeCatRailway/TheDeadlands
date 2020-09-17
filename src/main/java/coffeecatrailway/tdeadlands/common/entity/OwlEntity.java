@@ -172,7 +172,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal, ICreateS
         } else if (!this.isFlying() && this.isTamed() && this.isOwner(player))
         {
             if (!this.world.isRemote)
-                this.func_233687_w_(!this.func_233685_eM_());
+                this.func_233687_w_(!this.isSitting());
 
             return ActionResultType.func_233537_a_(this.world.isRemote);
         } else

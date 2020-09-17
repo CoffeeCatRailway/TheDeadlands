@@ -16,7 +16,7 @@ import static coffeecatrailway.tdeadlands.TheDeadlands.REGISTRATE;
  */
 public class DeadTileEntities
 {
-    private static final Logger LOGGER = TheDeadlands.getLogger("TileEntities");
+    private static final Logger LOGGER = TheDeadlands.getLogger("Tile-Entities");
 
     public static final RegistryEntry<TileEntityType<DeadWoodChestTileEntity>> DEAD_WOOD_CHEST = REGISTRATE.tileEntity("dead_wood_chest", (NonNullFunction<TileEntityType<DeadWoodChestTileEntity>, DeadWoodChestTileEntity>) DeadWoodChestTileEntity::new)
             .validBlock(DeadBlocks.DEAD_WOOD_CHEST).renderer(() -> DeadWoodChestTileEntityRenderer::new).register();

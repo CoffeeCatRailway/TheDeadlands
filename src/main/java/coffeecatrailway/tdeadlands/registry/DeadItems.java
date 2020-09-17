@@ -50,12 +50,12 @@ public class DeadItems
     public static final RegistryEntry<Item> FROST_METAL_CLUMP = REGISTRATE.item("frost_metal_clump", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))
             .recipe((ctx, provider) -> provider.smeltingAndBlasting(DataIngredient.items(DeadBlocks.FROST_METAL_ORE), ctx::getEntry, .85f)).register();
 
-    public static final RegistryEntry<FrostCopperClumpItem> FROST_COPPER_CLUMP = REGISTRATE.item("frost_copper_clump", FrostCopperClumpItem::new).properties(Item.Properties::isBurnable)
+    public static final RegistryEntry<FrostCopperClumpItem> FROST_COPPER_CLUMP = REGISTRATE.item("frost_copper_clump", FrostCopperClumpItem::new).properties(Item.Properties::isImmuneToFire)
             .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(COPPER_CLUMP.get()).addIngredient(FROST_METAL_CLUMP.get())
                     .addCriterion("has_copper", RegistrateRecipeProvider.hasItem(COPPER_CLUMP.get()))
                     .addCriterion("has_frost_metal", RegistrateRecipeProvider.hasItem(FROST_METAL_CLUMP.get())).build(provider))
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
-    public static final RegistryEntry<Item> FROST_BRONZE_INGOT = REGISTRATE.item("frost_bronze_ingot", Item::new).properties(Item.Properties::isBurnable)
+    public static final RegistryEntry<Item> FROST_BRONZE_INGOT = REGISTRATE.item("frost_bronze_ingot", Item::new).properties(Item.Properties::isImmuneToFire)
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     public static final RegistryEntry<Item> HEAT_STONE = REGISTRATE.item("heat_stone", Item::new).model((ctx, provider) -> provider.generated(ctx::getEntry))

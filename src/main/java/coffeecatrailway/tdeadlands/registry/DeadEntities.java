@@ -2,6 +2,7 @@ package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.entity.DeadWoodArrowEntity;
+import coffeecatrailway.tdeadlands.common.entity.MuskOxEntity;
 import coffeecatrailway.tdeadlands.common.entity.OwlEntity;
 import coffeecatrailway.tdeadlands.common.entity.RatEntity;
 import com.tterrag.registrate.util.LazySpawnEggItem;
@@ -38,14 +39,15 @@ public class DeadEntities
     private static final EntityPredicate.Builder ON_FIRE = EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build());
 
     public static final Set<Runnable> ATTRIBUTE_MAPS = new HashSet<>();
+    public static final Set<RegistryEntry<? extends LazySpawnEggItem<?>>> SPAWN_EGGS = new HashSet<>();
 
     // Misc
     public static final RegistryEntry<EntityType<DeadWoodArrowEntity>> DEAD_WOOD_ARROW = REGISTRATE.<DeadWoodArrowEntity>entity("dead_wood_arrow", DeadWoodArrowEntity::new, EntityClassification.MISC)
-            .properties(builder -> builder.size(0.5F, 0.5F).func_233606_a_(4).func_233608_b_(20)).loot(NonNullBiConsumer.noop()).register();
+            .properties(builder -> builder.size(.5f, .5f).setTrackingRange(4).func_233608_b_(20)).loot(NonNullBiConsumer.noop()).register();
 
     // Creatures
     public static final RegistryEntry<EntityType<RatEntity>> RAT = REGISTRATE.<RatEntity>entity("rat", RatEntity::new, EntityClassification.AMBIENT)
-            .properties(builder -> builder.size(.8f, .5f).func_233606_a_(10))
+            .properties(builder -> builder.size(.8f, .5f).setTrackingRange(10))
             .loot((tables, rat) -> tables.registerLootTable(rat, LootTable.builder()
                     .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
                             .addEntry(ItemLootEntry.builder(DeadItems.DEAD_RAT.get())
@@ -53,7 +55,7 @@ public class DeadEntities
                                     .acceptFunction(Smelt.func_215953_b().acceptCondition(EntityHasProperty.builder(LootContext.EntityTarget.THIS, ON_FIRE))))))).register();
 
     public static final RegistryEntry<EntityType<OwlEntity>> OWL = REGISTRATE.<OwlEntity>entity("owl", OwlEntity::new, EntityClassification.CREATURE)
-            .properties(builder -> builder.size(0.5F, 0.9F).func_233606_a_(8))
+            .properties(builder -> builder.size(.5f, .9f).setTrackingRange(8))
             .loot((tables, rat) -> tables.registerLootTable(rat, LootTable.builder()
                     .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
                             .addEntry(ItemLootEntry.builder(DeadItems.OWL_FEATHER.get())
