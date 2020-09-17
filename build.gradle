@@ -133,6 +133,14 @@ processResources {
 }
 
 jar {
+    sourceSets {
+        main {
+            java {
+                exclude '**.bbmodel'
+            }
+        }
+    }
+
     manifest {
         attributes([
                 "Specification-Title"     : "${archivesBaseName}",
