@@ -1,6 +1,7 @@
 package coffeecatrailway.tdeadlands;
 
 import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadBlockstates;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadLangs;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadRegistrate;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
@@ -31,7 +32,7 @@ public class TheDeadlands
         @Override
         public ItemStack createIcon()
         {
-            return new ItemStack(DeadBlocks.GRASS_BLOCK.get());
+            return new ItemStack(DeadBlocks.COLD_GRASS_BLOCK.get());
         }
     };
 
@@ -58,7 +59,8 @@ public class TheDeadlands
         REGISTRATE = DeadRegistrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "The Deadlands")
                 .addDataGenerator(ProviderType.BLOCK_TAGS, new DeadTags.Blocks())
                 .addDataGenerator(ProviderType.ITEM_TAGS, new DeadTags.Items())
-                .addDataGenerator(ProviderType.LANG, new DeadLangs());
+                .addDataGenerator(ProviderType.LANG, new DeadLangs())
+                .addDataGenerator(ProviderType.BLOCKSTATE, new DeadBlockstates());
 
         MinecraftForge.EVENT_BUS.register(this);
 

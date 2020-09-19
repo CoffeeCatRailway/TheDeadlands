@@ -1,0 +1,21 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "tdeadlands:block/cold_grass_block"
+      },
+      {
+        "model": "tdeadlands:block/cold_grass_block",
+        "y": 90
+      },
+      {
+        "model": "tdeadlands:block/cold_grass_block",
+        "y": 180
+      },
+      {
+        "model": "tdeadlands:block/cold_grass_block",
+        "y": 270
+      }
+    ]
+  }
+}

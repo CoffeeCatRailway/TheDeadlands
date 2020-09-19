@@ -30,7 +30,6 @@ public class DeadTags
         @Override
         public void accept(RegistrateTagsProvider<Block> provider)
         {
-            provider.getOrCreateBuilder(COLDSTONE);
             provider.getOrCreateBuilder(FROST_BRONZE_CONVERT).addTag(BlockTags.FIRE).add(net.minecraft.block.Blocks.LAVA);
 
             provider.getOrCreateBuilder(Tags.Blocks.ORES).addTag(ORES_COPPER);
@@ -52,6 +51,7 @@ public class DeadTags
         public static final ITag.INamedTag<Item> RAT_IGNORE = tag("rat_ignore");
         public static final ITag.INamedTag<Item> OWL_TAME = tag("owl_tame");
         public static final ITag.INamedTag<Item> OWL_DEADLY = tag("owl_deadly");
+        public static final ITag.INamedTag<Item> MUSK_OX_TAME = tag("musk_ox_tame");
 
         public static final ITag.INamedTag<Item> COLDSTONE = tag("coldstone");
 
@@ -63,8 +63,6 @@ public class DeadTags
             provider.getOrCreateBuilder(RAT_IGNORE).add(net.minecraft.item.Items.ROTTEN_FLESH, net.minecraft.item.Items.SPIDER_EYE, net.minecraft.item.Items.PUFFERFISH);
             provider.getOrCreateBuilder(OWL_TAME).add(net.minecraft.item.Items.CHICKEN, net.minecraft.item.Items.COOKED_CHICKEN);
             provider.getOrCreateBuilder(OWL_DEADLY).add(net.minecraft.item.Items.RABBIT, net.minecraft.item.Items.COOKED_RABBIT);
-
-            provider.getOrCreateBuilder(COLDSTONE);
 
             provider.getOrCreateBuilder(Tags.Items.ORES).addTag(ORES_COPPER);
         }

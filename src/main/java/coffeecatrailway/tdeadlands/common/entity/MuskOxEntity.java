@@ -1,6 +1,7 @@
 package coffeecatrailway.tdeadlands.common.entity;
 
 import coffeecatrailway.tdeadlands.common.entity.ai.goal.TemptGoalTag;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.DeadEntities;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.*;
@@ -11,12 +12,10 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.common.Tags;
 
 import javax.annotation.Nullable;
 
@@ -43,11 +42,17 @@ public class MuskOxEntity extends AnimalEntity implements ICreateSpawnPacket<Mus
         this.goalSelector.addGoal(0, new SwimGoal(this));
         this.goalSelector.addGoal(1, new PanicGoal(this, 1.25f));
         this.goalSelector.addGoal(3, new BreedGoal(this, 1f));
-        this.goalSelector.addGoal(4, new TemptGoalTag(this, 1.2f, false, () -> Tags.Items.CROPS_WHEAT)); // TODO Add grass strands
+        this.goalSelector.addGoal(4, new TemptGoalTag(this, 1.2f, false, () -> DeadTags.Items.MUSK_OX_TAME));
         this.goalSelector.addGoal(5, new FollowParentGoal(this, 1.1f));
         this.goalSelector.addGoal(6, new WaterAvoidingRandomWalkingGoal(this, 1f));
         this.goalSelector.addGoal(7, new LookAtGoal(this, PlayerEntity.class, 6f));
         this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return DeadTags.Items.MUSK_OX_TAME.contains(stack.getItem());
     }
 
     @Override

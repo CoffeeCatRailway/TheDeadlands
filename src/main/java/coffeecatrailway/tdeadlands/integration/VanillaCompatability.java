@@ -18,8 +18,6 @@ public class VanillaCompatability
 {
     public static void register()
     {
-        registerHoeable(DeadBlocks.GRASS_BLOCK.get());
-
         registerStrippable(DeadBlocks.DEAD_LOG.get(), DeadBlocks.STRIPPED_DEAD_LOG.get());
         registerStrippable(DeadBlocks.DEAD_WOOD.get(), DeadBlocks.STRIPPED_DEAD_WOOD.get());
 
@@ -37,17 +35,6 @@ public class VanillaCompatability
     {
         AxeItem.BLOCK_STRIPPING_MAP = Maps.newHashMap(AxeItem.BLOCK_STRIPPING_MAP);
         AxeItem.BLOCK_STRIPPING_MAP.put(log, strippedLog);
-    }
-
-    private static void registerHoeable(Block block)
-    {
-        registerHoeable(block, Blocks.FARMLAND);
-    }
-
-    private static void registerHoeable(Block hoeable, Block hoed)
-    {
-        HoeItem.HOE_LOOKUP = Maps.newHashMap(HoeItem.HOE_LOOKUP);
-        HoeItem.HOE_LOOKUP.put(hoeable, hoed.getDefaultState());
     }
 
     private static void registerCompostable(float chance, IItemProvider itemProvider)

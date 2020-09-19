@@ -3,6 +3,7 @@ package coffeecatrailway.tdeadlands.registry;
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.client.item.renderer.DeadWoodChestItemRenderer;
 import coffeecatrailway.tdeadlands.common.block.*;
+import coffeecatrailway.tdeadlands.integration.registrate.DeadBlockstates;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
 import com.tterrag.registrate.providers.loot.RegistrateBlockLootTables;
@@ -11,21 +12,21 @@ import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
 import com.tterrag.registrate.util.nullness.NonNullFunction;
 import com.tterrag.registrate.util.nullness.NonNullSupplier;
-import net.minecraft.advancements.criterion.EnchantmentPredicate;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.advancements.criterion.MinMaxBounds;
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import com.tterrag.registrate.util.nullness.NonNullUnaryOperator;
+import net.minecraft.advancements.criterion.*;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.data.ShapedRecipeBuilder;
 import net.minecraft.data.ShapelessRecipeBuilder;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.*;
 import net.minecraft.loot.*;
 import net.minecraft.loot.conditions.*;
+import net.minecraft.loot.functions.ApplyBonus;
 import net.minecraft.loot.functions.CopyName;
 import net.minecraft.loot.functions.ExplosionDecay;
 import net.minecraft.loot.functions.SetCount;
@@ -39,6 +40,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelProvider;
@@ -153,9 +155,9 @@ public class DeadBlocks
             .properties(prop -> prop.hardnessAndResistance(2.5f).sound(SoundType.WOOD)).addLayer(() -> RenderType::getCutoutMipped)
             .blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry()).partialState().modelForState().modelFile(provider.models().getBuilder(ctx.getName()).texture("particle", provider.blockTexture(DEAD_PLANKS.get()))).addModel())
             .loot((tables, block) -> tables.registerLootTable(block, LootTable.builder().addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
-            .addEntry(ItemLootEntry.builder(block).acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))).acceptCondition(SurvivesExplosion.builder()))))
+                    .addEntry(ItemLootEntry.builder(block).acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY))).acceptCondition(SurvivesExplosion.builder()))))
             .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', DEAD_PLANKS.get()).patternLine("ppp").patternLine("p p").patternLine("ppp")
-            .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
+                    .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
             .tag(Tags.Blocks.CHESTS, Tags.Blocks.CHESTS_WOODEN)
             .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("item/chest")).texture("particle", "block/" + provider.name(DEAD_PLANKS)))
             .tag(Tags.Items.CHESTS, Tags.Items.CHESTS_WOODEN).properties(prop -> prop.setISTER(() -> DeadWoodChestItemRenderer::new)).build().register();
@@ -188,15 +190,76 @@ public class DeadBlocks
             .model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/dead_wood_torch"))).build().register();
 
     // Nature
-    public static final RegistryEntry<DeadGrassBlock> GRASS_BLOCK = registerGrassBlock("grass_block", MaterialColor.LIGHT_BLUE);
-    public static final RegistryEntry<Block> DIRT = REGISTRATE.object("dirt").block(Block::new).initialProperties(Material.EARTH, MaterialColor.GRAY)
+    private static NonNullUnaryOperator<Block.Properties> GRASS_PROPS = prop -> prop.sound(SoundType.PLANT).doesNotBlockMovement().hardnessAndResistance(0f).notSolid();
+
+    private static final Supplier<IItemColor> GRASS_COLOR_ITEM = () -> (stack, index) -> 0x8fb8cf;// TODO: Check if the world is the right dimension
+    private static final Supplier<IBlockColor> GRASS_COLOR_BLOCK = () -> (state, world, pos, index) -> world != null && pos != null ? BiomeColors.getGrassColor(world, pos) : GRASS_COLOR_ITEM.get().getColor(ItemStack.EMPTY, index);
+
+    public static final RegistryEntry<DeadTallGrassBlock> COLD_GRASS = REGISTRATE.object("cold_grass").block(DeadTallGrassBlock::new)
+            .blockstate((ctx, provider) -> provider.simpleBlock(ctx.getEntry(), DeadBlockstates.getTintCross(provider, ctx.getName())))
+            .color(() -> GRASS_COLOR_BLOCK).loot((tables, block) -> tables.registerLootTable(block, LootTable.builder()
+                    .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+                            .addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(block)
+                                            .acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().tag(Tags.Items.SHEARS))),
+                                    ItemLootEntry.builder(DeadItems.COLD_GRASS_STRAND.get())
+                                            .acceptCondition(RandomChance.builder(.125f))
+                                            .acceptFunction(ApplyBonus.uniformBonusCount(Enchantments.FORTUNE, 2))
+                                            .acceptFunction(ExplosionDecay.builder()))))))
+            .defaultLang().initialProperties(Material.TALL_PLANTS, MaterialColor.LIGHT_BLUE).properties(GRASS_PROPS).addLayer(() -> RenderType::getCutoutMipped)
+            .item().color(() -> GRASS_COLOR_ITEM).model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/cold_grass"))).build().register();
+
+    public static final RegistryEntry<DeadDoubleGrassBlock> COLD_TALL_GRASS = REGISTRATE.object("cold_tall_grass").block(DeadDoubleGrassBlock::new)
+            .color(() -> GRASS_COLOR_BLOCK).blockstate((ctx, provider) -> provider.getVariantBuilder(ctx.getEntry())
+                    .partialState().with(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.LOWER)
+                    .modelForState().modelFile(DeadBlockstates.getTintCross(provider, ctx.getName() + "_bottom")).addModel()
+                    .partialState().with(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.UPPER)
+                    .modelForState().modelFile(DeadBlockstates.getTintCross(provider, ctx.getName() + "_top")).addModel())
+            .loot((tables, block) -> tables.registerLootTable(block, LootTable.builder()
+                    .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+                            .addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(COLD_GRASS.get())
+                                            .acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().tag(Tags.Items.SHEARS)))
+                                            .acceptFunction(SetCount.builder(new RandomValueRange(2))),
+                                    ItemLootEntry.builder(DeadItems.COLD_GRASS_STRAND.get())
+                                            .acceptCondition(SurvivesExplosion.builder())
+                                            .acceptCondition(RandomChance.builder(.125f))))
+                            .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.LOWER)))
+                            .acceptCondition(LocationCheck.func_241547_a_(LocationPredicate.Builder.builder().block(BlockPredicate.Builder.createBuilder().setBlock(block)
+                                            .setStatePredicate(StatePropertiesPredicate.Builder.newBuilder().withProp(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.UPPER).build()).build()),
+                                    new BlockPos(0, 1, 0))))
+                    .addLootPool(LootPool.builder().rolls(new RandomValueRange(1))
+                            .addEntry(AlternativesLootEntry.builder(ItemLootEntry.builder(COLD_GRASS.get())
+                                            .acceptCondition(MatchTool.builder(ItemPredicate.Builder.create().tag(Tags.Items.SHEARS)))
+                                            .acceptFunction(SetCount.builder(new RandomValueRange(2))),
+                                    ItemLootEntry.builder(DeadItems.COLD_GRASS_STRAND.get())
+                                            .acceptCondition(SurvivesExplosion.builder())
+                                            .acceptCondition(RandomChance.builder(.125f))))
+                            .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.UPPER)))
+                            .acceptCondition(LocationCheck.func_241547_a_(LocationPredicate.Builder.builder().block(BlockPredicate.Builder.createBuilder().setBlock(block)
+                                            .setStatePredicate(StatePropertiesPredicate.Builder.newBuilder().withProp(DeadDoubleGrassBlock.HALF, DoubleBlockHalf.LOWER).build()).build()),
+                                    new BlockPos(0, -1, 0))))))
+            .defaultLang().initialProperties(Material.TALL_PLANTS, MaterialColor.LIGHT_BLUE).properties(GRASS_PROPS).addLayer(() -> RenderType::getCutoutMipped)
+            .item().color(() -> GRASS_COLOR_ITEM).model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/cold_tall_grass_top"))).build().register();
+
+    public static final RegistryEntry<Block> COLD_DIRT = REGISTRATE.object("cold_dirt").block(Block::new).initialProperties(Material.EARTH, MaterialColor.GRAY)
             .properties(prop -> prop.hardnessAndResistance(.5f).sound(SoundType.GROUND)).defaultBlockstate().defaultLoot().simpleItem().register();
+    public static final RegistryEntry<DeadGrassBlock> COLD_GRASS_BLOCK = REGISTRATE.object("cold_grass_block").block(DeadGrassBlock::new).initialProperties(Material.ORGANIC, MaterialColor.LIGHT_BLUE)
+            .properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
+            .loot((tables, block) -> tables.registerLootTable(block, RegistrateBlockLootTables.droppingWithSilkTouch(block, COLD_DIRT.get())))
+            .color(() -> GRASS_COLOR_BLOCK).addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop())
+            .item().color(() -> GRASS_COLOR_ITEM).build().register();
 
     // Misc
     public static final RegistryEntry<WarpRuneBlock> WARP_RUNE = REGISTRATE.object("warp_rune").block(WarpRuneBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
     public static final RegistryEntry<CoffinBlock> COFFIN = REGISTRATE.object("coffin").block(CoffinBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
+
+
+
+    public static boolean isSoil(BlockState state)
+    {
+        return state.getBlock() == COLD_GRASS_BLOCK.get() || state.getBlock() == COLD_DIRT.get();
+    }
 
     private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color)
     {
@@ -396,16 +459,6 @@ public class DeadBlocks
                 }).tag(BlockTags.BUTTONS).recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(parent.get()).setGroup(group)
                         .addCriterion("has_stone", RegistrateRecipeProvider.hasItem(parent.get())).build(provider))
                 .item().tag(ItemTags.BUTTONS).model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("block/button_inventory")).texture("texture", texture.get())).build().register();
-    }
-
-    private static RegistryEntry<DeadGrassBlock> registerGrassBlock(String id, MaterialColor color)
-    {
-        return REGISTRATE.object(id).block(prop -> new DeadGrassBlock(prop)).initialProperties(Material.ORGANIC, color)
-                .properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
-                .loot((tables, block) -> tables.registerLootTable(block, RegistrateBlockLootTables.droppingWithSilkTouch(block, DIRT.get())))
-                .color(() -> () -> (state, world, pos, tintindex) -> world != null && pos != null ? BiomeColors.getGrassColor(world, pos) : DyeColor.WHITE.getColorValue())// TODO: Check if the world is the right dimension
-                .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop())
-                .item().color(() -> () -> (stack, tintindex) -> Minecraft.getInstance().getBlockColors().getColor(((BlockItem) stack.getItem()).getBlock().getDefaultState(), null, null, tintindex)).build().register();
     }
 
     public static void load()

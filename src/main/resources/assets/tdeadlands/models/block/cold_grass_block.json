@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:block/block",
   "textures": {
-    "particle": "tdeadlands:block/dirt",
-    "bottom": "tdeadlands:block/dirt",
-    "top": "tdeadlands:block/grass_block_top",
-    "side": "tdeadlands:block/grass_block_side",
-    "overlay": "tdeadlands:block/grass_block_side_overlay"
+    "particle": "tdeadlands:block/cold_dirt",
+    "bottom": "tdeadlands:block/cold_dirt",
+    "top": "tdeadlands:block/cold_grass_block_top",
+    "side": "tdeadlands:block/cold_grass_block_side",
+    "overlay": "tdeadlands:block/cold_grass_block_side_overlay"
   },
   "elements": [
     {

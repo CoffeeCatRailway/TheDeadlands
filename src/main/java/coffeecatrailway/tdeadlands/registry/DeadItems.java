@@ -73,6 +73,9 @@ public class DeadItems
     public static final RegistryEntry<Item> WORN_PAPER = REGISTRATE.item("worn_paper", Item::new)
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
+    public static final RegistryEntry<Item> COLD_GRASS_STRAND = REGISTRATE.item("cold_grass_strand", Item::new).tag(DeadTags.Items.MUSK_OX_TAME)
+            .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
+
     //Tools
     public static final RegistryEntry<AxeItem> DEAD_WOOD_AXE = REGISTRATE.item("dead_wood_axe", prop -> new AxeItem(ItemTier.WOOD, 6f, -2.88f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(DeadBlocks.DEAD_PLANKS)).register();

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=upper": {
+      "model": "tdeadlands:block/cold_tall_grass_top"
+    },
+    "half=lower": {
+      "model": "tdeadlands:block/cold_tall_grass_bottom"
+    }
+  }
+}

@@ -3,7 +3,6 @@ package coffeecatrailway.tdeadlands.common.block;
 import coffeecatrailway.tdeadlands.registry.DeadBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.IGrowable;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.Direction;
@@ -43,7 +42,7 @@ public class DeadGrassBlock extends Block implements IGrowable
     public void grow(ServerWorld world, Random rand, BlockPos pos, BlockState state)
     {
         BlockPos blockpos = pos.up();
-        BlockState blockstate = Blocks.GRASS.getDefaultState();
+        BlockState blockstate = DeadBlocks.COLD_GRASS.get().getDefaultState();
 
         label48:
         for (int i = 0; i < 128; ++i)
@@ -61,23 +60,25 @@ public class DeadGrassBlock extends Block implements IGrowable
             if (blockstate2.isIn(blockstate.getBlock()) && rand.nextInt(10) == 0)
                 ((IGrowable) blockstate.getBlock()).grow(world, rand, blockpos1, blockstate2);
 
-            if (blockstate2.isAir())
+            if (blockstate2.isAir(world, blockpos1))
             {
-                BlockState blockstate1;
-                if (rand.nextInt(8) == 0)
-                {
+                BlockState blockstate1 = blockstate; // NOTE " = blockstate" is temp
+//                if (rand.nextInt(8) == 0)
+//                {
 //                    List<ConfiguredFeature<?, ?>> list = world.getBiome(blockpos1).func_242440_e().func_242496_b();
 //                    if (list.isEmpty())
 //                        continue;
-
+//
 //                    ConfiguredFeature<?, ?> configuredfeature = list.get(0);
 //                    FlowersFeature flowersfeature = (FlowersFeature) configuredfeature.feature;
 //                    blockstate1 = flowersfeature.getFlowerToPlace(rand, blockpos1, configuredfeature.func_242767_c());
-                } else
-                    blockstate1 = blockstate;
+//                } else
+//                {
+//                    blockstate1 = blockstate;
+//                }
 
-//                if (blockstate1.isValidPosition(world, blockpos1))
-//                    world.setBlockState(blockpos1, blockstate1, 3);
+                if (blockstate1.isValidPosition(world, blockpos1))
+                    world.setBlockState(blockpos1, blockstate1, 3);
             }
         }
     }
@@ -86,8 +87,8 @@ public class DeadGrassBlock extends Block implements IGrowable
     {
         BlockPos blockpos = pos.up();
         BlockState blockstate = world.getBlockState(blockpos);
-        int i = LightEngine.func_215613_a(world, state, pos, blockstate, blockpos, Direction.UP, blockstate.getOpacity(world, blockpos));
-        return i < world.getMaxLightLevel();
+        int light = LightEngine.func_215613_a(world, state, pos, blockstate, blockpos, Direction.UP, blockstate.getOpacity(world, blockpos));
+        return light < world.getMaxLightLevel();
     }
 
     private static boolean canSpread(BlockState state, IWorldReader world, BlockPos pos)
@@ -105,7 +106,7 @@ public class DeadGrassBlock extends Block implements IGrowable
                 return; // Forge: prevent loading unloaded chunks when checking neighbor's light and spreading
             if (!hasLight(state, worldIn, pos))
             {
-                worldIn.setBlockState(pos, DeadBlocks.DIRT.get().getDefaultState());
+                worldIn.setBlockState(pos, DeadBlocks.COLD_DIRT.get().getDefaultState());
             } else
             {
                 if (worldIn.getLight(pos.up()) >= 9)
@@ -115,7 +116,7 @@ public class DeadGrassBlock extends Block implements IGrowable
                     for (int i = 0; i < 4; ++i)
                     {
                         BlockPos blockpos = pos.add(random.nextInt(3) - 1, random.nextInt(5) - 3, random.nextInt(3) - 1);
-                        if (worldIn.getBlockState(blockpos).getBlock() == DeadBlocks.DIRT.get() && canSpread(blockstate, worldIn, blockpos))
+                        if (worldIn.getBlockState(blockpos).getBlock() == DeadBlocks.COLD_DIRT.get() && canSpread(blockstate, worldIn, blockpos))
                             worldIn.setBlockState(blockpos, blockstate);
                     }
                 }
