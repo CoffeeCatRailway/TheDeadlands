@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[33,)"
+loaderVersion="[34,)"
 license="https://www.gnu.org/licenses/gpl-3.0.en.html"
 issueTrackerURL="https://github.com/CoffeeCatRailway/TheDeadlands/issues"
 
@@ -17,7 +17,7 @@ description='''
 [[dependencies.coffeecheese]]
 modId="forge"
 mandatory=true
-versionRange="[33,)"
+versionRange="[34,)"
 ordering="NONE"
 side="BOTH"
 [[dependencies.coffeecheese]]
