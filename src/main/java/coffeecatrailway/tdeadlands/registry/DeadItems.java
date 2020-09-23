@@ -78,14 +78,14 @@ public class DeadItems
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).register();
 
     //Tools
+    public static final RegistryEntry<SwordItem> DEAD_WOOD_SWORD = REGISTRATE.item("dead_wood_sword", prop -> new SwordItem(ItemTier.WOOD, 3, -2.16f, prop))
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(DeadBlocks.DEAD_PLANKS)).register();
     public static final RegistryEntry<AxeItem> DEAD_WOOD_AXE = REGISTRATE.item("dead_wood_axe", prop -> new AxeItem(ItemTier.WOOD, 6f, -2.88f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(DeadBlocks.DEAD_PLANKS)).register();
     public static final RegistryEntry<PickaxeItem> DEAD_WOOD_PICKAXE = REGISTRATE.item("dead_wood_pickaxe", prop -> new PickaxeItem(ItemTier.WOOD, 1, -2.52f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(pickaxeRecipe(DeadBlocks.DEAD_PLANKS)).register();
     public static final RegistryEntry<ShovelItem> DEAD_WOOD_SHOVEL = REGISTRATE.item("dead_wood_shovel", prop -> new ShovelItem(ItemTier.WOOD, 1.5f, -2.7f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(shovelRecipe(DeadBlocks.DEAD_PLANKS)).register();
-    public static final RegistryEntry<SwordItem> DEAD_WOOD_SWORD = REGISTRATE.item("dead_wood_sword", prop -> new SwordItem(ItemTier.WOOD, 3, -2.16f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(DeadBlocks.DEAD_PLANKS)).register();
     public static final RegistryEntry<HoeItem> DEAD_WOOD_HOE = REGISTRATE.item("dead_wood_hoe", prop -> new HoeItem(ItemTier.WOOD, 0, -2.7f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(DeadBlocks.DEAD_PLANKS)).register();
 
@@ -100,25 +100,25 @@ public class DeadItems
                     .addCriterion("has_string", RegistrateRecipeProvider.hasItem(DEAD_WOOD_STICK.get()))
                     .addCriterion("has_feather", RegistrateRecipeProvider.hasItem(OWL_FEATHER.get())).build(provider)).register();
 
+    public static final RegistryEntry<SwordItem> COLDSTONE_SWORD = REGISTRATE.item("coldstone_sword", prop -> new SwordItem(ItemTier.STONE, 3, -2.4f, prop))
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(DeadTags.Items.COLDSTONE)).register();
     public static final RegistryEntry<AxeItem> COLDSTONE_AXE = REGISTRATE.item("coldstone_axe", prop -> new AxeItem(ItemTier.STONE, 7f, -3.2f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(DeadTags.Items.COLDSTONE)).register();
     public static final RegistryEntry<PickaxeItem> COLDSTONE_PICKAXE = REGISTRATE.item("coldstone_pickaxe", prop -> new PickaxeItem(ItemTier.STONE, 1, -2.8f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(pickaxeRecipe(DeadTags.Items.COLDSTONE)).register();
     public static final RegistryEntry<ShovelItem> COLDSTONE_SHOVEL = REGISTRATE.item("coldstone_shovel", prop -> new ShovelItem(ItemTier.STONE, 1.5f, -3f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(shovelRecipe(DeadTags.Items.COLDSTONE)).register();
-    public static final RegistryEntry<SwordItem> COLDSTONE_SWORD = REGISTRATE.item("coldstone_sword", prop -> new SwordItem(ItemTier.STONE, 3, -2.4f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(DeadTags.Items.COLDSTONE)).register();
     public static final RegistryEntry<HoeItem> COLDSTONE_HOE = REGISTRATE.item("coldstone_hoe", prop -> new HoeItem(ItemTier.STONE, -1, -2f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(DeadTags.Items.COLDSTONE)).register();
 
+    public static final RegistryEntry<SwordItem> FROST_BRONZE_SWORD = REGISTRATE.item("frost_bronze_sword", prop -> new SwordItem(ItemTier.IRON, 3, -2.4f, prop))
+            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<AxeItem> FROST_BRONZE_AXE = REGISTRATE.item("frost_bronze_axe", prop -> new AxeItem(ItemTier.IRON, 6f, -3.1f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(axeRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<PickaxeItem> FROST_BRONZE_PICKAXE = REGISTRATE.item("frost_bronze_pickaxe", prop -> new PickaxeItem(ItemTier.IRON, 1, -2.8f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(pickaxeRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<ShovelItem> FROST_BRONZE_SHOVEL = REGISTRATE.item("frost_bronze_shovel", prop -> new ShovelItem(ItemTier.IRON, 1.5f, -3f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(shovelRecipe(FROST_BRONZE_INGOT)).register();
-    public static final RegistryEntry<SwordItem> FROST_BRONZE_SWORD = REGISTRATE.item("frost_bronze_sword", prop -> new SwordItem(ItemTier.IRON, 3, -2.4f, prop))
-            .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(swordRecipe(FROST_BRONZE_INGOT)).register();
     public static final RegistryEntry<HoeItem> FROST_BRONZE_HOE = REGISTRATE.item("frost_bronze_hoe", prop -> new HoeItem(ItemTier.IRON, -2, -1f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(hoeRecipe(FROST_BRONZE_INGOT)).register();
 
@@ -127,10 +127,10 @@ public class DeadItems
     public static final RegistryEntry<PickaxeItem> HEAT_PICKAXE = REGISTRATE.item("heat_pickaxe", prop -> new PickaxeItem(ItemTier.DIAMOND, 1, -2.8f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
 
-    public static final RegistryEntry<SwordItem> MAIDENS_DAGGER = REGISTRATE.item("maidens_dagger", prop -> new SwordItem(ItemTier.IRON, 3, -2.16f, prop))
+    public static final RegistryEntry<SwordItem> MAIDENS_DAGGER = REGISTRATE.item("maidens_dagger", prop -> new SwordItem(ItemTier.IRON, 1, -3.2f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
 
-    public static final RegistryEntry<SwordItem> TALL_KNIGHT_BLADE = REGISTRATE.item("tall_knight_blade", prop -> new SwordItem(ItemTier.DIAMOND, 3, -2.5f, prop))
+    public static final RegistryEntry<SwordItem> TALL_KNIGHT_BLADE = REGISTRATE.item("tall_knight_blade", prop -> new SwordItem(ItemTier.DIAMOND, 5, -3f, prop))
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
     public static final RegistryEntry<Item> TALL_KNIGHT_STAFF = REGISTRATE.item("tall_knight_staff", Item::new)
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
