@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 
@@ -49,6 +50,12 @@ public class WarpRuneBlock extends BaseBlock implements IWaterLoggable
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER).with(WATERLOGGED, false));
+    }
+
+    @Override
+    public boolean isToolEffective(BlockState state, ToolType tool)
+    {
+        return tool == ToolType.PICKAXE;
     }
 
     @Override

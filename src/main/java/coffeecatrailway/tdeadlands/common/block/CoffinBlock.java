@@ -25,6 +25,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -44,6 +45,12 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(PART, CoffinPart.BACK).with(WATERLOGGED, false).with(HORIZONTAL_FACING, Direction.NORTH));
+    }
+
+    @Override
+    public boolean isToolEffective(BlockState state, ToolType tool)
+    {
+        return tool == ToolType.PICKAXE;
     }
 
     @Override

@@ -12,6 +12,7 @@ import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.lighting.LightEngine;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.common.ToolType;
 
 import java.util.Random;
 
@@ -24,6 +25,12 @@ public class DeadGrassBlock extends Block implements IGrowable
     public DeadGrassBlock(Properties properties)
     {
         super(properties);
+    }
+
+    @Override
+    public boolean isToolEffective(BlockState state, ToolType tool)
+    {
+        return tool == ToolType.SHOVEL;
     }
 
     @Override

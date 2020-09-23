@@ -3,6 +3,7 @@ package coffeecatrailway.tdeadlands.common.block;
 import coffeecatrailway.tdeadlands.registry.DeadBlocks;
 import net.minecraft.block.*;
 import net.minecraft.entity.IShearable;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -60,5 +61,23 @@ public class DeadTallGrassBlock extends BushBlock implements IGrowable, IForgeSh
     public boolean isValidPosition(BlockState state, IWorldReader world, BlockPos pos) {
         BlockState downState = world.getBlockState(pos.down());
         return DeadBlocks.isSoil(downState) || downState.getBlock() == Blocks.FARMLAND;
+    }
+
+    @Override
+    public boolean isFlammable(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+    {
+        return true;
+    }
+
+    @Override
+    public int getFlammability(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+    {
+        return 100;
+    }
+
+    @Override
+    public int getFireSpreadSpeed(BlockState state, IBlockReader world, BlockPos pos, Direction face)
+    {
+        return 60;
     }
 }

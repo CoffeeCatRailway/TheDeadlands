@@ -1,14 +1,15 @@
 package coffeecatrailway.tdeadlands;
 
-import coffeecatrailway.tdeadlands.integration.VanillaCompatability;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadBlockstates;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadLangs;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadRegistrate;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.*;
 import com.tterrag.registrate.providers.ProviderType;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -87,8 +88,14 @@ public class TheDeadlands
 
     public void setupCommon(FMLCommonSetupEvent event)
     {
-        VanillaCompatability.register();
+        registerCompostable(.3f, DeadBlocks.DEAD_LEAVES.get());
+        registerCompostable(.65f, DeadItems.COLD_GRASS_STRAND.get());
         DeadEntities.ATTRIBUTE_MAPS.forEach(Runnable::run);
+    }
+
+    private static void registerCompostable(float chance, IItemProvider itemProvider)
+    {
+        ComposterBlock.CHANCES.put(itemProvider.asItem(), chance);
     }
 
     public static ResourceLocation getLocation(String path)

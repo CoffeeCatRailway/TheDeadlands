@@ -60,92 +60,93 @@ public class DeadBlocks
     private static final Logger LOGGER = TheDeadlands.getLogger("Blocks");
 
     // Ores
-    public static final RegistryEntry<Block> COPPER_ORE = REGISTRATE.object("copper_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
+    public static final RegistryEntry<PickaxeableBlock> COPPER_ORE = REGISTRATE.object("copper_ore").block(PickaxeableBlock::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(DeadTags.Blocks.ORES_COPPER)
             .loot((tables, block) -> tables.registerDropping(block, DeadItems.COPPER_CLUMP.get())).item().tag(DeadTags.Items.ORES_COPPER).build().register();
 
-    public static final RegistryEntry<Block> FROST_METAL_ORE = REGISTRATE.object("frost_metal_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
+    public static final RegistryEntry<PickaxeableBlock> FROST_METAL_ORE = REGISTRATE.object("frost_metal_ore").block(PickaxeableBlock::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(Tags.Blocks.ORES)
             .loot((tables, block) -> tables.registerDropping(block, DeadItems.FROST_METAL_CLUMP.get())).item().tag(Tags.Items.ORES).build().register();
 
-    public static final RegistryEntry<Block> HEATSTONE_ORE = REGISTRATE.object("heatstone_ore").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
+    public static final RegistryEntry<PickaxeableBlock> HEATSTONE_ORE = REGISTRATE.object("heatstone_ore").block(PickaxeableBlock::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(3f, 3f)).defaultBlockstate().tag(Tags.Blocks.ORES)
             .loot((tables, block) -> tables.registerDropping(block, DeadItems.HEAT_STONE.get())).item().tag(Tags.Items.ORES).build().register();
-    public static final RegistryEntry<Block> HEATSTONE_BLOCK = REGISTRATE.object("heatstone_block").block(Block::new).initialProperties(Material.ROCK, MaterialColor.RED)
+    public static final RegistryEntry<PickaxeableBlock> HEATSTONE_BLOCK = REGISTRATE.object("heatstone_block").block(PickaxeableBlock::new).initialProperties(Material.ROCK, MaterialColor.RED)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(1.5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate()
             .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.HEAT_STONE), ctx::getEntry, false)).simpleItem().register();
 
-    public static final RegistryEntry<Block> FROST_BRONZE_BLOCK = REGISTRATE.object("frost_bronze_block").block(Block::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
+    public static final RegistryEntry<PickaxeableBlock> FROST_BRONZE_BLOCK = REGISTRATE.object("frost_bronze_block").block(PickaxeableBlock::new).initialProperties(Material.IRON, MaterialColor.ORANGE_TERRACOTTA)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(5f, 6f).sound(SoundType.METAL)).defaultLoot().defaultBlockstate().tag(Tags.Blocks.ORES)
             .recipe((ctx, provider) -> provider.square(DataIngredient.items(DeadItems.FROST_BRONZE_INGOT), ctx::getEntry, false)).item().tag(Tags.Items.ORES).build().register();
 
     // Coldstone
-    public static final RegistryEntry<Block> COLDSTONE = REGISTRATE.object("coldstone").block(Block::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
+    public static final RegistryEntry<PickaxeableBlock> COLDSTONE = REGISTRATE.object("coldstone").block(PickaxeableBlock::new).initialProperties(Material.ROCK, MaterialColor.BLACK)
             .properties(prop -> prop.setRequiresTool().hardnessAndResistance(1.5f, 6f)).defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE)
             .item().tag(DeadTags.Items.COLDSTONE).build().register();
-    public static final RegistryEntry<StairsBlock> COLDSTONE_STARIS = registerStairs("coldstone_stairs", COLDSTONE, "coldstone_stairs");
-    public static final RegistryEntry<SlabBlock> COLDSTONE_SLAB = registerSlab("coldstone_slab", COLDSTONE, "coldstone_slab");
+    public static final RegistryEntry<DeadStairsBlock> COLDSTONE_STARIS = registerStairs("coldstone_stairs", COLDSTONE, "coldstone_stairs", false);
+    public static final RegistryEntry<DeadSlabBlock> COLDSTONE_SLAB = registerSlab("coldstone_slab", COLDSTONE, "coldstone_slab", false);
     public static final RegistryEntry<WallBlock> COLDSTONE_WALL = registerWall("coldstone_wall", COLDSTONE, "coldstone_wall");
-    public static final RegistryEntry<PressurePlateBlock> COLDSTONE_PRESSURE_PLATE = registerPressurePlate("coldstone_pressure_plate", COLDSTONE, true, "coldstone_pressure_plate");
-    public static final RegistryEntry<StoneButtonBlock> COLDSTONE_BUTTON = registerButton("coldstone_button", COLDSTONE, StoneButtonBlock::new, "coldstone_button");
+    public static final RegistryEntry<DeadPressurePlateBlock> COLDSTONE_PRESSURE_PLATE = registerPressurePlate("coldstone_pressure_plate", COLDSTONE, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<ColdstoneButtonBlock> COLDSTONE_BUTTON = registerButton("coldstone_button", COLDSTONE, ColdstoneButtonBlock::new, "coldstone_button");
 
-    public static final RegistryEntry<Block> COLDSTONE_BRICKS = REGISTRATE.object("coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+    public static final RegistryEntry<PickaxeableBlock> COLDSTONE_BRICKS = REGISTRATE.object("coldstone_bricks").block(PickaxeableBlock::new).initialProperties(COLDSTONE)
             .recipe((ctx, provider) -> {
                 ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 4).key('c', COLDSTONE.get()).patternLine("cc").patternLine("cc")
                         .addCriterion("has_coldstone", RegistrateRecipeProvider.hasItem(COLDSTONE.get())).build(provider);
                 provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry);
             })
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
-    public static final RegistryEntry<StairsBlock> COLDSTONE_BRICKS_STARIS = registerStairs("coldstone_bricks_stairs", COLDSTONE_BRICKS, "coldstone_stairs");
-    public static final RegistryEntry<SlabBlock> COLDSTONE_BRICKS_SLAB = registerSlab("coldstone_bricks_slab", COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<DeadStairsBlock> COLDSTONE_BRICKS_STARIS = registerStairs("coldstone_bricks_stairs", COLDSTONE_BRICKS, "coldstone_stairs", false);
+    public static final RegistryEntry<DeadSlabBlock> COLDSTONE_BRICKS_SLAB = registerSlab("coldstone_bricks_slab", COLDSTONE_BRICKS, "coldstone_slab", false);
     public static final RegistryEntry<WallBlock> COLDSTONE_BRICKS_WALL = registerWall("coldstone_bricks_wall", COLDSTONE_BRICKS, "coldstone_wall");
-    public static final RegistryEntry<PressurePlateBlock> COLDSTONE_BRICKS_PRESSURE_PLATE = registerPressurePlate("coldstone_bricks_pressure_plate", COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
-    public static final RegistryEntry<StoneButtonBlock> COLDSTONE_BRICKS_BUTTON = registerButton("coldstone_bricks_button", COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+    public static final RegistryEntry<DeadPressurePlateBlock> COLDSTONE_BRICKS_PRESSURE_PLATE = registerPressurePlate("coldstone_bricks_pressure_plate", COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<ColdstoneButtonBlock> COLDSTONE_BRICKS_BUTTON = registerButton("coldstone_bricks_button", COLDSTONE_BRICKS, ColdstoneButtonBlock::new, "coldstone_button");
 
-    public static final RegistryEntry<Block> CRACKED_COLDSTONE_BRICKS = REGISTRATE.object("cracked_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+    public static final RegistryEntry<PickaxeableBlock> CRACKED_COLDSTONE_BRICKS = REGISTRATE.object("cracked_coldstone_bricks").block(PickaxeableBlock::new).initialProperties(COLDSTONE)
             .recipe((ctx, provider) -> provider.smelting(DataIngredient.items(COLDSTONE_BRICKS), ctx::getEntry, .1f))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
-    public static final RegistryEntry<StairsBlock> CRACKED_COLDSTONE_STARIS = registerStairs("cracked_coldstone_stairs", CRACKED_COLDSTONE_BRICKS, "coldstone_stairs");
-    public static final RegistryEntry<SlabBlock> CRACKED_COLDSTONE_SLAB = registerSlab("cracked_coldstone_slab", CRACKED_COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<DeadStairsBlock> CRACKED_COLDSTONE_STARIS = registerStairs("cracked_coldstone_stairs", CRACKED_COLDSTONE_BRICKS, "coldstone_stairs", false);
+    public static final RegistryEntry<DeadSlabBlock> CRACKED_COLDSTONE_SLAB = registerSlab("cracked_coldstone_slab", CRACKED_COLDSTONE_BRICKS, "coldstone_slab", false);
     public static final RegistryEntry<WallBlock> CRACKED_COLDSTONE_WALL = registerWall("cracked_coldstone_wall", CRACKED_COLDSTONE_BRICKS, "coldstone_wall");
-    public static final RegistryEntry<PressurePlateBlock> CRACKED_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("cracked_coldstone_pressure_plate", CRACKED_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
-    public static final RegistryEntry<StoneButtonBlock> CRACKED_COLDSTONE_BUTTON = registerButton("cracked_coldstone_button", CRACKED_COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+    public static final RegistryEntry<DeadPressurePlateBlock> CRACKED_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("cracked_coldstone_pressure_plate", CRACKED_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<ColdstoneButtonBlock> CRACKED_COLDSTONE_BUTTON = registerButton("cracked_coldstone_button", CRACKED_COLDSTONE_BRICKS, ColdstoneButtonBlock::new, "coldstone_button");
 
-    public static final RegistryEntry<Block> MOSSY_COLDSTONE_BRICKS = REGISTRATE.object("mossy_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+    public static final RegistryEntry<PickaxeableBlock> MOSSY_COLDSTONE_BRICKS = REGISTRATE.object("mossy_coldstone_bricks").block(PickaxeableBlock::new).initialProperties(COLDSTONE)
             .recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry()).addIngredient(COLDSTONE_BRICKS.get()).addIngredient(Blocks.VINE)
                     .addCriterion("has_coldstone", RegistrateRecipeProvider.hasItem(COLDSTONE_BRICKS.get())).build(provider))
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
-    public static final RegistryEntry<StairsBlock> MOSSY_COLDSTONE_STARIS = registerStairs("mossy_coldstone_stairs", MOSSY_COLDSTONE_BRICKS, "coldstone_stairs");
-    public static final RegistryEntry<SlabBlock> MOSSY_COLDSTONE_SLAB = registerSlab("mossy_coldstone_slab", MOSSY_COLDSTONE_BRICKS, "coldstone_slab");
+    public static final RegistryEntry<DeadStairsBlock> MOSSY_COLDSTONE_STARIS = registerStairs("mossy_coldstone_stairs", MOSSY_COLDSTONE_BRICKS, "coldstone_stairs", false);
+    public static final RegistryEntry<DeadSlabBlock> MOSSY_COLDSTONE_SLAB = registerSlab("mossy_coldstone_slab", MOSSY_COLDSTONE_BRICKS, "coldstone_slab", false);
     public static final RegistryEntry<WallBlock> MOSSY_COLDSTONE_WALL = registerWall("mossy_coldstone_wall", MOSSY_COLDSTONE_BRICKS, "coldstone_wall");
-    public static final RegistryEntry<PressurePlateBlock> MOSSY_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("mossy_coldstone_pressure_plate", MOSSY_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
-    public static final RegistryEntry<StoneButtonBlock> MOSSY_COLDSTONE_BUTTON = registerButton("mossy_coldstone_button", MOSSY_COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
+    public static final RegistryEntry<DeadPressurePlateBlock> MOSSY_COLDSTONE_PRESSURE_PLATE = registerPressurePlate("mossy_coldstone_pressure_plate", MOSSY_COLDSTONE_BRICKS, true, "coldstone_pressure_plate");
+    public static final RegistryEntry<ColdstoneButtonBlock> MOSSY_COLDSTONE_BUTTON = registerButton("mossy_coldstone_button", MOSSY_COLDSTONE_BRICKS, ColdstoneButtonBlock::new, "coldstone_button");
 
-    public static final RegistryEntry<Block> CHISELED_COLDSTONE_BRICKS = REGISTRATE.object("chiseled_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
+    public static final RegistryEntry<PickaxeableBlock> CHISELED_COLDSTONE_BRICKS = REGISTRATE.object("chiseled_coldstone_bricks").block(PickaxeableBlock::new).initialProperties(COLDSTONE)
             .recipe((ctx, provider) -> provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry)).lang("Chiselled Coldstone Bricks")
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
 
     // Dead Wood
-    public static final RegistryEntry<RotatedPillarBlock> DEAD_LOG = registerLog("dead_wood_log", MaterialColor.GRAY);
-    public static final RegistryEntry<RotatedPillarBlock> STRIPPED_DEAD_LOG = registerLog("stripped_dead_wood_log", MaterialColor.LIGHT_GRAY);
-    public static final RegistryEntry<RotatedPillarBlock> DEAD_WOOD = registerLog("dead_wood", MaterialColor.GRAY, "dead_wood_log", DEAD_LOG);
-    public static final RegistryEntry<RotatedPillarBlock> STRIPPED_DEAD_WOOD = registerLog("stripped_dead_wood", MaterialColor.LIGHT_GRAY, "dead_wood_log", STRIPPED_DEAD_LOG);
-    public static final RegistryEntry<LeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, () -> Blocks.ACACIA_SAPLING);
+    public static final RegistryEntry<DeadLogBlock> DEAD_LOG = registerLog("dead_wood_log", MaterialColor.GRAY, DeadBlocks.STRIPPED_DEAD_LOG);
+    public static final RegistryEntry<DeadLogBlock> STRIPPED_DEAD_LOG = registerLog("stripped_dead_wood_log", MaterialColor.LIGHT_GRAY, DeadBlocks.STRIPPED_DEAD_WOOD);
+    public static final RegistryEntry<DeadLogBlock> DEAD_WOOD = registerLog("dead_wood", MaterialColor.GRAY, "dead_wood_log", DEAD_LOG, () -> null);
+    public static final RegistryEntry<DeadLogBlock> STRIPPED_DEAD_WOOD = registerLog("stripped_dead_wood", MaterialColor.LIGHT_GRAY, "stripped_dead_wood_log", STRIPPED_DEAD_LOG, () -> null);
+    public static final RegistryEntry<DeadLeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, () -> Blocks.ACACIA_SAPLING);
+    // TODO dead_wood_sapling
 
-    public static final RegistryEntry<Block> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
-    public static final RegistryEntry<DoorBlock> DEAD_WOOD_DOOR = registerDoor("dead_wood_door", DEAD_PLANKS);
+    public static final RegistryEntry<DeadWoodPlanks> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
+    public static final RegistryEntry<DeadWoodDoorBlock> DEAD_WOOD_DOOR = registerDoor("dead_wood_door", DEAD_PLANKS);
     // TODO dead_wood_trapdoor
-    public static final RegistryEntry<StairsBlock> DEAD_WOOD_STARIS = registerStairs("dead_wood_stairs", DEAD_PLANKS, "wooden_stairs");
-    public static final RegistryEntry<SlabBlock> DEAD_WOOD_SLAB = registerSlab("dead_wood_slab", DEAD_PLANKS, "wooden_slab");
-    public static final RegistryEntry<WoodButtonBlock> DEAD_WOOD_BUTTON = registerButton("dead_wood_button", DEAD_PLANKS, WoodButtonBlock::new, "wooden_button");
-    public static final RegistryEntry<PressurePlateBlock> DEAD_WOOD_PRESSURE_PLATE = registerPressurePlate("dead_wood_pressure_plate", DEAD_PLANKS, false, "wooden_pressure_plate");
-    public static final RegistryEntry<FenceBlock> DEAD_WOOD_FENCE = REGISTRATE.object("dead_wood_fence").block(FenceBlock::new).initialProperties(DEAD_PLANKS)
+    public static final RegistryEntry<DeadStairsBlock> DEAD_WOOD_STAIRS = registerStairs("dead_wood_stairs", DEAD_PLANKS, "wooden_stairs", true);
+    public static final RegistryEntry<DeadSlabBlock> DEAD_WOOD_SLAB = registerSlab("dead_wood_slab", DEAD_PLANKS, "wooden_slab", true);
+    public static final RegistryEntry<DeadWoodButtonBlock> DEAD_WOOD_BUTTON = registerButton("dead_wood_button", DEAD_PLANKS, DeadWoodButtonBlock::new, "wooden_button");
+    public static final RegistryEntry<DeadPressurePlateBlock> DEAD_WOOD_PRESSURE_PLATE = registerPressurePlate("dead_wood_pressure_plate", DEAD_PLANKS, false, "wooden_pressure_plate");
+    public static final RegistryEntry<DeadWoodFenceBlock> DEAD_WOOD_FENCE = REGISTRATE.object("dead_wood_fence").block(DeadWoodFenceBlock::new).initialProperties(DEAD_PLANKS)
             .defaultLoot().blockstate((ctx, provider) -> provider.fenceBlock(ctx.getEntry(), provider.blockTexture(DEAD_PLANKS.get())))
             .tag(BlockTags.FENCES, BlockTags.WOODEN_FENCES).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry(), 3).patternLine("wsw").patternLine("wsw")
                     .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence")
                     .addCriterion("has_wood", RegistrateRecipeProvider.hasItem(DEAD_PLANKS.get())).build(provider))
             .item().tag(ItemTags.FENCES, ItemTags.WOODEN_FENCES).model((ctx, provider) -> provider.fenceInventory(ctx.getName(), provider.modLoc("block/" + provider.name(DEAD_PLANKS)))).build().register();
-    public static final RegistryEntry<FenceGateBlock> DEAD_WOOD_FENCE_GATE = REGISTRATE.object("dead_wood_fence_gate").block(FenceGateBlock::new).initialProperties(DEAD_PLANKS)
+    public static final RegistryEntry<DeadWoodFenceGateBlock> DEAD_WOOD_FENCE_GATE = REGISTRATE.object("dead_wood_fence_gate").block(DeadWoodFenceGateBlock::new).initialProperties(DEAD_PLANKS)
             .defaultLoot().blockstate((ctx, provider) -> provider.fenceGateBlock(ctx.getEntry(), provider.blockTexture(DEAD_PLANKS.get())))
             .tag(BlockTags.FENCE_GATES, Tags.Blocks.FENCE_GATES_WOODEN).recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).patternLine("sws").patternLine("sws")
                     .key('w', DEAD_PLANKS.get()).key('s', DeadItems.DEAD_WOOD_STICK.get()).setGroup("wooden_fence_gate")
@@ -192,7 +193,7 @@ public class DeadBlocks
     // Nature
     private static NonNullUnaryOperator<Block.Properties> GRASS_PROPS = prop -> prop.sound(SoundType.PLANT).doesNotBlockMovement().hardnessAndResistance(0f).notSolid();
 
-    private static final Supplier<IItemColor> GRASS_COLOR_ITEM = () -> (stack, index) -> 0x8fb8cf;// TODO: Check if the world is the right dimension
+    public static final Supplier<IItemColor> GRASS_COLOR_ITEM = () -> (stack, index) -> 0x8fb8cf;// TODO: Check if the world is the right dimension
     private static final Supplier<IBlockColor> GRASS_COLOR_BLOCK = () -> (state, world, pos, index) -> world != null && pos != null ? BiomeColors.getGrassColor(world, pos) : GRASS_COLOR_ITEM.get().getColor(ItemStack.EMPTY, index);
 
     public static final RegistryEntry<DeadTallGrassBlock> COLD_GRASS = REGISTRATE.object("cold_grass").block(DeadTallGrassBlock::new)
@@ -240,7 +241,7 @@ public class DeadBlocks
             .defaultLang().initialProperties(Material.TALL_PLANTS, MaterialColor.LIGHT_BLUE).properties(GRASS_PROPS).addLayer(() -> RenderType::getCutoutMipped)
             .item().color(() -> GRASS_COLOR_ITEM).model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/cold_tall_grass_top"))).build().register();
 
-    public static final RegistryEntry<Block> COLD_DIRT = REGISTRATE.object("cold_dirt").block(Block::new).initialProperties(Material.EARTH, MaterialColor.GRAY)
+    public static final RegistryEntry<ColdDirtBlock> COLD_DIRT = REGISTRATE.object("cold_dirt").block(ColdDirtBlock::new).initialProperties(Material.EARTH, MaterialColor.GRAY)
             .properties(prop -> prop.hardnessAndResistance(.5f).sound(SoundType.GROUND)).defaultBlockstate().defaultLoot().simpleItem().register();
     public static final RegistryEntry<DeadGrassBlock> COLD_GRASS_BLOCK = REGISTRATE.object("cold_grass_block").block(DeadGrassBlock::new).initialProperties(Material.ORGANIC, MaterialColor.LIGHT_BLUE)
             .properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
@@ -255,22 +256,24 @@ public class DeadBlocks
     public static final RegistryEntry<CoffinBlock> COFFIN = REGISTRATE.object("coffin").block(CoffinBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
 
-
+    public static final RegistryEntry<RunicTableBlock> RUNIC_TABLE = REGISTRATE.object("runic_table").block(RunicTableBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
+            .blockstate((ctx, provider) -> provider.horizontalBlock(ctx.getEntry(), provider.models().getExistingFile(TheDeadlands.getLocation("block/" + ctx.getName()))))
+            .addLayer(() -> RenderType::getCutoutMipped).defaultLoot().simpleItem().register();
 
     public static boolean isSoil(BlockState state)
     {
         return state.getBlock() == COLD_GRASS_BLOCK.get() || state.getBlock() == COLD_DIRT.get();
     }
 
-    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color)
+    private static RegistryEntry<DeadLogBlock> registerLog(String id, MaterialColor color, Supplier<DeadLogBlock> strippedLog)
     {
-        return registerLog(id, color, id, null);
+        return registerLog(id, color, id, null, strippedLog);
     }
 
-    private static RegistryEntry<RotatedPillarBlock> registerLog(String id, MaterialColor color, String texture, Supplier<RotatedPillarBlock> log)
+    private static RegistryEntry<DeadLogBlock> registerLog(String id, MaterialColor color, String texture, Supplier<DeadLogBlock> log, Supplier<DeadLogBlock> strippedLog)
     {
         boolean onlySideTexture = !id.equals(texture);
-        return REGISTRATE.object(id).block(RotatedPillarBlock::new)
+        return REGISTRATE.object(id).block(prop -> new DeadLogBlock(prop, strippedLog))
                 .initialProperties(Material.WOOD, color).properties(prop -> prop.hardnessAndResistance(2.0f).sound(SoundType.WOOD)).defaultLoot()
                 .tag(BlockTags.LOGS).blockstate((ctx, provider) -> {
                     ResourceLocation side = TheDeadlands.getLocation("block/" + texture + "_side");
@@ -282,9 +285,9 @@ public class DeadBlocks
                 .item().tag(ItemTags.LOGS).build().register();
     }
 
-    private static RegistryEntry<LeavesBlock> registerLeaves(String id, MaterialColor color, Supplier<? extends IItemProvider> sapling)
+    private static RegistryEntry<DeadLeavesBlock> registerLeaves(String id, MaterialColor color, Supplier<? extends IItemProvider> sapling)
     {
-        return REGISTRATE.object(id).block(LeavesBlock::new).initialProperties(Material.LEAVES, color)
+        return REGISTRATE.object(id).block(DeadLeavesBlock::new).initialProperties(Material.LEAVES, color)
                 .properties(prop -> prop.setRequiresTool().hardnessAndResistance(.2f).sound(SoundType.PLANT).notSolid().setAllowsSpawn(Blocks::allowsSpawnOnLeaves).setSuffocates((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false))
                 .addLayer(() -> RenderType::getCutoutMipped).defaultBlockstate().tag(BlockTags.LEAVES)
                 .loot((lootTables, block) ->
@@ -308,16 +311,16 @@ public class DeadBlocks
     }
 
     @SafeVarargs
-    private static RegistryEntry<Block> registerPlanks(String id, MaterialColor color, NonNullSupplier<RotatedPillarBlock> log, NonNullSupplier<RotatedPillarBlock>... others)
+    private static RegistryEntry<DeadWoodPlanks> registerPlanks(String id, MaterialColor color, NonNullSupplier<DeadLogBlock> log, NonNullSupplier<DeadLogBlock>... others)
     {
-        return REGISTRATE.object(id).block(Block::new).initialProperties(Material.WOOD, color).tag(BlockTags.PLANKS)
+        return REGISTRATE.object(id).block(DeadWoodPlanks::new).initialProperties(Material.WOOD, color).tag(BlockTags.PLANKS)
                 .properties(prop -> prop.hardnessAndResistance(2.0f, 3.0f).sound(SoundType.WOOD)).defaultBlockstate().defaultLoot()
                 .recipe((ctx, provider) -> provider.planks(DataIngredient.items(log, others), ctx::getEntry)).item().tag(ItemTags.PLANKS).build().register();
     }
 
-    private static RegistryEntry<DoorBlock> registerDoor(String id, NonNullSupplier<Block> planks)
+    private static RegistryEntry<DeadWoodDoorBlock> registerDoor(String id, NonNullSupplier<DeadWoodPlanks> planks)
     {
-        return REGISTRATE.object(id).block(DoorBlock::new).initialProperties(planks).properties(prop -> prop.hardnessAndResistance(3f).notSolid())
+        return REGISTRATE.object(id).block(DeadWoodDoorBlock::new).initialProperties(planks).properties(prop -> prop.hardnessAndResistance(3f).notSolid())
                 .addLayer(() -> RenderType::getCutoutMipped).tag(BlockTags.WOODEN_DOORS, BlockTags.DOORS)
                 .recipe((ctx, provider) -> provider.door(DataIngredient.items(planks), ctx::getEntry, "wooden_door"))
                 .blockstate((ctx, provider) -> provider.doorBlock(ctx.getEntry(), TheDeadlands.getLocation("block/" + id + "_bottom"), TheDeadlands.getLocation("block/" + id + "_top")))
@@ -336,16 +339,16 @@ public class DeadBlocks
 //                .item().model((ctx, provider) -> provider.withExistingParent(ctx.getName(), TheDeadlands.getLocation("block/" + id + "_bottom"))).build().register();
 //    }
 
-    public static RegistryEntry<StairsBlock> registerStairs(String id, RegistryEntry<Block> parent, String group)
+    public static RegistryEntry<DeadStairsBlock> registerStairs(String id, RegistryEntry<? extends Block> parent, String group, boolean isFlammable)
     {
-        return REGISTRATE.object(id).block(prop -> new StairsBlock(() -> parent.get().getDefaultState(), prop))
+        return REGISTRATE.object(id).block(prop -> new DeadStairsBlock(() -> parent.get().getDefaultState(), prop, isFlammable))
                 .initialProperties(parent).defaultLoot().blockstate((ctx, provider) -> provider.stairsBlock(ctx.getEntry(), provider.blockTexture(parent.get()))).tag(BlockTags.STAIRS)
                 .recipe((ctx, provider) -> provider.stairs(DataIngredient.items(parent), ctx::getEntry, group, true)).item().tag(ItemTags.STAIRS).build().register();
     }
 
-    public static RegistryEntry<SlabBlock> registerSlab(String id, RegistryEntry<Block> parent, String group)
+    public static RegistryEntry<DeadSlabBlock> registerSlab(String id, RegistryEntry<? extends Block> parent, String group, boolean isFlammable)
     {
-        return REGISTRATE.object(id).block(SlabBlock::new).initialProperties(parent)
+        return REGISTRATE.object(id).block(prop -> new DeadSlabBlock(prop, isFlammable)).initialProperties(parent)
                 .loot((tables, block) -> tables.registerLootTable(block, LootTable.builder().addLootPool(LootPool.builder().addEntry(ItemLootEntry.builder(block)
                         .acceptFunction(SetCount.builder(new RandomValueRange(2))
                                 .acceptCondition(BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withProp(SlabBlock.TYPE, SlabType.DOUBLE))))
@@ -355,7 +358,7 @@ public class DeadBlocks
                 .item().tag(ItemTags.STAIRS).build().register();
     }
 
-    private static final RegistryEntry<WallBlock> registerWall(String id, RegistryEntry<Block> parent, String group)
+    private static final RegistryEntry<WallBlock> registerWall(String id, RegistryEntry<? extends Block> parent, String group)
     {
         Supplier<ResourceLocation> texture = () -> {
             ResourceLocation name = parent.get().getRegistryName();
@@ -371,10 +374,10 @@ public class DeadBlocks
                 .item().model((ctx, provider) -> provider.wallInventory(ctx.getName(), texture.get())).tag(ItemTags.WALLS).build().register();
     }
 
-    private static RegistryEntry<PressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<Block> planks, boolean stone, String group)
+    private static RegistryEntry<DeadPressurePlateBlock> registerPressurePlate(String id, NonNullSupplier<? extends Block> planks, boolean stone, String group)
     {
         ITag.INamedTag<Item>[] itemTag = stone ? new ITag.INamedTag[]{} : new ITag.INamedTag[]{ItemTags.WOODEN_PRESSURE_PLATES};
-        return REGISTRATE.object(id).block(prop -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, prop)).initialProperties(planks)
+        return REGISTRATE.object(id).block(prop -> new DeadPressurePlateBlock(PressurePlateBlock.Sensitivity.EVERYTHING, prop, stone)).initialProperties(planks)
                 .properties(prop -> prop.doesNotBlockMovement().hardnessAndResistance(5f).notSolid()).tag(BlockTags.PRESSURE_PLATES, stone ? BlockTags.STONE_PRESSURE_PLATES : BlockTags.WOODEN_PRESSURE_PLATES)
                 .recipe((ctx, provider) -> ShapedRecipeBuilder.shapedRecipe(ctx.getEntry()).key('p', planks.get()).patternLine("pp").setGroup(group)
                         .addCriterion("has_planks", RegistrateRecipeProvider.hasItem(planks.get())).build(provider))
@@ -386,7 +389,7 @@ public class DeadBlocks
                 .tag(itemTag).build().register();
     }
 
-    private static <T extends AbstractButtonBlock> RegistryEntry<T> registerButton(String id, RegistryEntry<Block> parent, NonNullFunction<AbstractBlock.Properties, T> factory, String group)
+    private static <T extends AbstractButtonBlock> RegistryEntry<T> registerButton(String id, RegistryEntry<? extends Block> parent, NonNullFunction<AbstractBlock.Properties, T> factory, String group)
     {
         Supplier<ResourceLocation> texture = () -> {
             ResourceLocation name = parent.get().getRegistryName();
