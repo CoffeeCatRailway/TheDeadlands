@@ -1,5 +1,6 @@
 package coffeecatrailway.tdeadlands.client.entity.model;
 
+import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.entity.OwlEntity;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
@@ -9,6 +10,7 @@ import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.model.animation.Animation;
 
 public class OwlModel extends EntityModel<OwlEntity>
 {
@@ -162,8 +164,7 @@ public class OwlModel extends EntityModel<OwlEntity>
                 this.head.rotateAngleX += Math.PI / 8f;
                 break;
             case PARTYING:
-                Minecraft mc = Minecraft.getInstance();
-                float ticksExisted = owl.ticksExisted + (mc.isGamePaused() ? mc.renderPartialTicksPaused : mc.getRenderPartialTicks());
+                float ticksExisted = owl.ticksExisted + TheDeadlands.CLIENT_CONFIG.owlDanceType.get().getOffset();
                 float f = MathHelper.cos(ticksExisted);
                 float f1 = MathHelper.sin(ticksExisted);
                 this.body.rotationPointX = f;
