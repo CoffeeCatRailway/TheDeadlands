@@ -1,11 +1,9 @@
 package coffeecatrailway.tdeadlands.common.entity.ai.goal;
 
-import coffeecatrailway.tdeadlands.common.entity.RatEntity;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import coffeecatrailway.tdeadlands.registry.DeadItems;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.CreatureEntity;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -98,15 +96,15 @@ public class FindChestWithFoodGoal extends MoveToBlockGoal
                         Item item = stack.getItem();
                         if (!DeadTags.Items.RAT_IGNORE.contains(item))
                         {
-                            if (!stack.isEmpty() && item.isFood())
+                            if (!stack.isEmpty() && item.isFood() && item.getFood() != null)
                             {
+                                stack = entity.onFoodEaten(world, stack);
+                                stack.grow(1);
                                 int count = stack.getCount();
                                 handler.extractItem(i, count, false);
-                                handler.insertItem(i, new ItemStack(DeadItems.RAT_DROPPINGS.get(), count), false);
+                                handler.insertItem(i, new ItemStack(DeadItems.RAT_DROPPINGS.get(), world.rand.nextInt(count + 1)), false);
 
-                                entity.heal(item.getFood().getHealing());
-                                world.playSound(null, entity.getPosX(), entity.getPosY(), entity.getPosZ(), entity.getEatSound(stack), SoundCategory.NEUTRAL, .5f, 1f + (world.rand.nextFloat() - world.rand.nextFloat()) * .4f);
-                                entity.applyFoodEffects(stack, world, entity);
+                                entity.heal(item.getFood().getHealing() / 2f);
                             }
                         }
                     }
