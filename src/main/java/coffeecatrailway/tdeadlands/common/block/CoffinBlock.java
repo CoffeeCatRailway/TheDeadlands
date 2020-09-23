@@ -43,7 +43,7 @@ public class CoffinBlock extends BaseBlock implements IWaterLoggable
     public CoffinBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(OPEN, false).with(PART, CoffinPart.BACK).with(WATERLOGGED, false).with(HORIZONTAL_FACING, Direction.NORTH));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(PART, CoffinPart.BACK).with(WATERLOGGED, false).with(HORIZONTAL_FACING, Direction.NORTH));
     }
 
     @Override

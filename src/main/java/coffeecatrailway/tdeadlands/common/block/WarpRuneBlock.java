@@ -48,7 +48,7 @@ public class WarpRuneBlock extends BaseBlock implements IWaterLoggable
     public WarpRuneBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER).with(WATERLOGGED, false));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(POWERED, false).with(HALF, DoubleBlockHalf.LOWER).with(WATERLOGGED, false));
     }
 
     @Override

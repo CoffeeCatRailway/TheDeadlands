@@ -251,6 +251,7 @@ public class DeadBlocks
     // Misc
     public static final RegistryEntry<WarpRuneBlock> WARP_RUNE = REGISTRATE.object("warp_rune").block(WarpRuneBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
+
     public static final RegistryEntry<CoffinBlock> COFFIN = REGISTRATE.object("coffin").block(CoffinBlock::new).initialProperties(COLDSTONE).properties(AbstractBlock.Properties::notSolid)
             .addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop()).defaultLoot().item().model(NonNullBiConsumer.noop()).build().register();
 
