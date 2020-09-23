@@ -43,4 +43,17 @@ public class DeadConfig
             }
         }
     }
+
+    public static class Server
+    {
+        public ForgeConfigSpec.DoubleValue fireStarterChance;
+
+        public Server(ForgeConfigSpec.Builder builder)
+        {
+            builder.comment("Server Configurable Settings").push("item");
+            this.fireStarterChance = builder.comment("The chance that a fire starter will work").translation(CONFIG + "item.fireStarterChance")
+                    .defineInRange("fireStarterChance", 50f, 0f, 100f);
+            builder.pop();
+        }
+    }
 }

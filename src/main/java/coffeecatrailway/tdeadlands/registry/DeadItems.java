@@ -2,6 +2,7 @@ package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.common.item.DeadWoodBow;
+import coffeecatrailway.tdeadlands.common.item.FireStarterItem;
 import coffeecatrailway.tdeadlands.common.item.FrostCopperClumpItem;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import com.tterrag.registrate.providers.DataGenContext;
@@ -134,7 +135,7 @@ public class DeadItems
     public static final RegistryEntry<Item> TALL_KNIGHT_STAFF = REGISTRATE.item("tall_knight_staff", Item::new)
             .properties(prop -> prop.maxStackSize(1)).model((ctx, provider) -> provider.handheld(ctx::getEntry)).recipe(NonNullBiConsumer.noop()).register();
 
-    public static final RegistryEntry<Item> FIRE_STARTER = REGISTRATE.item("fire_starter", Item::new).properties(prop -> prop.maxStackSize(1))
+    public static final RegistryEntry<FireStarterItem> FIRE_STARTER = REGISTRATE.item("fire_starter", FireStarterItem::new).properties(prop -> prop.maxStackSize(1))
             .model((ctx, provider) -> provider.generated(ctx::getEntry)).recipe((ctx, provider) -> ShapelessRecipeBuilder.shapelessRecipe(ctx.getEntry())
                     .addIngredient(DEAD_WOOD_STICK.get()).addIngredient(DEAD_WOOD_STICK.get()).addCriterion("has_stick", RegistrateRecipeProvider.hasItem(DEAD_WOOD_STICK.get()))
                     .build(provider)).register();

@@ -12,12 +12,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -36,8 +40,8 @@ public class TheDeadlands
         }
     };
 
-    //    public static DeadConfig.Server SERVER_CONFIG;
     public static DeadConfig.Client CLIENT_CONFIG;
+    public static DeadConfig.Server SERVER_CONFIG;
 
     public static DeadRegistrate REGISTRATE;
 
@@ -47,14 +51,13 @@ public class TheDeadlands
         modEventBus.addListener(this::setupClient);
         modEventBus.addListener(this::setupCommon);
 
-//
-//        final Pair<DeadConfig.Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(DeadConfig.Server::new);
-//        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, server.getRight());
-//        SERVER_CONFIG = server.getLeft();
-//        LOGGER.info("Register configs");
         final Pair<DeadConfig.Client, ForgeConfigSpec> client = new ForgeConfigSpec.Builder().configure(DeadConfig.Client::new);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, client.getRight());
         CLIENT_CONFIG = client.getLeft();
+
+        final Pair<DeadConfig.Server, ForgeConfigSpec> server = new ForgeConfigSpec.Builder().configure(DeadConfig.Server::new);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, server.getRight());
+        SERVER_CONFIG = server.getLeft();
         LOGGER.info("Register configs");
 
         REGISTRATE = DeadRegistrate.create(MOD_ID).itemGroup(() -> GROUP_ALL, "The Deadlands")
