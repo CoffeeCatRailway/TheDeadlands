@@ -122,7 +122,7 @@ public class DeadBlocks
     public static final RegistryEntry<StoneButtonBlock> MOSSY_COLDSTONE_BUTTON = registerButton("mossy_coldstone_button", MOSSY_COLDSTONE_BRICKS, StoneButtonBlock::new, "coldstone_button");
 
     public static final RegistryEntry<Block> CHISELED_COLDSTONE_BRICKS = REGISTRATE.object("chiseled_coldstone_bricks").block(Block::new).initialProperties(COLDSTONE)
-            .recipe((ctx, provider) -> provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry))
+            .recipe((ctx, provider) -> provider.stonecutting(DataIngredient.items(COLDSTONE), ctx::getEntry)).lang("Chiselled Coldstone Bricks")
             .defaultLoot().defaultBlockstate().tag(DeadTags.Blocks.COLDSTONE).item().tag(DeadTags.Items.COLDSTONE).build().register();
 
     // Dead Wood
