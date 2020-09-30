@@ -1,7 +1,7 @@
 package coffeecatrailway.tdeadlands.common.block;
 
-import io.github.ocelot.common.BaseBlock;
-import io.github.ocelot.common.VoxelShapeHelper;
+import io.github.ocelot.sonar.common.block.BaseBlock;
+import io.github.ocelot.sonar.common.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
