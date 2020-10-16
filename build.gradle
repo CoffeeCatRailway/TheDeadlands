@@ -10,7 +10,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.github.johnrengelman.shadow' version '5.2.0'
+    id 'com.github.johnrengelman.shadow' version '4.0.4'
 }
 
 apply plugin: 'net.minecraftforge.gradle'
@@ -89,7 +89,7 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
-    maven { // FishLib
+    maven { // Sonar & ModelAnima
         name = "Jitpack"
         url = "https://jitpack.io"
     }
@@ -107,9 +107,12 @@ dependencies {
     implementation fg.deobf(registrate)
     shade registrate
 
-    runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}:api")
-    compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}"
+    runtimeOnly fg.deobf("com.github.Ocelot5836:Sonar:${project.sonar}")
+    compileOnly "com.github.Ocelot5836:Sonar:${project.sonar}:api"
     shade "com.github.Ocelot5836:Sonar:${project.sonar}"
+
+    implementation fg.deobf("com.github.Ocelot5836:ModelAnima:${project.modelAnima}")
+    shade "com.github.Ocelot5836:ModelAnima:${project.modelAnima}"
 }
 
 shadowJar {

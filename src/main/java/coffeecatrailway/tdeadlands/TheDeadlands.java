@@ -75,6 +75,7 @@ public class TheDeadlands
         DeadTileEntities.load();
         DeadEntities.load();
         DeadSounds.load();
+        DeadWorldGen.load(modEventBus);
     }
 
     @OnlyIn(Dist.CLIENT)

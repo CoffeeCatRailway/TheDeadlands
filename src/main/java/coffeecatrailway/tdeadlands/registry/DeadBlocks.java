@@ -3,6 +3,7 @@ package coffeecatrailway.tdeadlands.registry;
 import coffeecatrailway.tdeadlands.TheDeadlands;
 import coffeecatrailway.tdeadlands.client.item.renderer.DeadWoodChestItemRenderer;
 import coffeecatrailway.tdeadlands.common.block.*;
+import coffeecatrailway.tdeadlands.common.world.gen.feature.DeadWoodTree;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadBlockstates;
 import coffeecatrailway.tdeadlands.integration.registrate.DeadTags;
 import com.tterrag.registrate.providers.RegistrateRecipeProvider;
@@ -130,8 +131,13 @@ public class DeadBlocks
     public static final RegistryEntry<DeadLogBlock> STRIPPED_DEAD_LOG = registerLog("stripped_dead_wood_log", MaterialColor.LIGHT_GRAY, DeadBlocks.STRIPPED_DEAD_WOOD);
     public static final RegistryEntry<DeadLogBlock> DEAD_WOOD = registerLog("dead_wood", MaterialColor.GRAY, "dead_wood_log", DEAD_LOG, () -> null);
     public static final RegistryEntry<DeadLogBlock> STRIPPED_DEAD_WOOD = registerLog("stripped_dead_wood", MaterialColor.LIGHT_GRAY, "stripped_dead_wood_log", STRIPPED_DEAD_LOG, () -> null);
-    public static final RegistryEntry<DeadLeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, () -> Blocks.ACACIA_SAPLING);
-    // TODO dead_wood_sapling
+    public static final RegistryEntry<DeadSaplingBlock> DEAD_SAPLING = REGISTRATE.object("dead_sapling").block(prop -> new DeadSaplingBlock(new DeadWoodTree(), prop))
+            .initialProperties(Material.PLANTS, Material.PLANTS.getColor()).properties(prop -> prop.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT))
+            .defaultLang().defaultLoot().blockstate((ctx, provider) -> provider.models()
+                    .withExistingParent(ctx.getName(), new ResourceLocation("block/cross")).texture("cross", TheDeadlands.getLocation("block/" + ctx.getName())))
+            .tag(BlockTags.SAPLINGS).addLayer(() -> RenderType::getCutoutMipped)
+            .item().defaultModel().tag(ItemTags.SAPLINGS).build().register();
+    public static final RegistryEntry<DeadLeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, DEAD_SAPLING);
 
     public static final RegistryEntry<DeadWoodPlanks> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
     public static final RegistryEntry<DeadWoodDoorBlock> DEAD_WOOD_DOOR = registerDoor("dead_wood_door", DEAD_PLANKS);
@@ -191,7 +197,7 @@ public class DeadBlocks
             .model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/dead_wood_torch"))).build().register();
 
     // Nature
-    private static NonNullUnaryOperator<Block.Properties> GRASS_PROPS = prop -> prop.sound(SoundType.PLANT).doesNotBlockMovement().hardnessAndResistance(0f).notSolid();
+    private static final NonNullUnaryOperator<Block.Properties> GRASS_PROPS = prop -> prop.sound(SoundType.PLANT).doesNotBlockMovement().hardnessAndResistance(0f).notSolid();
 
     public static final Supplier<IItemColor> GRASS_COLOR_ITEM = () -> (stack, index) -> 0x8fb8cf;// TODO: Check if the world is the right dimension
     private static final Supplier<IBlockColor> GRASS_COLOR_BLOCK = () -> (state, world, pos, index) -> world != null && pos != null ? BiomeColors.getGrassColor(world, pos) : GRASS_COLOR_ITEM.get().getColor(ItemStack.EMPTY, index);
@@ -242,9 +248,9 @@ public class DeadBlocks
             .item().color(() -> GRASS_COLOR_ITEM).model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/cold_tall_grass_top"))).build().register();
 
     public static final RegistryEntry<ColdDirtBlock> COLD_DIRT = REGISTRATE.object("cold_dirt").block(ColdDirtBlock::new).initialProperties(Material.EARTH, MaterialColor.GRAY)
-            .properties(prop -> prop.hardnessAndResistance(.5f).sound(SoundType.GROUND)).defaultBlockstate().defaultLoot().simpleItem().register();
+            .tag(Tags.Blocks.DIRT).properties(prop -> prop.hardnessAndResistance(.5f).sound(SoundType.GROUND)).defaultBlockstate().defaultLoot().simpleItem().register();
     public static final RegistryEntry<DeadGrassBlock> COLD_GRASS_BLOCK = REGISTRATE.object("cold_grass_block").block(DeadGrassBlock::new).initialProperties(Material.ORGANIC, MaterialColor.LIGHT_BLUE)
-            .properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
+            .tag(Tags.Blocks.DIRT).properties(prop -> prop.sound(SoundType.PLANT).tickRandomly().hardnessAndResistance(0.6F).sound(SoundType.PLANT))
             .loot((tables, block) -> tables.registerLootTable(block, RegistrateBlockLootTables.droppingWithSilkTouch(block, COLD_DIRT.get())))
             .color(() -> GRASS_COLOR_BLOCK).addLayer(() -> RenderType::getCutoutMipped).blockstate(NonNullBiConsumer.noop())
             .item().color(() -> GRASS_COLOR_ITEM).build().register();
@@ -302,7 +308,7 @@ public class DeadBlocks
                                                 .acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.05f, 0.0625f, 0.083333336f, 0.1f)))
                                 ).addLootPool(LootPool.builder()
                                         .rolls(new RandomValueRange(1))
-                                        .addEntry(ItemLootEntry.builder(Items.STICK)
+                                        .addEntry(ItemLootEntry.builder(DeadItems.DEAD_WOOD_STICK.get())
                                                 .acceptCondition(TableBonus.builder(Enchantments.FORTUNE, 0.02f, 0.022222223f, 0.025f, 0.033333335f, 0.1f))
                                                 .acceptFunction(SetCount.builder(new RandomValueRange(1.0f, 2.0f))).acceptFunction(ExplosionDecay.builder()))
                                         .acceptCondition(Inverted.builder(Alternative.builder(MatchTool.builder(ItemPredicate.Builder.create().tag(Tags.Items.SHEARS)))
