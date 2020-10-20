@@ -133,10 +133,10 @@ public class DeadBlocks
     public static final RegistryEntry<DeadLogBlock> STRIPPED_DEAD_WOOD = registerLog("stripped_dead_wood", MaterialColor.LIGHT_GRAY, "stripped_dead_wood_log", STRIPPED_DEAD_LOG, () -> null);
     public static final RegistryEntry<DeadSaplingBlock> DEAD_SAPLING = REGISTRATE.object("dead_sapling").block(prop -> new DeadSaplingBlock(new DeadWoodTree(), prop))
             .initialProperties(Material.PLANTS, Material.PLANTS.getColor()).properties(prop -> prop.doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance().sound(SoundType.PLANT))
-            .defaultLang().defaultLoot().blockstate((ctx, provider) -> provider.models()
-                    .withExistingParent(ctx.getName(), new ResourceLocation("block/cross")).texture("cross", TheDeadlands.getLocation("block/" + ctx.getName())))
+            .defaultLang().defaultLoot().blockstate((ctx, provider) -> provider.simpleBlock(ctx.getEntry(), provider.models()
+                    .withExistingParent(ctx.getName(), new ResourceLocation("block/cross")).texture("cross", TheDeadlands.getLocation("block/" + ctx.getName()))))
             .tag(BlockTags.SAPLINGS).addLayer(() -> RenderType::getCutoutMipped)
-            .item().defaultModel().tag(ItemTags.SAPLINGS).build().register();
+            .item().model((ctx, provider) -> provider.generated(ctx::getEntry, TheDeadlands.getLocation("block/" + ctx.getName()))).tag(ItemTags.SAPLINGS).build().register();
     public static final RegistryEntry<DeadLeavesBlock> DEAD_LEAVES = registerLeaves("dead_leaves", MaterialColor.LIGHT_GRAY, DEAD_SAPLING);
 
     public static final RegistryEntry<DeadWoodPlanks> DEAD_PLANKS = registerPlanks("dead_wood_planks", MaterialColor.LIGHT_GRAY, DEAD_LOG, STRIPPED_DEAD_LOG, DEAD_WOOD, STRIPPED_DEAD_WOOD);
