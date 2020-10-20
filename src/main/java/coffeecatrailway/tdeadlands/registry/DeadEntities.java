@@ -1,13 +1,10 @@
 package coffeecatrailway.tdeadlands.registry;
 
 import coffeecatrailway.tdeadlands.TheDeadlands;
-import coffeecatrailway.tdeadlands.common.entity.DeadWoodArrowEntity;
-import coffeecatrailway.tdeadlands.common.entity.MuskOxEntity;
-import coffeecatrailway.tdeadlands.common.entity.OwlEntity;
-import coffeecatrailway.tdeadlands.common.entity.RatEntity;
-import com.tterrag.registrate.util.LazySpawnEggItem;
+import coffeecatrailway.tdeadlands.common.entity.*;
 import com.tterrag.registrate.util.entry.RegistryEntry;
 import com.tterrag.registrate.util.nullness.NonNullBiConsumer;
+import io.github.ocelot.sonar.common.item.SpawnEggItemBase;
 import net.minecraft.advancements.criterion.EntityFlagsPredicate;
 import net.minecraft.advancements.criterion.EntityPredicate;
 import net.minecraft.entity.EntityClassification;
@@ -39,7 +36,7 @@ public class DeadEntities
     private static final EntityPredicate.Builder ON_FIRE = EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true).build());
 
     public static final Set<Runnable> ATTRIBUTE_MAPS = new HashSet<>();
-    public static final Set<RegistryEntry<? extends LazySpawnEggItem<?>>> SPAWN_EGGS = new HashSet<>();
+    public static final Set<RegistryEntry<? extends SpawnEggItemBase<?>>> SPAWN_EGGS = new HashSet<>();
 
     // Misc
     public static final RegistryEntry<EntityType<DeadWoodArrowEntity>> DEAD_WOOD_ARROW = REGISTRATE.<DeadWoodArrowEntity>entity("dead_wood_arrow", DeadWoodArrowEntity::new, EntityClassification.MISC)
@@ -89,12 +86,11 @@ public class DeadEntities
         ATTRIBUTE_MAPS.add(() -> GlobalEntityTypeAttributes.put(entity.get(), attributeMap.get().create()));
     }
 
-    private static <T extends LivingEntity> RegistryEntry<LazySpawnEggItem<T>> registerSpawnEgg(String id, RegistryEntry<EntityType<T>> entity, int primaryColor, int secondaryColor)
+    private static <T extends EntityType<? extends LivingEntity>> void registerSpawnEgg(String id, RegistryEntry<T> entity, int primaryColor, int secondaryColor)
     {
-        RegistryEntry<LazySpawnEggItem<T>> egg = REGISTRATE.item(id + "_spawn_egg", prop -> new LazySpawnEggItem<>(entity, primaryColor, secondaryColor, prop)).group(() -> ItemGroup.MISC)
+        RegistryEntry<SpawnEggItemBase<T>> egg = REGISTRATE.item(id + "_spawn_egg", prop -> new SpawnEggItemBase<>(entity, primaryColor, secondaryColor, true, prop))//.group(() -> ItemGroup.MISC)
                 .model((ctx, provider) -> provider.withExistingParent(ctx.getName(), new ResourceLocation("item/template_spawn_egg"))).register();
         SPAWN_EGGS.add(egg);
-        return egg;
     }
 
     public static void load()
