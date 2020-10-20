@@ -1,15 +1,10 @@
-package coffeecatrailway.tdeadlands.client.entity.model;
+// Made with Blockbench 3.6.6
+// Exported for Minecraft version 1.15
+// Paste this class into your mod and generate all required imports
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.vertex.IVertexBuilder;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.client.renderer.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
-// TODO: Biped
 public class SnowMaiden extends EntityModel<Entity> {
-
-	private final ModelRenderer Body;
+	private final ModelRenderer body;
 	private final ModelRenderer MiddleBody;
 	private final ModelRenderer Chest;
 	private final ModelRenderer boobsbecausewhythefucknot;
@@ -21,7 +16,7 @@ public class SnowMaiden extends EntityModel<Entity> {
 	private final ModelRenderer Knife;
 	private final ModelRenderer RightArm;
 	private final ModelRenderer Leftlowerarm2;
-	private final ModelRenderer Legs;
+	private final ModelRenderer legs;
 	private final ModelRenderer RightLeg;
 	private final ModelRenderer Rightlowerleg;
 	private final ModelRenderer LeftLeg;
@@ -31,14 +26,14 @@ public class SnowMaiden extends EntityModel<Entity> {
 		textureWidth = 145;
 		textureHeight = 40;
 
-		Body = new ModelRenderer(this);
-		Body.setRotationPoint(0.0F, 11.0F, 0.0F);
-		Body.setTextureOffset(26, 33).addBox(-4.0F, -3.75F, -2.0F, 8.0F, 3.0F, 4.0F, 0.0F, false);
-		Body.setTextureOffset(84, 31).addBox(-4.5F, -4.5F, -2.5F, 9.0F, 4.0F, 5.0F, 0.0F, false);
+		body = new ModelRenderer(this);
+		body.setRotationPoint(0.0F, 11.0F, 0.0F);
+		body.setTextureOffset(26, 33).addBox(-4.0F, -3.75F, -2.0F, 8.0F, 3.0F, 4.0F, 0.0F, false);
+		body.setTextureOffset(84, 31).addBox(-4.5F, -4.5F, -2.5F, 9.0F, 4.0F, 5.0F, 0.0F, false);
 
 		MiddleBody = new ModelRenderer(this);
 		MiddleBody.setRotationPoint(0.0F, -4.0F, 0.0F);
-		Body.addChild(MiddleBody);
+		body.addChild(MiddleBody);
 		MiddleBody.setTextureOffset(46, 30).addBox(-3.0F, -2.75F, -2.0F, 6.0F, 3.0F, 4.0F, 0.0F, false);
 		MiddleBody.setTextureOffset(87, 13).addBox(-3.5F, -2.5F, -2.5F, 7.0F, 2.0F, 5.0F, 0.0F, false);
 
@@ -116,17 +111,17 @@ public class SnowMaiden extends EntityModel<Entity> {
 		Leftlowerarm2.setRotationPoint(0.0F, 6.0F, 0.0F);
 		RightArm.addChild(Leftlowerarm2);
 		setRotationAngle(Leftlowerarm2, -0.8727F, 0.5236F, 0.0F);
-		Leftlowerarm2.setTextureOffset(87, 7).addBox(-1.0F, -1.25F, -1.5F, 3.0F, 7.0F, 3.0F, 0.0F, false);
+		Leftlowerarm2.setTextureOffset(88, 2).addBox(-1.0F, -1.25F, -1.5F, 3.0F, 7.0F, 3.0F, 0.0F, false);
 		Leftlowerarm2.setTextureOffset(74, 23).addBox(-0.9F, -1.0F, -1.0F, 2.0F, 7.0F, 2.0F, 0.0F, false);
 		Leftlowerarm2.setTextureOffset(74, 24).addBox(-1.0F, 6.0F, -1.5F, 2.0F, 3.0F, 3.0F, 0.0F, false);
 
-		Legs = new ModelRenderer(this);
-		Legs.setRotationPoint(0.0F, 10.0F, 0.0F);
-		Legs.setTextureOffset(114, 21).addBox(-4.5F, 0.0F, -2.5F, 9.0F, 14.0F, 5.0F, 0.0F, false);
+		legs = new ModelRenderer(this);
+		legs.setRotationPoint(0.0F, 10.0F, 0.0F);
+		legs.setTextureOffset(114, 21).addBox(-4.5F, 0.0F, -2.5F, 9.0F, 14.0F, 5.0F, 0.0F, false);
 
 		RightLeg = new ModelRenderer(this);
 		RightLeg.setRotationPoint(2.0F, 0.0F, 0.0F);
-		Legs.addChild(RightLeg);
+		legs.addChild(RightLeg);
 		RightLeg.setTextureOffset(69, 0).addBox(-1.0F, 0.0F, -2.0F, 3.0F, 7.0F, 4.0F, 0.0F, false);
 
 		Rightlowerleg = new ModelRenderer(this);
@@ -137,7 +132,7 @@ public class SnowMaiden extends EntityModel<Entity> {
 
 		LeftLeg = new ModelRenderer(this);
 		LeftLeg.setRotationPoint(-2.0F, 0.0F, 0.0F);
-		Legs.addChild(LeftLeg);
+		legs.addChild(LeftLeg);
 		LeftLeg.setTextureOffset(69, 0).addBox(-2.0F, 0.0F, -2.0F, 3.0F, 7.0F, 4.0F, 0.0F, false);
 
 		Leftlowerleg = new ModelRenderer(this);
@@ -154,8 +149,8 @@ public class SnowMaiden extends EntityModel<Entity> {
 
 	@Override
 	public void render(MatrixStack matrixStack, IVertexBuilder buffer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha){
-		Body.render(matrixStack, buffer, packedLight, packedOverlay);
-		Legs.render(matrixStack, buffer, packedLight, packedOverlay);
+		body.render(matrixStack, buffer, packedLight, packedOverlay);
+		legs.render(matrixStack, buffer, packedLight, packedOverlay);
 	}
 
 	public void setRotationAngle(ModelRenderer modelRenderer, float x, float y, float z) {
