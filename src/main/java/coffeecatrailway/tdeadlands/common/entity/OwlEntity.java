@@ -143,7 +143,7 @@ public class OwlEntity extends TameableEntity implements IFlyingAnimal, ICreateS
             if (!player.abilities.isCreativeMode)
                 stack.shrink(1);
 
-            if (!this.isSilent()) // TODO: Custom sound
+            if (!this.isSilent())
                 this.world.playSound(null, this.getPosX(), this.getPosY(), this.getPosZ(), SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1f, 1f + (this.rand.nextFloat() - this.rand.nextFloat()) * .2f);
 
             if (!this.world.isRemote)
