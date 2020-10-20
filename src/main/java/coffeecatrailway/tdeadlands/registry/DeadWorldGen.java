@@ -18,6 +18,9 @@ public class DeadWorldGen
 {
     private static final Logger LOGGER = TheDeadlands.getLogger("Features");
     private static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, TheDeadlands.MOD_ID);
+    // Features //
+    public static final Feature<BaseTreeFeatureConfig> TREE_FEATURE = new DeadWoodTreeFeature(BaseTreeFeatureConfig.CODEC);
+    public static final RegistryObject<Feature<BaseTreeFeatureConfig>> TREE = FEATURES.register("dead_wood_tree", () -> TREE_FEATURE);
 
     public static final RegistryObject<Feature<BaseTreeFeatureConfig>> TREE = FEATURES.register("dead_wood_tree", () -> new DeadWoodTreeFeature(BaseTreeFeatureConfig.CODEC));
 
