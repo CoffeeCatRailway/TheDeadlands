@@ -266,6 +266,8 @@ public class DeadBlocks
             .blockstate((ctx, provider) -> provider.horizontalBlock(ctx.getEntry(), provider.models().getExistingFile(TheDeadlands.getLocation("block/" + ctx.getName()))))
             .addLayer(() -> RenderType::getCutoutMipped).defaultLoot().simpleItem().register();
 
+    public static final RegistryEntry<Block> CLOTH = REGISTRATE.object("cloth").block(Block::new).initialProperties(() -> Blocks.BLUE_WOOL).defaultBlockstate().defaultLoot().simpleItem().register();
+
     public static boolean isSoil(BlockState state)
     {
         return state.getBlock() == COLD_GRASS_BLOCK.get() || state.getBlock() == COLD_DIRT.get();
